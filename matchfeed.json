@@ -1,1 +1,52 @@
-
+{
+  "matches": [
+    {
+      "type": "FIFA World Cup",
+      "status": "Upcoming",
+      "time": "26/06/12 00:45:00",
+      "team1": {
+        "name": "Mexico",
+        "code": "mx",
+        "img": "https://cdn.countryflags.com/thumbs/mexico/flag-button-round-250.png"
+      },
+      "team2": {
+        "name": "South Africa",
+        "code": "za",
+        "img": "https://cdn.countryflags.com/thumbs/south-africa/flag-button-round-250.png"
+      },
+      "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
+    },
+    {
+      "type": "FIFA World Cup",
+      "status": "LIVE",
+      "time": "26/06/11 18:30:00",
+      "team1": {
+        "name": "Brazil",
+        "code": "br",
+        "img": "https://cdn.countryflags.com/thumbs/brazil/flag-button-round-250.png"
+      },
+      "team2": {
+        "name": "Argentina",
+        "code": "ar",
+        "img": "https://cdn.countryflags.com/thumbs/argentina/flag-button-round-250.png"
+      },
+      "redirectUrl": "https://www.yashintv.xyz/p/match-live.html"
+    },
+    {
+      "type": "FIFA World Cup",
+      "status": "Ended",
+      "time": "26/06/10 20:00:00",
+      "team1": {
+        "name": "England",
+        "code": "gb",
+        "img": "https://cdn.countryflags.com/thumbs/united-kingdom/flag-button-round-250.png"
+      },
+      "team2": {
+        "name": "France",
+        "code": "fr",
+        "img": "https://cdn.countryflags.com/thumbs/france/flag-button-round-250.png"
+      },
+      "redirectUrl": "https://www.yashintv.xyz/p/match-replay.html"
+    }
+  ]
+}
