@@ -2,18 +2,18 @@
   "matches": [
     {
       "team1": {
-        "name": "Mexico",
+        "name": "Canada",
         "code": "MX",
         "img": "https://example.com/manutd-logo.png"
       },
       "team2": {
-        "name": "S.Africa",
+        "name": "Bosnia",
         "code": "SA",
         "img": "https://example.com/liverpool-logo.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "25/06/12 00:45:00",
+      "time": "25/06/13 00:45:00",
       "redirectUrl": "https://example.com/match-link"
     },
     {
