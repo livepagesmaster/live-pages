@@ -27,9 +27,9 @@
         "code": "BAR",
         "img": "https://example.com/barcelona-logo.png"
       },
-      "status": "LIVE",
+      "status": "Upcoming",
       "type": "La Liga",
-      "time": "",
+      "time": "26/06/14 00:45:00",
       "redirectUrl": "https://example.com/match-link"
     },
     {
