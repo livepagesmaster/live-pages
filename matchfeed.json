@@ -1,6 +1,5 @@
 {
   "matches": [
-    
     {
       "team1": {
         "name": "Canada",
@@ -16,10 +15,7 @@
       "type": "FIFA World Cup",
       "time": "26/06/13 00:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
-    },
-
-
-    
+    },  
     {
       "team1": {
         "name": "USA",
@@ -51,10 +47,7 @@
       "type": "FIFA World Cup",
       "time": "26/06/14 00:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m3.html"
-    }
-
-,
-
+    },
       {
       "team1": {
         "name": "Brazil",
@@ -70,8 +63,7 @@
       "type": "FIFA World Cup",
       "time": "26/06/14 03:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
-    },
-    
+    },   
     {
       "team1": {
         "name": "Haiti",
@@ -87,8 +79,7 @@
       "type": "FIFA World Cup",
       "time": "26/06/14 06:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
-    },
-    
+    }, 
     {
       "team1": {
         "name": "Australia",
@@ -104,8 +95,7 @@
       "type": "FIFA World Cup",
       "time": "26/06/14 09:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
-    },
-    
+    },    
     {
       "team1": {
         "name": "Germany",
@@ -122,8 +112,6 @@
       "time": "26/06/14 22:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
     }
-
-
   ]
-  {
+}
     
