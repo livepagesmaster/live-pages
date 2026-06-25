@@ -1,117 +1,5 @@
 {
   "matches": [  
-    {
-      "team1": {
-        "name": "Colombia",
-        "code": "irq",
-        "img": "https://cdn.countryflags.com/thumbs/colombia/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "DR.Congo",
-        "code": "nor",
-        "img": "https://cdn.countryflags.com/thumbs/congo-democratic-republic-of-the/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/24 07:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m9.html"
-    },
- {
-      "team1": {
-        "name": "Switz",
-        "code": "arg",
-        "img": "https://cdn.countryflags.com/thumbs/switzerland/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Canada",
-        "code": "alg",
-        "img": "https://cdn.countryflags.com/thumbs/canada/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/25 00:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m10.html"
-    },
-    {
-      "team1": {
-        "name": "Bosnia",
-        "code": "aus",
-        "img": "https://cdn.countryflags.com/thumbs/bosnia-and-herzegovina/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Qatar",
-        "code": "egy",
-        "img": "https://cdn.countryflags.com/thumbs/qatar/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/25 00:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m11.html"
-    },
-    {
-      "team1": {
-        "name": "Morocco",
-        "code": "por",
-        "img": "https://cdn.countryflags.com/thumbs/morocco/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Haiti",
-        "code": "urg",
-        "img": "https://cdn.countryflags.com/thumbs/haiti/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/25 03:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m12.html"
-    },
- {
-      "team1": {
-        "name": "Scotland",
-        "code": "eng",
-        "img": "https://cdn.countryflags.com/thumbs/scotland/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Brazil",
-        "code": "cr",
-        "img": "https://cdn.countryflags.com/thumbs/brazil/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/25 03:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m13.html"
-    },   
-    {
-      "team1": {
-        "name": "S.Africa",
-        "code": "bel",
-        "img": "https://cdn.countryflags.com/thumbs/south-africa/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "S.Korea",
-        "code": "egy",
-        "img": "https://cdn.countryflags.com/thumbs/south-korea/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/25 06:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m14.html"
-    },
-    {
-      "team1": {
-        "name": "Czechia",
-        "code": "suz",
-        "img": "https://cdn.countryflags.com/thumbs/czech-republic/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Mexico",
-        "code": "urg",
-        "img": "https://cdn.countryflags.com/thumbs/mexico/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/25 06:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
-    },
 {
       "team1": {
         "name": "Curacao",
@@ -191,6 +79,22 @@
       "type": "FIFA World Cup",
       "time": "26/06/26 07:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
+    },
+    {
+      "team1": {
+        "name": "Paraguay",
+        "code": "sud",
+        "img": "https://cdn.countryflags.com/thumbs/paraguay/flag-button-round-250.png"
+      },
+      "team2": {
+        "name": "Australia",
+        "code": "urg",
+        "img": "https://cdn.countryflags.com/thumbs/australia/flag-button-round-250.png"
+      },
+      "status": "Upcoming",
+      "type": "FIFA World Cup",
+      "time": "26/06/26 07:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m21.html"
     }
   ]
 }
