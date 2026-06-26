@@ -1,100 +1,100 @@
 {
   "matches": [  
-{
+ {
       "team1": {
-        "name": "Curacao",
-        "code": "nd",
-        "img": "https://cdn.countryflags.com/thumbs/curacao/flag-button-round-250.png"
+        "name": "Norway",
+        "code": "irn",
+        "img": "https://cdn.countryflags.com/thumbs/norway/flag-button-round-250.png"
       },
       "team2": {
-        "name": "IvoryCoast",
-        "code": "jpn",
-        "img": "https://cdn.countryflags.com/thumbs/cote-d-ivoire/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/26 01:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
-    },   
-    {
-      "team1": {
-        "name": "Ecuador",
-        "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/ecuador/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Germany",
-        "code": "ecd",
-        "img": "https://cdn.countryflags.com/thumbs/germany/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/06/26 01:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m17.html"
-    },
-    {
-      "team1": {
-        "name": "Tunisia",
-        "code": "swn",
-        "img": "https://cdn.countryflags.com/thumbs/tunisia/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Netherlands",
-        "code": "Tun",
-        "img": "https://cdn.countryflags.com/thumbs/netherlands/flag-button-round-250.png"
+        "name": "France",
+        "code": "nz",
+        "img": "https://cdn.countryflags.com/thumbs/france/flag-button-round-250.png"
       },
       "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "26/06/26 04:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m18.html"
+      "time": "26/06/27 00:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m22.html"
+    },   
+    {
+      "team1": {
+        "name": "Senegal",
+        "code": "fr",
+        "img": "https://cdn.countryflags.com/thumbs/senegal/flag-button-round-250.png"
+      },
+      "team2": {
+        "name": "Iraq",
+        "code": "sen",
+        "img": "https://cdn.countryflags.com/thumbs/iraq/flag-button-round-250.png"
+      },
+      "status": "Upcoming",
+      "type": "FIFA World Cup",
+      "time": "26/06/27 00:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m23.html"
+    },
+    {
+      "team1": {
+        "name": "Saudi.A",
+        "code": "irq",
+        "img": "https://cdn.countryflags.com/thumbs/saudi-arabia/flag-button-round-250.png"
+      },
+      "team2": {
+        "name": "Cabo.V",
+        "code": "nor",
+        "img": "https://cdn.countryflags.com/thumbs/cape-verde/flag-button-round-250.png"
+      },
+      "status": "Upcoming",
+      "type": "FIFA World Cup",
+      "time": "26/06/27 05:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m24.html"
     },
  {
       "team1": {
-        "name": "Japan",
-        "code": "spn",
-        "img": "https://cdn.countryflags.com/thumbs/japan/flag-button-round-250.png"
+        "name": "Uruguay",
+        "code": "arg",
+        "img": "https://cdn.countryflags.com/thumbs/uruguay/flag-button-round-250.png"
       },
       "team2": {
-        "name": "Sweden",
-        "code": "cbv",
-        "img": "https://cdn.countryflags.com/thumbs/sweden/flag-button-round-250.png"
+        "name": "Spain",
+        "code": "alg",
+        "img": "https://cdn.countryflags.com/thumbs/spain/flag-button-round-250.png"
       },
       "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "26/06/26 04:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m19.html"
+      "time": "26/06/27 05:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m25.html"
     },   
     {
       "team1": {
-        "name": "Türkiye",
-        "code": "bel",
-        "img": "https://cdn.countryflags.com/thumbs/turkey/flag-button-round-250.png"
+        "name": "Newzealand",
+        "code": "aus",
+        "img": "https://cdn.countryflags.com/thumbs/new-zealand/flag-button-round-250.png"
       },
       "team2": {
-        "name": "USA",
+        "name": "Belgium",
         "code": "egy",
-        "img": "https://cdn.countryflags.com/thumbs/united-states-of-america/flag-button-round-250.png"
+        "img": "https://cdn.countryflags.com/thumbs/belgium/flag-button-round-250.png"
       },
       "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "26/06/26 07:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
+      "time": "26/06/27 08:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m26.html"
     },
     {
       "team1": {
-        "name": "Paraguay",
-        "code": "sud",
-        "img": "https://cdn.countryflags.com/thumbs/paraguay/flag-button-round-250.png"
+        "name": "Egypt",
+        "code": "por",
+        "img": "https://cdn.countryflags.com/thumbs/egypt/flag-button-round-250.png"
       },
       "team2": {
-        "name": "Australia",
+        "name": "Iran",
         "code": "urg",
-        "img": "https://cdn.countryflags.com/thumbs/australia/flag-button-round-250.png"
+        "img": "https://cdn.countryflags.com/thumbs/iran/flag-button-round-250.png"
       },
       "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "26/06/26 07:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m21.html"
+      "time": "26/06/27 08:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m27.html"
     }
   ]
 }
