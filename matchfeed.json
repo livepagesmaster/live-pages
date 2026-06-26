@@ -114,22 +114,6 @@
     },
     {
       "team1": {
-        "name": "Panama",
-        "code": "nd",
-        "img": "https://cdn.countryflags.com/thumbs/panama/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "England",
-        "code": "jpn",
-        "img": "https://cdn.countryflags.com/thumbs/england/flag-button-round-250.png"
-      },
-      "status": "Upcoming",
-      "type": "FIFA World Cup",
-      "time": "26/06/28 02:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
-    },   
-    {
-      "team1": {
         "name": "Croatia",
         "code": "CDI",
         "img": "https://cdn.countryflags.com/thumbs/croatia/flag-button-round-250.png"
