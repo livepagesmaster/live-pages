@@ -151,7 +151,7 @@
         "img": "https://cdn.countryflags.com/thumbs/united-states-of-america/flag-button-round-250.png"
       },
       "team2": {
-        "name": "Bosnia"
+        "name": "Bosnia",
         "code": "alg",
         "img": "https://cdn.countryflags.com/thumbs/bosnia-and-herzegovina/flag-button-round-250.png"
       },
@@ -159,7 +159,7 @@
       "type": "FIFA World Cup",
       "time": "26/07/02 05:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m10.html"
-    },
+    }
   ]
 }
     
