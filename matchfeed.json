@@ -7,63 +7,31 @@
         "img": "https://cdn.countryflags.com/thumbs/france/flag-button-round-250.png"
       },
       "team2": {
-        "name": "Morocco",
+        "name": "Spain",
         "code": "jpn",
-        "img": "https://cdn.countryflags.com/thumbs/morocco/flag-button-round-250.png"
+        "img": "https://cdn.countryflags.com/thumbs/spain/flag-button-round-250.png"
       },
       "status": "Ended",
       "type": "FIFA World Cup",
-      "time": "26/07/10 01:45:00",
+      "time": "26/07/15 00:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     },   
     {
       "team1": {
-        "name": "Spain",
-        "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/spain/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Belgium",
-        "code": "ecd",
-        "img": "https://cdn.countryflags.com/thumbs/belgium/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/07/11 00:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
-    },
-    {
-      "team1": {
-        "name": "Norway",
-        "code": "swn",
-        "img": "https://cdn.countryflags.com/thumbs/norway/flag-button-round-250.png"
-      },
-      "team2": {
         "name": "England",
-        "code": "Tun",
+        "code": "CDI",
         "img": "https://cdn.countryflags.com/thumbs/england/flag-button-round-250.png"
       },
-      "status": "Ended",
-      "type": "FIFA World Cup",
-      "time": "26/07/12 02:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m3.html"
-    },
- {
-      "team1": {
+      "team2": {
         "name": "Argentina",
-        "code": "spn",
+        "code": "ecd",
         "img": "https://cdn.countryflags.com/thumbs/argentina/flag-button-round-250.png"
       },
-      "team2": {
-        "name": "Switz..",
-        "code": "cbv",
-        "img": "https://cdn.countryflags.com/thumbs/switzerland/flag-button-round-250.png"
-      },
       "status": "Ended",
       "type": "FIFA World Cup",
-      "time": "26/07/12 06:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
-    }  
+      "time": "26/07/16 00:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
+    }
   ]
 }
     
