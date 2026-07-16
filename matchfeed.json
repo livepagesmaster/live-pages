@@ -7,20 +7,20 @@
         "img": "https://cdn.countryflags.com/thumbs/france/flag-button-round-250.png"
       },
       "team2": {
-        "name": "Spain",
+        "name": "England",
         "code": "jpn",
-        "img": "https://cdn.countryflags.com/thumbs/spain/flag-button-round-250.png"
+        "img": "https://cdn.countryflags.com/thumbs/england/flag-button-round-250.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "26/07/15 00:45:00",
+      "time": "26/07/19 02:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     },   
     {
       "team1": {
-        "name": "England",
+        "name": "Spain",
         "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/england/flag-button-round-250.png"
+        "img": "https://cdn.countryflags.com/thumbs/spain/flag-button-round-250.png"
       },
       "team2": {
         "name": "Argentina",
@@ -29,7 +29,7 @@
       },
       "status": "Upcoming",
       "type": "FIFA World Cup",
-      "time": "26/07/16 00:45:00",
+      "time": "26/07/20 00:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
     }
   ]
