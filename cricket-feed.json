@@ -1,21 +1,6 @@
 {
   "matches": [  
-     {
-      "team1": {
-        "name": "Zimbabwe",
-        "code": "nd",
-        "img": "https://cdn.countryflags.com/thumbs/zimbabwe/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "India",
-        "code": "jpn",
-        "img": "https://cdn.countryflags.com/thumbs/india/flag-button-round-250.png"
-      },
-      "status": "Upcoming",
-      "type": "T20 Series",
-      "time": "26/07/23 16:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m22.html"
-    }
+
   ]
 }
     
