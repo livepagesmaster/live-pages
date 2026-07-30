@@ -2,34 +2,34 @@
   "matches": [  
        {
       "team1": {
-        "name": "Chelsea",
+        "name": "Rottach-Egern",
         "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/fhBITrIlbQxhVB6IjxUO6Q_96x96.png"
+        "img": "https://irp-cdn.multiscreensite.com/2224d634/dms3rep/multi/desktop/36783+%281%29.png"
       },
       "team2": {
-        "name": "Sydney",
+        "name": "Bayern",
         "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/4lNP3RmOB14-8N2T0-Ih_g_96x96.png"
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/-_cmntP5q_pHL7g5LfkRiw_96x96.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "🏆 Friendlies",
-      "time": "26/07/28 15:30:00",
+      "time": "26/07/30 21:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     },
           {
       "team1": {
-        "name": "R.Madrid",
+        "name": "Birmingham",
         "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_96x96.png"
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/vZkXVHm56WFEs_I5q9OnJQ_96x96.png"
       },
       "team2": {
-        "name": "Leganes",
+        "name": "Barcelona",
         "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Id84F7Ji9rZGVacaazlBYA_96x96.png"
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_96x96.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "🏆 Friendlies",
-      "time": "26/07/28 21:45:00",
+      "time": "26/08/01 00:30:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
     }
   ]
