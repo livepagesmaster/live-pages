@@ -1,148 +1,20 @@
 {
   "matches": [  
-          {
-      "team1": {
-        "name": "Birmingham",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/vZkXVHm56WFEs_I5q9OnJQ_96x96.png"
-      },
-      "team2": {
-        "name": "Barcelona",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Friendlies",
-      "time": "26/08/01 00:30:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
-    },
-    {
-      "team1": {
-        "name": "Chelsea",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/fhBITrIlbQxhVB6IjxUO6Q_96x96.png"
-      },
-      "team2": {
-        "name": "Spurs",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/k3Q_mKE98Dnohrcea0JFgQ_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Friendlies",
-      "time": "26/08/01 15:30:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m3.html"
-    },
     {
          "team1": {
-        "name": "Man City",
+        "name": "Liverpool",
         "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/z44l-a0W1v5FmgPnemV6Xw_96x96.png"
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/nGfV05dipbAc7zzojivKew_96x96.png"
       },
       "team2": {
-        "name": "Inter",
+        "name": "Leeds",
         "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/l2-icwsMhIvsbRw8AwC1yg_96x96.png"
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/5dqfOKpjjW6EwTAx_FysKQ_96x96.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "🏆 Friendlies",
-      "time": "26/08/01 17:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
-    },
-    {
-         "team1": {
-        "name": "M.United",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/udQ6ns69PctCv143h-GeYw_96x96.png"
-      },
-      "team2": {
-        "name": "A.Madrid",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/pEqmA7CL-VRo4Llq3rwIPA_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Friendlies",
-      "time": "26/08/01 18:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
-    },
-    {
-         "team1": {
-        "name": "Thailand",
-        "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/thailand/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Malaysia",
-        "code": "ecd",
-        "img": "https://cdn.countryflags.com/thumbs/malaysia/flag-button-round-250.png"
-      },
-      "status": "Ended",
-      "type": "🏆 AFF",
-      "time": "26/08/01 18:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
-    },
-    {
-         "team1": {
-        "name": "R.Madrid",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/Th4fAVAZeCJWRcKoLW7koA_96x96.png"
-      },
-      "team2": {
-        "name": "Fiorentina",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/h-HS2cEVCwMJZFSlwYeWmA_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Friendlies",
-      "time": "26/08/01 21:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
-    },
-      {
-         "team1": {
-        "name": "Girona",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/sHiSmLm_rA0BOC5MfrNt8A_96x96.png"
-      },
-      "team2": {
-        "name": "Arsenal",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/4us2nCgl6kgZc0t3hpW75Q_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Friendlies",
-      "time": "26/08/01 23:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m8.html"
-    },
-     {
-         "team1": {
-        "name": "Miami",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/qbqMtgzKCYVxZMzcB4iQqQ_96x96.png"
-      },
-      "team2": {
-        "name": "Columbus",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/IBLXsZ5cwR0GOtUheJm2Cw_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 MLS",
-      "time": "26/08/02 05:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m9.html"
-    },
-         {
-         "team1": {
-        "name": "Santos",
-        "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/VHdNOT6wWOw_vJ38GMjMzg_96x96.png"
-      },
-      "team2": {
-        "name": "Remo",
-        "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/bENrK5iSMF6sXrEkDNNxng_96x96.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Copa do Brasil",
-      "time": "26/08/02 05:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m10.html"
+      "time": "26/08/03 01:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     }
   ]
 }
