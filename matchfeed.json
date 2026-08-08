@@ -111,7 +111,23 @@
       "type": "🏆 Friendly",
       "time": "26/08/09 05:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m8.html"
-    }
+    },
+        {
+             "team1": {
+        "name": "Udinese",
+        "code": "CDI",
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/92Aw_iasBENKmzvdpbTpHQ_96x96.png"
+      },
+      "team2": {
+        "name": "Barcelona",
+        "code": "ecd",
+        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/paYnEE8hcrP96neHRNofhQ_96x96.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 Friendly",
+      "time": "26/08/09 01:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m9.html"
+    },
   ]
 }
     
