@@ -20,12 +20,12 @@
       "team1": {
         "name": "Srilanka",
         "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/sri-lanka/flag-button-round-250.png"
+        "img": "https://img.singhs.com.np/cricket/srilanka.png"
       },
       "team2": {
         "name": "India",
         "code": "ecd",
-        "img": "https://cdn.countryflags.com/thumbs/india/flag-button-round-250.png"
+        "img": "https://img.singhs.com.np/cricket/india.png"
       },
       "status": "Upcoming",
       "type": "🏆 Test Series",
@@ -36,12 +36,12 @@
       "team1": {
         "name": "England",
         "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/england/flag-button-round-250.png"
+        "img": "https://img.singhs.com.np/cricket/england.png"
       },
       "team2": {
         "name": "Pakistan",
         "code": "ecd",
-        "img": "https://cdn.countryflags.com/thumbs/pakistan/flag-button-round-250.png"
+        "img": "https://img.singhs.com.np/cricket/pakistan.png"
       },
       "status": "Upcoming",
       "type": "🏆 Test Series",
