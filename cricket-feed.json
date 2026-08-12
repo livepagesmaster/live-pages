@@ -1,21 +1,5 @@
 {
-  "matches": [  
-     {
-      "team1": {
-        "name": "Australia",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/australia.png"
-      },
-      "team2": {
-        "name": "Bangladesh",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/bangladesh.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Test Series",
-      "time": "26/08/13 06:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m21.html"
-    },
+  "matches": [
       {
       "team1": {
         "name": "Srilanka",
