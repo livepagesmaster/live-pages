@@ -31,6 +31,22 @@
       "type": "🏆 Test Series",
       "time": "26/08/19 15:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m23.html"
+    },
+         {
+      "team1": {
+        "name": "NT Strike",
+        "code": "CDI",
+        "img": "https://resources.cricket-nt.pulselive.com/cricket-nt/photo/2023/08/01/768f1724-fb07-4b96-b73d-dc0c8ad19d20/nt-logo-white-new.png"
+      },
+      "team2": {
+        "name": "Nepal",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/nepal.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 Test Series",
+      "time": "26/08/21 14:15:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
     }
   ]
 }
