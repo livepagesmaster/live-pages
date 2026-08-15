@@ -1,37 +1,5 @@
 {
   "matches": [
-      {
-      "team1": {
-        "name": "Srilanka",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/srilanka.png"
-      },
-      "team2": {
-        "name": "India",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/india.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Test Series",
-      "time": "26/08/15 10:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m22.html"
-    },
-     {
-      "team1": {
-        "name": "England",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/england.png"
-      },
-      "team2": {
-        "name": "Pakistan",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/pakistan.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Test Series",
-      "time": "26/08/19 15:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m23.html"
-    },
          {
       "team1": {
         "name": "NT Strike",
