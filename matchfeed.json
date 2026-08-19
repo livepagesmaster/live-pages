@@ -1,22 +1,5 @@
 {
   "matches": [  
-     {
-         "team1": {
-        "name": "Vietnam",
-        "code": "CDI",
-        "img": "https://cdn.countryflags.com/thumbs/vietnam/flag-button-round-250.png"
-      },
-      "team2": {
-        "name": "Malaysia",
-        "code": "ecd",
-        "img": "https://cdn.countryflags.com/thumbs/malaysia/flag-button-round-250.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 AFF",
-      "time": "26/08/19 18:45:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
-    },
          {
          "team1": {
         "name": "Barcelona",
