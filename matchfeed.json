@@ -2,18 +2,18 @@
   "matches": [  
       {
          "team1": {
-        "name": "Al Ahli",
+        "name": "UCL Draw",
         "code": "CDI",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/LHnZxDvePnC86gjTiywYfw_96x96.png"
+        "img": "https://img.singhs.com.np/league/10611.png"
       },
       "team2": {
-        "name": "Auckland",
+        "name": "UCL Draw",
         "code": "ecd",
-        "img": "https://ssl.gstatic.com/onebox/media/sports/logos/optimized/p_QnXPAoy8lpWCMGjvbkVg_96x96.png"
+        "img": "https://img.singhs.com.np/league/10611.png"
       },
       "status": "Upcoming",
-      "type": "🏆 Inter.. Cup",
-      "time": "26/08/26 23:45:00",
+      "type": "🏆 UCL Draw",
+      "time": "26/08/27 21:45:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     },
