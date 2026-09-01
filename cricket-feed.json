@@ -2,18 +2,18 @@
   "matches": [
      {
       "team1": {
-        "name": "Bahrain",
+        "name": "Zimbabwe",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/team/5901.png"
+        "img": "https://img.singhs.com.np/cricket/zimbabwe.png"
       },
       "team2": {
-        "name": "Nepal",
+        "name": "S.Africa",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
+        "img": "https://img.singhs.com.np/cricket/southafrica.png"
       },
-      "status": "Ended",
-      "type": "🏆 ACC",
-      "time": "26/08/31 07:15:00",
+      "status": "Upcoming",
+      "type": "🏆 T20I",
+      "time": "26/09/01 17:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
     },
                   {
