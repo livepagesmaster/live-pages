@@ -1,35 +1,19 @@
 {
   "matches": [
-                  {
-      "team1": {
-        "name": "Tasmania",
-        "code": "CDI",
-        "img": "https://upload.wikimedia.org/wikipedia/en/c/c1/Tasmaniancricketteamlogo.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
-      },
-      "team2": {
-        "name": "Nepal",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
-      },
-      "status": "Ended",
-      "type": "🏆 One Day",
-      "time": "26/09/02 06:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
-    },
                       {
       "team1": {
-        "name": "Malaysia",
+        "name": "Namibia",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/malaysia.png"
+        "img": "https://img.singhs.com.np/cricket/namibia.png"
       },
       "team2": {
-        "name": "Nepal",
+        "name": "SouthAfrica",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
+        "img": "https://img.singhs.com.np/cricket/southafrica.png"
       },
-      "status": "Ended",
-      "type": "🏆 ACC",
-      "time": "26/09/03 07:15:00",
+      "status": "Upcoming",
+      "type": "🏆 T20I",
+      "time": "26/09/04 17:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m17.html"
     },
                       {
