@@ -2,19 +2,19 @@
   "matches": [
                       {
       "team1": {
-        "name": "Pak-W",
+        "name": "Nepal",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/pakistanwomen.png"
+        "img": "https://img.singhs.com.np/cricket/nepal.png"
       },
       "team2": {
-        "name": "HK-W",
+        "name": "Oman",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/hongkongwomen.png"
+        "img": "https://img.singhs.com.np/cricket/oman.png"
       },
-      "status": "Ended",
-      "type": "🏆 Womens Asia Cup",
-      "time": "26/09/07 20:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m18.html"
+      "status": "Upcoming",
+      "type": "🏆 ACC",
+      "time": "26/09/10 07:15:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
     },
                   {
       "team1": {
