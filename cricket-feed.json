@@ -18,18 +18,18 @@
     },
                   {
       "team1": {
-        "name": "Nepal",
+        "name": "Ind-W",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
+        "img": "https://img.singhs.com.np/cricket/india.png"
       },
       "team2": {
-        "name": "Hongkong",
+        "name": "Ban-W",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/hongkong.png"
+        "img": "https://img.singhs.com.np/cricket/bangladeshwomen.png"
       },
-      "status": "Ended",
-      "type": "🏆 ACC",
-      "time": "26/09/08 07:15:00",
+      "status": "Upcoming",
+      "type": "🏆 Womens AsiaCup",
+      "time": "26/09/10 20:15:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m21.html"
     }
   ]
