@@ -51,23 +51,6 @@
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
     },
-        {
-         "team1": {
-        "name": "Elversberg",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/team/8232.png"
-      },
-      "team2": {
-        "name": "Bayern",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/team/9823.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Bundesliga",
-      "time": "26/09/12 21:15:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
-    },
           {
          "team1": {
         "name": "Lazio",
@@ -83,7 +66,7 @@
       "type": "🏆 Serie A",
       "time": "26/09/12 21:45:00",
       "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
     },
     {
          "team1": {
@@ -100,7 +83,7 @@
       "type": "🏆 Saudi",
       "time": "26/09/12 23:45:00",
       "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
     },
     {
          "team1": {
@@ -117,7 +100,7 @@
       "type": "🏆 Laliga",
       "time": "26/09/13 00:45:00",
       "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m8.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
     },
         {
          "team1": {
@@ -134,7 +117,7 @@
       "type": "🏆 EPL",
       "time": "26/09/13 00:45:00",
       "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m9.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m8.html"
     },
                 {
          "team1": {
@@ -151,7 +134,7 @@
       "type": "🏆 MLS",
       "time": "26/09/13 05:15:00",
       "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m10.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m9.html"
     },
             {
          "team1": {
@@ -168,7 +151,7 @@
       "type": "🏆 Brazil",
       "time": "26/09/13 05:45:00",
       "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m11.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m10.html"
     }
   ]
 }
