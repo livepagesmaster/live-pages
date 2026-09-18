@@ -1,21 +1,5 @@
 {
   "matches": [
-                           {
-      "team1": {
-        "name": "Afghanistan",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/afghanistan.png"
-      },
-      "team2": {
-        "name": "India",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/india.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 3rd T20I",
-      "time": "26/09/17 19:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
-    },
                         {
       "team1": {
         "name": "England",
@@ -29,8 +13,8 @@
       },
       "status": "Upcoming",
       "type": "🏆 2nd T20I",
-      "time": "26/09/17 23:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m17.html"
+      "time": "26/09/19 19:15:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
     },
                             {
       "team1": {
