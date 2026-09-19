@@ -1,21 +1,5 @@
 {
   "matches": [
-                        {
-      "team1": {
-        "name": "England",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/england.png"
-      },
-      "team2": {
-        "name": "Srilanka",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/srilanka.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 2nd T20I",
-      "time": "26/09/19 19:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
-    },
                            {
       "team1": {
         "name": "Japan",
