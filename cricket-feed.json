@@ -1,21 +1,5 @@
 {
   "matches": [
-                           {
-      "team1": {
-        "name": "Japan",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/japan.png"
-      },
-      "team2": {
-        "name": "India",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/india.png"
-      },
-      "status": "Ended",
-      "type": "🏆 T20I",
-      "time": "26/09/22 09:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m19.html"
-    },
                                {
       "team1": {
         "name": "Afghanistan",
@@ -30,7 +14,7 @@
       "status": "Upcoming",
       "type": "🏆 Asian Games",
       "time": "26/09/25 10:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
     },
                                {
       "team1": {
