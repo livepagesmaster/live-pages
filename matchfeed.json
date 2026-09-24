@@ -2,35 +2,35 @@
   "matches": [  
         {
          "team1": {
-        "name": "Iraq",
+        "name": "Japan",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/irak/flag-png-button-round-icon-256.png?v=6aa1aac1-4460"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/japan/flag-png-button-round-icon-256.png"
       },
       "team2": {
-        "name": "Oman",
+        "name": "Uruguay",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/oman/flag-png-button-round-icon-256.png?v=6aa1ab1a-4d26"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/uruguay/flag-png-button-round-icon-256.png"
       },
       "status": "Upcoming",
-      "type": "🏆 Gulf Cup",
-      "time": "26/09/23 20:15:00",
+      "type": "🏆 Friendlies",
+      "time": "26/09/24 15:45:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     },
             {
          "team1": {
-        "name": "Saudi",
+        "name": "S.Korea",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/saoedi-arabie/flag-png-button-round-icon-256.png?v=6aa1ab3a-85a4"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/south-korea/flag-png-button-round-icon-256.png"
       },
       "team2": {
-        "name": "Kuwait",
+        "name": "Ecuador",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/koeweit/flag-png-button-round-icon-256.png?v=6aa1aaca-3925"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/ecuador/flag-png-button-round-icon-256.png"
       },
       "status": "Upcoming",
-      "type": "🏆 Gulf Cup",
-      "time": "26/09/23 23:45:00",
+      "type": "🏆 Friendlies",
+      "time": "26/09/24 16:45:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
     }
