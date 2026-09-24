@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yashintv</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #f59e0b;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-card: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1);
+}
+
+[data-theme="dark"] {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-card: #374151;
+    --border-color: #4b5563;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color .3s ease, color .3s ease;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-logo {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#main-logo-img {
+    width: 40%;
+    padding: 10px;
+}
+
+.info-card {
+    background: var(--bg-card);
+    border-radius: 15px;
+    padding: 30px 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    width: 100%;
+}
+
+#player-section {
+    padding: 30px 20px;
+}
+
+.player-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.player-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.player-container iframe,
+.player-container video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #000;
+    object-fit: contain;
+}
+
+.message {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.message i {
+    font-size: 32px;
+    opacity: .8;
+}
+
+.controls-container {
+    display: flex;
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto 14px;
+    justify-content: center;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color .25s ease, transform .2s ease;
+    flex: 1;
+    min-width: 140px;
+}
+
+.action-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.dark-mode-btn {
+    background: var(--secondary-color);
+}
+
+.dark-mode-btn:hover {
+    background: #172554;
+}
+
+.stream-help-notice {
+    width: 100%;
+    height: 46px;
+    margin: 0 0 14px;
+    padding: 0 14px;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.share-section,
+.disclaimer-section {
+    width: 100%;
+    text-align: left;
+}
+
+.share-heading,
+.disclaimer-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.share-heading-icon,
+.disclaimer-icon {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(37,99,235,.1);
+    color: var(--primary-color);
+    font-size: 19px;
+}
+
+.share-heading h2,
+.disclaimer-header h2 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.share-heading p,
+.disclaimer-header p {
+    margin: 2px 0 0;
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+.copy-link-btn {
+    width: 100%;
+    height: 52px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--primary-color);
+    color: #fff;
+    font: 700 15px 'Inter', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition: transform .2s ease, background-color .25s ease;
+}
+
+.copy-link-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.copy-link-btn.copied {
+    background: #16a34a;
+}
+
+.copy-status {
+    display: block;
+    min-height: 20px;
+    margin-top: 7px;
+    color: var(--text-secondary);
+    font-size: .85rem;
+    text-align: center;
+}
+
+.disclaimer-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.disclaimer-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary-color);
+}
+
+.disclaimer-body p {
+    margin: 0 0 13px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    text-align: justify;
+    font-size: .96rem;
+}
+
+.disclaimer-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding-top: 13px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.disclaimer-footer i {
+    color: var(--primary-color);
+}
+
+@media (max-width: 900px) {
+    #main-logo-img {
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 7px;
+    }
+
+    #player-section {
+        padding: 30px 0;
+    }
+
+    .info-card {
+        padding: 30px 10px;
+    }
+
+    .player-container,
+    .message {
+        border-radius: 8px;
+    }
+
+    .controls-container {
+        gap: 8px;
+    }
+
+    .action-btn {
+        padding: 9px 12px;
+        min-width: 130px;
+        font-size: 14px;
+    }
+
+    .share-heading h2,
+    .disclaimer-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .share-heading p,
+    .disclaimer-header p {
+        font-size: .82rem;
+    }
+}
+
+@media (max-width: 500px) {
+    #main-logo-img {
+        width: 90%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main style="padding-bottom:30px;background-color:var(--bg-primary);">
+    <div class="container">
+
+        <section class="main-logo">
+            <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Yashintv">
+        </section>
+
+        <section id="player-section" class="info-card">
+            <div class="player-wrapper">
+
+                <div class="controls-container">
+                    <button id="fullscreenBtn" class="action-btn">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
+
+                    <button id="darkModeBtn" class="action-btn dark-mode-btn" type="button">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </button>
+                </div>
+
+                <div class="stream-help-notice">
+                    <i class="fas fa-circle-info"></i>
+                    <span>Please wait for loading. If lag occurs, refresh the page.</span>
+                </div>
+
+                <div id="message" class="message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Loading stream...</span>
+                </div>
+
+                <div id="player-container" class="player-container" style="display:none;">
+                    <video id="videoPlayer" controls autoplay muted playsinline></video>
+                    <iframe id="iframePlayer" title="Live stream player" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen scrolling="no" style="display:none;"></iframe>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="share-section" class="info-card share-section">
+            <div class="share-heading">
+                <span class="share-heading-icon">
+                    <i class="fas fa-link"></i>
+                </span>
+                <div>
+                    <h2>Share with family &amp; friends ❤️</h2>
+                    <p>Copy the link and share it with your family and friends.</p>
+                </div>
+            </div>
+
+            <button id="copyShare" class="copy-link-btn" type="button">
+                <i class="fas fa-copy"></i>
+                <span>Copy Link</span>
+            </button>
+
+            <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+        </section>
+
+        <section id="disclaimer-section" class="info-card disclaimer-section">
+            <div class="disclaimer-header">
+                <span class="disclaimer-icon">
+                    <i class="fas fa-circle-info"></i>
+                </span>
+                <div>
+                    <h2>Disclaimer</h2>
+                    <p>Important information about the content on Yashintv.</p>
+                </div>
+            </div>
+
+            <div class="disclaimer-body">
+                <p>Yashintv does not host or store any media on its servers. Content may be displayed through third-party services or embedded from external platforms such as Dailymotion, Streamable, Bet365, and others.</p>
+            </div>
+
+            <div class="disclaimer-footer">
+                <i class="fas fa-shield-halved"></i>
+                <span>© Yashintv</span>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+const src = new URLSearchParams(window.location.search).get("src");
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    const button = document.getElementById("darkModeBtn");
+
+    if (savedTheme === "dark") {
+        document.body.setAttribute("data-theme", "dark");
+        button.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    } else {
+        button.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+    }
+}
+
+function toggleTheme() {
+    const button = document.getElementById("darkModeBtn");
+
+    if (document.body.getAttribute("data-theme") === "dark") {
+        document.body.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+        button.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+    } else {
+        document.body.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        button.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    }
+}
+
+function enterFullscreen(element) {
+    if (!element) return;
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}
+
+function toggleFullscreen() {
+    const video = document.getElementById("videoPlayer");
+    const iframe = document.getElementById("iframePlayer");
+    const playerContainer = document.getElementById("player-container");
+
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+        exitFullscreen();
+        return;
+    }
+
+    if (video.style.display !== "none") {
+        enterFullscreen(video);
+    } else if (iframe.style.display !== "none") {
+        enterFullscreen(iframe);
+    } else {
+        enterFullscreen(playerContainer);
+    }
+}
+
+function showError(message) {
+    const messageBox = document.getElementById("message");
+
+    messageBox.innerHTML = `
+        <i class="fas fa-circle-exclamation"></i>
+        <span>${message}</span>
+    `;
+}
+
+function loadStream() {
+    const message = document.getElementById("message");
+    const container = document.getElementById("player-container");
+    const video = document.getElementById("videoPlayer");
+    const iframe = document.getElementById("iframePlayer");
+
+    if (!src) {
+        message.style.display = "none";
+        container.style.display = "block";
+        video.style.display = "none";
+        iframe.style.display = "none";
+        return;
+    }
+
+    let decodedSrc = src;
+
+    try {
+        decodedSrc = decodeURIComponent(src);
+    } catch (e) {
+        decodedSrc = src;
+    }
+
+    if (decodedSrc.toLowerCase().includes(".m3u8")) {
+        if (window.Hls && Hls.isSupported()) {
+            const hls = new Hls({
+                enableWorker: true,
+                lowLatencyMode: true,
+                backBufferLength: 30
+            });
+
+            hls.loadSource(decodedSrc);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                message.style.display = "none";
+                container.style.display = "block";
+                video.style.display = "block";
+                iframe.style.display = "none";
+                video.play().catch(() => {});
+            });
+
+            hls.on(Hls.Events.ERROR, function(event, data) {
+                if (!data.fatal) return;
+
+                if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                    hls.startLoad();
+                } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                    hls.recoverMediaError();
+                } else {
+                    hls.destroy();
+                    message.style.display = "none";
+                    container.style.display = "block";
+                    video.style.display = "none";
+                    iframe.style.display = "none";
+                }
+            });
+
+            video.hlsInstance = hls;
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = decodedSrc;
+            message.style.display = "none";
+            container.style.display = "block";
+            video.style.display = "block";
+            iframe.style.display = "none";
+            video.play().catch(() => {});
+        } else {
+            message.style.display = "none";
+            container.style.display = "block";
+            video.style.display = "none";
+            iframe.style.display = "none";
+        }
+
+        return;
+    }
+
+    iframe.src = decodedSrc;
+
+    iframe.onload = function() {
+        message.style.display = "none";
+        container.style.display = "block";
+        video.style.display = "none";
+        iframe.style.display = "block";
+    };
+}
+
+function setupSharing() {
+    const button = document.getElementById("copyShare");
+    const status = document.getElementById("copyStatus");
+
+    button.addEventListener("click", async function() {
+        let copied = false;
+
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(window.location.href);
+                copied = true;
+            }
+        } catch (e) {}
+
+        if (!copied) {
+            const temp = document.createElement("textarea");
+            temp.value = window.location.href;
+            temp.style.position = "fixed";
+            temp.style.left = "-9999px";
+            document.body.appendChild(temp);
+            temp.focus();
+            temp.select();
+
+            try {
+                copied = document.execCommand("copy");
+            } catch (e) {}
+
+            temp.remove();
+        }
+
+        if (copied) {
+            button.classList.add("copied");
+            button.innerHTML = '<i class="fas fa-check"></i><span>Link Copied!</span>';
+            status.textContent = "Link copied successfully!";
+
+            clearTimeout(button._timer);
+
+            button._timer = setTimeout(function() {
+                button.classList.remove("copied");
+                button.innerHTML = '<i class="fas fa-copy"></i><span>Copy Link</span>';
+                status.textContent = "";
+            }, 2200);
+        } else {
+            status.textContent = "Unable to copy automatically.";
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadTheme();
+    loadStream();
+    setupSharing();
+
+    document.getElementById("darkModeBtn").addEventListener("click", toggleTheme);
+    document.getElementById("fullscreenBtn").addEventListener("click", toggleFullscreen);
+});
+</script>
+
+</body>
+</html>
