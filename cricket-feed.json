@@ -2,22 +2,6 @@
   "matches": [
                                    {
       "team1": {
-        "name": "Hongkong",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/hongkong.png"
-      },
-      "team2": {
-        "name": "Pakistan",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/pakistan.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Asian Games",
-      "time": "26/09/28 05:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
-    },
-                                   {
-      "team1": {
         "name": "Afghanistan",
         "code": "CDI",
         "img": "https://img.singhs.com.np/cricket/afghanistan.png"
@@ -30,7 +14,7 @@
       "status": "Upcoming",
       "type": "🏆 Asian Games",
       "time": "26/09/28 10:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m17.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
     },
                                        {
       "team1": {
