@@ -67,6 +67,40 @@
       "time": "26/09/30 00:30:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
+    },
+        {
+         "team1": {
+        "name": "USA",
+        "code": "CDI",
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/verenigde-staten/flag-png-button-round-medium.png?v=6aa1ab6f-20c78"
+      },
+      "team2": {
+        "name": "Chile",
+        "code": "ecd",
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/chili/flag-png-button-round-medium.png?v=6aa1aa58-f376"
+      },
+      "status": "Upcoming",
+      "type": "🏆 Friendlies",
+      "time": "26/09/30 05:45:00",
+      "endTime": 2,
+      "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
+    },
+    {
+         "team1": {
+        "name": "Mexico",
+        "code": "CDI",
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/mexico/flag-png-button-round-medium.png?v=6aa1aae5-3c2e6"
+      },
+      "team2": {
+        "name": "Peru",
+        "code": "ecd",
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/peru/flag-png-button-round-medium.png?v=6aa1ab20-d434"
+      },
+      "status": "Upcoming",
+      "type": "🏆 Friendlies",
+      "time": "26/09/30 06:45:00",
+      "endTime": 2,
+      "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
     }
   ]
 }
