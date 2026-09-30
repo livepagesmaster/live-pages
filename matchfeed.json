@@ -2,105 +2,20 @@
   "matches": [  
 {
          "team1": {
-        "name": "Australia",
+        "name": "Argentina",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/australie/flag-png-button-round-medium.png?v=6aa1a975-14b82"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/argentina/flag-png-button-round-medium.png?v=6aa1a975-14b82"
       },
       "team2": {
-        "name": "Brazil",
+        "name": "Bolivia",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/brazilie/flag-png-button-round-medium.png?v=6aa1a988-26077"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/bolivia/flag-png-button-round-medium.png?v=6aa1a988-26077"
       },
       "status": "Upcoming",
       "type": "🏆 Friendlies",
-      "time": "26/09/29 15:45:00",
+      "time": "26/10/01 05:45:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
-    },
-    {
-         "team1": {
-        "name": "Russia",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/rusland/flag-png-button-round-medium.png?v=6aa1ab26-cf32"
-      },
-      "team2": {
-        "name": "Iran",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/iran/flag-png-button-round-medium.png?v=6aa1aac0-162b0"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/09/29 21:45:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
-    },
-    {
-         "team1": {
-        "name": "Spain",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/spanje/flag-png-button-round-medium.png?v=6aa1ab46-2d43c"
-      },
-      "team2": {
-        "name": "Croatia",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/kroatie/flag-png-button-round-medium.png?v=6aa1aa79-1f9c9"
-      },
-      "status": "Upcoming",
-      "type": "🏆 UEFA",
-      "time": "26/09/30 00:30:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
-    },
-          {
-         "team1": {
-        "name": "Czechia",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/tsjechie/flag-png-button-round-medium.png?v=6aa1aa7d-d804"
-      },
-      "team2": {
-        "name": "England",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/engeland/flag-png-button-round-medium.png?v=6aa1af8b-fab3"
-      },
-      "status": "Upcoming",
-      "type": "🏆 UEFA",
-      "time": "26/09/30 00:30:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
-    },
-        {
-         "team1": {
-        "name": "USA",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/verenigde-staten/flag-png-button-round-medium.png?v=6aa1ab6f-20c78"
-      },
-      "team2": {
-        "name": "Chile",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/chili/flag-png-button-round-medium.png?v=6aa1aa58-f376"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/09/30 05:45:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
-    },
-    {
-         "team1": {
-        "name": "Mexico",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/mexico/flag-png-button-round-medium.png?v=6aa1aae5-3c2e6"
-      },
-      "team2": {
-        "name": "Peru",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/peru/flag-png-button-round-medium.png?v=6aa1ab20-d434"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/09/30 06:45:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
     }
   ]
 }
