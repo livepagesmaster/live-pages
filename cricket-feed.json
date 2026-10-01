@@ -1,21 +1,5 @@
 {
   "matches": [
-                                           {
-      "team1": {
-        "name": "Pakistan",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/pakistan.png"
-      },
-      "team2": {
-        "name": "Bangladesh",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/bangladesh.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Asian Games",
-      "time": "26/10/01 05:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
-    },
                                    {
       "team1": {
         "name": "India",
@@ -31,6 +15,22 @@
       "type": "🏆 Asian Games",
       "time": "26/10/01 10:15:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
+    },
+                                               {
+      "team1": {
+        "name": "India",
+        "code": "CDI",
+        "img": "https://img.singhs.com.np/cricket/india.png"
+      },
+      "team2": {
+        "name": "Westindies",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/westindies.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 3rd ODI",
+      "time": "26/10/03 14:15:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     }
   ]
 }
