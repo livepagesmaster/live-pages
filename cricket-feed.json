@@ -2,22 +2,6 @@
   "matches": [
                                            {
       "team1": {
-        "name": "Bangladesh",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/bangladesh.png"
-      },
-      "team2": {
-        "name": "Srilanka",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/srilanka.png"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Asian Games",
-      "time": "26/10/03 05:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
-    },
-                                           {
-      "team1": {
         "name": "India",
         "code": "CDI",
         "img": "https://img.singhs.com.np/cricket/india.png"
@@ -30,7 +14,7 @@
       "status": "Upcoming",
       "type": "🏆 Asian Games",
       "time": "26/10/03 10:15:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
+      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
     },
                                                {
       "team1": {
