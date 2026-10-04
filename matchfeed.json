@@ -2,105 +2,71 @@
   "matches": [  
 {
          "team1": {
-        "name": "India",
+        "name": "Portugal",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/india/flag-png-button-round-medium.png?v=6aa1aabe-18446"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/portugal/flag-png-button-round-medium.png?v=6aa1ab23-2e710"
       },
       "team2": {
-        "name": "Brazil",
+        "name": "Norway",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/brazilie/flag-png-button-round-medium.png?v=6aa1a988-26077"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/noorwegen/flag-png-button-round-medium.png?v=6aa1ab18-e38f"
       },
       "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/10/03 19:45:00",
+      "type": "🏆 UEFA",
+      "time": "26/10/05 00:30:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
     },
         {
          "team1": {
-        "name": "Croatia",
+        "name": "Greece",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/kroatie/flag-png-button-round-medium.png?v=6aa1aa79-1f9c9"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/griekenland/flag-png-button-round-medium.png?v=6aa1aaa4-e5d6"
       },
       "team2": {
-        "name": "England",
+        "name": "Germany",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/engeland/flag-png-button-round-medium.png?v=6aa1af8b-fab3"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/duitsland/flag-png-button-round-medium.png?v=6aa1aaa2-eba3"
       },
       "status": "Upcoming",
       "type": "🏆 UEFA",
-      "time": "26/10/03 21:45:00",
+      "time": "26/10/05 00:30:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
     },
         {
          "team1": {
-        "name": "Canada",
+        "name": "Netherlands",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/canada/flag-png-button-round-medium.png?v=6aa1aa54-fd34"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/nederland/flag-png-button-round-medium.png?v=6aa1aaf7-d5e1"
       },
       "team2": {
-        "name": "Peru",
+        "name": "Serbia",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/peru/flag-png-button-round-medium.png?v=6aa1ab20-d434"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/servie/flag-png-button-round-medium.png?v=6aa1ab3c-46c30"
       },
       "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/10/03 23:45:00",
+      "type": "🏆 UEFA",
+      "time": "26/10/05 00:30:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
     },
         {
          "team1": {
-        "name": "Spain",
+        "name": "Wales",
         "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/spanje/flag-png-button-round-medium.png?v=6aa1ab46-2d43c"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/wales/flag-png-button-round-medium.png?v=6aa1af8e-64417"
       },
       "team2": {
-        "name": "Czechia",
+        "name": "Denmark",
         "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/tsjechie/flag-png-button-round-medium.png?v=6aa1aa7d-d804"
+        "img": "https://www.countryflags.com/countryflags-file/countryflags/denemarken/flag-png-button-round-medium.png?v=6aa1aa7e-df75"
       },
       "status": "Upcoming",
       "type": "🏆 UEFA",
-      "time": "26/10/04 00:30:00",
+      "time": "26/10/05 00:30:00",
       "endTime": 2,
       "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
-    },
-        {
-         "team1": {
-        "name": "Argentina",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/argentinie/flag-png-button-round-medium.png?v=6aa1a1de-2313c"
-      },
-      "team2": {
-        "name": "Burkina.F",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/burkina-faso/flag-png-button-round-medium.png?v=6aa1a98c-11b56"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/10/04 05:45:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
-    },
-        {
-         "team1": {
-        "name": "USA",
-        "code": "CDI",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/verenigde-staten/flag-png-button-round-medium.png?v=6aa1ab6f-20c78"
-      },
-      "team2": {
-        "name": "Mexico",
-        "code": "ecd",
-        "img": "https://www.countryflags.com/countryflags-file/countryflags/mexico/flag-png-button-round-medium.png?v=6aa1aae5-3c2e6"
-      },
-      "status": "Upcoming",
-      "type": "🏆 Friendlies",
-      "time": "26/10/04 07:45:00",
-      "endTime": 2,
-      "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
     }
   ]
 }
