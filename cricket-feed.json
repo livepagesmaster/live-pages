@@ -1,5 +1,21 @@
 {
   "matches": [
+                                                   {
+      "team1": {
+        "name": "Southafrica",
+        "code": "CDI",
+        "img": "https://img.singhs.com.np/cricket/southafrica.png"
+      },
+      "team2": {
+        "name": "Australia",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/australia.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 1st Test",
+      "time": "26/10/09 13:15:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
+    },
                                                {
       "team1": {
         "name": "India",
@@ -15,6 +31,22 @@
       "type": "🏆 2nd T20I",
       "time": "26/10/09 19:15:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
+    },
+                                                       {
+      "team1": {
+        "name": "Pakistan",
+        "code": "CDI",
+        "img": "https://img.singhs.com.np/cricket/pakistan.png"
+      },
+      "team2": {
+        "name": "Srilanka",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/srilanka.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 1st T20I",
+      "time": "26/10/09 20:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
     }
   ]
 }
