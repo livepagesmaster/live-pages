@@ -16,6 +16,22 @@
       "time": "26/10/10 13:15:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     },
+                                                       {
+      "team1": {
+        "name": "Canada",
+        "code": "CDI",
+        "img": "https://img.singhs.com.np/cricket/canada.png"
+      },
+      "team2": {
+        "name": "Nepal",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/nepal.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 ODI",
+      "time": "26/10/11 11:15:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m17.html"
+    },
                                                {
       "team1": {
         "name": "India",
