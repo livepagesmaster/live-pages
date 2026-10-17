@@ -1,118 +1,655 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Stream</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background-color: #111827; color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
-    
-    .header { padding: 15px 20px; background: #1f2937; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #374151; }
-    .header img { height: 40px; }
-    
-    .player-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .video-wrapper { width: 100%; max-width: 1200px; aspect-ratio: 16 / 9; background: #000; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    
-    iframe, video { width: 100%; height: 100%; border: none; object-fit: contain; }
-    
-    .message-box { text-align: center; padding: 40px; background: #1f2937; border-radius: 10px; max-width: 500px; border: 1px solid #374151; }
-    .message-box h2 { margin-bottom: 10px; color: #f87171; }
-    .message-box p { color: #9ca3af; }
-    
-    .controls { padding: 15px; background: #1f2937; text-align: center; border-top: 1px solid #374151; display: flex; gap: 10px; justify-content: center; }
-    .btn { padding: 10px 20px; border: none; border-radius: 6px; background: #2563eb; color: white; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-    .btn:hover { background: #1d4ed8; }
+    *::-webkit-scrollbar { display: none; }
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #f59e0b;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f9fafb;
+      --bg-card: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] {
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --bg-card: #374151;
+      --border-color: #4b5563;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .info-card {
+      background: var(--bg-card);
+      border-radius: 15px;
+      padding: 30px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      margin: 0 auto;
+      width: 100%;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .info-card {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .player-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #player-section-1 { padding: 30px 20px; }
+    .iframe-container,
+    .player-container,
+    .no-stream-message {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      padding: 0;
+      margin: 0;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: none;
+      border: 0;
+      isolation: isolate;
+    }
+    .iframe-container iframe,
+    .player-container video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: block;
+      border: 0;
+      background: #000;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    .player-container video {
+      pointer-events: auto;
+      user-select: none;
+    }
+    .no-stream-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .controls-container {
+      display: flex;
+      gap: 10px;
+      max-width: 900px;
+      margin: 0 auto 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,.1);
+      flex: 1;
+      min-width: 140px;
+    }
+    .action-btn:hover {
+      background-color: var(--secondary-color);
+      box-shadow: 0 6px 12px rgba(0,0,0,.15);
+      transform: translateY(-1px);
+    }
+    .action-btn:active { transform: translateY(0); }
+    .action-btn.dark-mode-btn { background-color: var(--secondary-color); }
+    .action-btn.dark-mode-btn:hover { background-color: #172554; }
+    .action-btn i { font-size: 18px; }
+    .refresh-btn {
+      margin: 14px auto 0;
+      background-color: var(--accent-color);
+      max-width: 200px;
+    }
+    .refresh-btn:hover { background-color: #d97706; }
+    .stream-help-notice {
+      width: 100%;
+      height: 46px;
+      margin: 0 0 14px;
+      padding: 0 14px;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      text-align: center;
+    }
+    .stream-help-notice i { font-size: 14px; opacity: .8; }
+    .share-section,
+    .disclaimer-section {
+      width: 100%;
+      text-align: left;
+    }
+    .share-heading,
+    .disclaimer-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .share-heading-icon,
+    .disclaimer-icon {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(37,99,235,.1);
+      color: var(--primary-color);
+      font-size: 19px;
+    }
+    .share-heading h2,
+    .disclaimer-header h2 {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .share-heading p,
+    .disclaimer-header p {
+      margin: 2px 0 0;
+      color: var(--text-secondary);
+      font-size: .9rem;
+    }
+    .copy-link-row { width: 100%; }
+    .copy-link-btn {
+      width: 100%;
+      height: 52px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--primary-color);
+      color: #fff;
+      font: 700 15px 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: transform .2s ease, background-color .25s ease;
+    }
+    .copy-link-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-1px);
+    }
+    .copy-link-btn.copied { background: #16a34a; }
+    .copy-status {
+      display: block;
+      min-height: 20px;
+      margin-top: 7px;
+      color: var(--text-secondary);
+      font-size: .85rem;
+      text-align: center;
+    }
+    .disclaimer-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .disclaimer-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--primary-color);
+    }
+    .disclaimer-body p {
+      margin: 0 0 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      text-align: justify;
+      font-size: .96rem;
+    }
+    .disclaimer-body p:last-child { margin-bottom: 0; }
+    .disclaimer-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 13px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: .85rem;
+      font-weight: 600;
+    }
+    .disclaimer-footer i { color: var(--primary-color); }
+    .main-logo {
+      width: 100%;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #main-logo-img { width: 40%; padding: 10px; }
+    @media (max-width: 900px) { #main-logo-img { width: 60%; } }
+    @media (max-width: 500px) { #main-logo-img { width: 90%; } }
+    @media (max-width: 768px) {
+      .container .info-card { padding: 30px 7px; }
+      #player-section-1 { padding: 30px 7px; }
+      .copy-link-btn { min-width: 165px; padding: 0 16px; }
+      .copy-link-btn.copied { min-width: 185px; }
+      .share-heading h2,
+      .disclaimer-header h2 { font-size: 1.1rem; }
+      .share-heading p,
+      .disclaimer-header p { font-size: .82rem; }
+      .controls-container { gap: 8px; margin-bottom: 12px; }
+      .action-btn { padding: 9px 12px; min-width: 130px; font-size: 14px; }
+      .iframe-container,
+      .player-container,
+      .no-stream-message {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+        height: auto;
+        border-radius: 8px;
+      }
+      .iframe-container iframe,
+      .player-container video { border-radius: 8px; }
+      .refresh-btn { margin-top: 12px; }
+      .share-section,
+      .disclaimer-section { margin-top: 0; }
+    }
+    @media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
+  <main style="padding-bottom: 30px; background-color: var(--bg-primary);">
+    <div class="container">
+      <section class="main-logo">
+        <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
+      </section>
 
-<div class="header">
-  <img src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
-</div>
+      <section id="player-section-1" class="info-card player-section">
+        <div class="player-wrapper">
+          <div class="controls-container">
+            <button id="fullscreenBtn-1" class="action-btn">
+              <i class="fas fa-expand"></i> Fullscreen
+            </button>
+            <button id="darkModeBtn-1" class="action-btn dark-mode-btn" type="button">
+              <i class="fas fa-moon"></i> Dark Mode
+            </button>
+          </div>
 
-<div class="player-container" id="mainContainer">
-  <div class="message-box" id="msgBox">
-    <h2>Loading Stream...</h2>
-    <p>Please wait while we connect to the server.</p>
-  </div>
-</div>
+          <div class="stream-help-notice" role="status">
+            <i class="fas fa-circle-info"></i>
+            <span>Please wait for loading. If lag occurs, refresh or try another link.</span>
+          </div>
 
-<div class="controls">
-  <a href="#" id="backBtn" class="btn" style="background:#4b5563;">← Back to Match</a>
-  <button class="btn" onclick="window.location.reload()">Reload Player</button>
-</div>
+          <div id="no-stream-message-1" class="no-stream-message" style="display: none;">No stream available yet.</div>
 
-<script>
-  function getParam(name) {
-    return new URLSearchParams(window.location.search).get(name);
-  }
+          <div id="html5-video-container-1" class="player-container" style="display: none;">
+            <video id="videoPlayer-1" controls autoplay muted playsinline
+                   oncontextmenu="return false;"
+                   controlsList="nodownload noremoteplayback"
+                   disablePictureInPicture>
+              <p>Your browser does not support the video tag or HLS video playback directly.</p>
+            </video>
+          </div>
 
-  const matchId = getParam('match');
-  const linkId = getParam('id');
-  const mainContainer = document.getElementById('mainContainer');
-  
-  // Set back button to match details
-  document.getElementById('backBtn').href = `https://www.yashintv.xyz/p/match-details.html?id=${matchId}`;
+          <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
+            <iframe id="embedded-player-1"
+                    title="Live stream player"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    scrolling="no"></iframe>
+          </div>
 
-  if (!matchId || !linkId) {
-    showError("Invalid Link", "Missing match ID or link ID.");
-  } else {
-    fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
-      .then(res => res.json())
-      .then(data => {
-        const matchData = data[matchId];
-        
-        if (!matchData) {
-            showError("Not Found", "This match is not in the database yet.");
-            return;
+          <button id="reloadBtn-1" class="action-btn refresh-btn" type="button">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+        </div>
+      </section>
+
+      <section id="share-section" class="info-card share-section">
+        <div class="share-heading">
+          <span class="share-heading-icon"><i class="fas fa-link"></i></span>
+          <div>
+            <h2>Share with family &amp; friends ❤️</h2>
+            <p>Copy the link and share it with your family and friends.</p>
+          </div>
+        </div>
+        <div class="copy-link-row">
+          <button id="copyShare" class="copy-link-btn" type="button">
+            <i class="fas fa-copy"></i><span>Copy Link</span>
+          </button>
+        </div>
+        <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+      </section>
+
+      <section id="disclaimer-section" class="info-card disclaimer-section">
+        <div class="disclaimer-header">
+          <span class="disclaimer-icon"><i class="fas fa-circle-info"></i></span>
+          <div>
+            <h2>Disclaimer</h2>
+            <p>Important information about the content on Yashintv.</p>
+          </div>
+        </div>
+        <div class="disclaimer-body">
+          <p>Yashintv does not host or store any media on its servers. Content may be displayed through third-party services or embedded from external platforms such as Dailymotion, Streamable, Bet365, and others.</p>
+        </div>
+        <div class="disclaimer-footer">
+          <i class="fas fa-shield-halved"></i>
+          <span>© Yashintv</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const darkButtons = document.querySelectorAll('.dark-mode-btn i');
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        darkButtons.forEach(btn => btn.className = 'fas fa-moon');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        darkButtons.forEach(btn => btn.className = 'fas fa-sun');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const darkButtons = document.querySelectorAll('.dark-mode-btn i');
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        darkButtons.forEach(btn => btn.className = 'fas fa-sun');
+      } else {
+        darkButtons.forEach(btn => btn.className = 'fas fa-moon');
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
         }
-
-        // Get specific link or fallback to common
-        let linkObj = matchData[`link${linkId}`];
-        if (!linkObj || !linkObj.url) {
-            linkObj = matchData.common;
-        }
-
-        if (!linkObj || !linkObj.url) {
-            showError("Stream Unavailable", "The link for this stream has not been added yet. Please check back later.");
-            return;
-        }
-
-        const url = linkObj.url;
-        const type = linkObj.type || 'redirect';
-
-        if (type === 'redirect') {
-            window.location.href = url;
-        } else if (type === 'iframe') {
-            mainContainer.innerHTML = `<div class="video-wrapper"><iframe src="${url}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
-        } else if (type === 'hls') {
-            mainContainer.innerHTML = `<div class="video-wrapper"><video id="videoEl" controls autoplay playsinline></video></div>`;
-            const video = document.getElementById('videoEl');
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(url);
-                hls.attachMedia(video);
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = url;
-            }
-        }
-      })
-      .catch(err => {
-        showError("Error", "Failed to load database.");
       });
-  }
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  function showError(title, message) {
-    mainContainer.innerHTML = `
-      <div class="message-box">
-        <h2>${title}</h2>
-        <p>${message}</p>
-      </div>
-    `;
-  }
-</script>
+    function getFullscreenElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+    }
+
+    async function exitFullscreen() {
+      try {
+        if (document.exitFullscreen) { await document.exitFullscreen(); return true; }
+        if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); return true; }
+        if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); return true; }
+        if (document.msExitFullscreen) { document.msExitFullscreen(); return true; }
+      } catch (e) {}
+      return false;
+    }
+
+    async function enterFullscreen(element) {
+      if (!element) return false;
+      try {
+        if (element.requestFullscreen) { await element.requestFullscreen(); return true; }
+        if (element.webkitRequestFullscreen) { element.webkitRequestFullscreen(); return true; }
+        if (element.mozRequestFullScreen) { element.mozRequestFullScreen(); return true; }
+        if (element.msRequestFullscreen) { element.msRequestFullscreen(); return true; }
+      } catch (e) {}
+      return false;
+    }
+
+    async function togglePlayerFullscreen() {
+      const videoBox = document.getElementById("html5-video-container-1");
+      const iframeBox = document.getElementById("iframe-player-container-1");
+      const noStreamBox = document.getElementById("no-stream-message-1");
+
+      if (getFullscreenElement()) {
+        await exitFullscreen();
+        updateFullscreenButton();
+        return;
+      }
+
+      let target = null;
+      if (videoBox && getComputedStyle(videoBox).display !== "none") target = videoBox;
+      else if (iframeBox && getComputedStyle(iframeBox).display !== "none") target = iframeBox;
+      else if (noStreamBox && getComputedStyle(noStreamBox).display !== "none") target = noStreamBox;
+
+      if (!target) return;
+      await enterFullscreen(target);
+      updateFullscreenButton();
+    }
+
+    function updateFullscreenButton() {
+      const btn = document.getElementById("fullscreenBtn-1");
+      if (!btn) return;
+      if (getFullscreenElement()) {
+        btn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+        btn.title = "Exit fullscreen";
+        btn.setAttribute("aria-label", "Exit fullscreen");
+      } else {
+        btn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+        btn.title = "Fullscreen";
+        btn.setAttribute("aria-label", "Fullscreen");
+      }
+    }
+
+    // --- NEW STREAM LOADING LOGIC ---
+    function loadStreamFromSrc() {
+      const params = new URLSearchParams(window.location.search);
+      const matchId = params.get("match");
+      const linkId = params.get("id");
+
+      const video = document.getElementById("videoPlayer-1");
+      const videoBox = document.getElementById("html5-video-container-1");
+      const iframe = document.getElementById("embedded-player-1");
+      const iframeBox = document.getElementById("iframe-player-container-1");
+      const noStream = document.getElementById("no-stream-message-1");
+
+      // Reset players
+      if (video.hlsInstance) {
+        try { video.hlsInstance.destroy(); } catch (e) {}
+        video.hlsInstance = null;
+      }
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      iframe.src = "about:blank";
+
+      videoBox.style.display = "none";
+      iframeBox.style.display = "none";
+      noStream.style.display = "none";
+
+      if (!matchId || !linkId) {
+        noStream.style.display = "flex";
+        noStream.innerHTML = "Invalid request. Missing match or link ID.";
+        return;
+      }
+
+      // Fetch the new links.json file
+      fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
+        .then(res => res.json())
+        .then(data => {
+            const matchData = data[matchId];
+            if (!matchData) throw new Error("Match not found in database.");
+
+            let linkObj = matchData[`link${linkId}`];
+            if (!linkObj || !linkObj.url) linkObj = matchData.common;
+            if (!linkObj || !linkObj.url) throw new Error("Stream link not added yet.");
+
+            const url = linkObj.url;
+            const type = linkObj.type || 'redirect';
+
+            if (type === 'redirect') {
+                window.location.href = url;
+            } else if (type === 'iframe') {
+                iframe.src = url;
+                iframeBox.style.display = "block";
+            } else if (type === 'hls') {
+                videoBox.style.display = "block";
+                if (window.Hls && Hls.isSupported()) {
+                  const hls = new Hls({
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    backBufferLength: 30
+                  });
+                  video.hlsInstance = hls;
+                  hls.on(Hls.Events.ERROR, function(event, data) {
+                    if (!data.fatal) return;
+                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
+                    else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
+                    else {
+                      try { hls.destroy(); } catch (e) {}
+                      video.hlsInstance = null;
+                    }
+                  });
+                  hls.loadSource(url);
+                  hls.attachMedia(video);
+                } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                  video.src = url;
+                  video.play().catch(function() {});
+                }
+            }
+        })
+        .catch(err => {
+            noStream.style.display = "flex";
+            noStream.innerHTML = `<div style="text-align:center; padding:20px; color:#fff;">${err.message}</div>`;
+        });
+    }
+
+    function setupSharing() {
+      const button = document.getElementById("copyShare");
+      const status = document.getElementById("copyStatus");
+      if (!button) return;
+
+      button.addEventListener("click", async function() {
+        const url = "https://www.yashintv.xyz/";
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(url);
+            copied = true;
+          }
+        } catch (e) {}
+
+        if (!copied) {
+          const temp = document.createElement("textarea");
+          temp.value = url;
+          temp.style.position = "fixed";
+          temp.style.left = "-9999px";
+          document.body.appendChild(temp);
+          temp.focus();
+          temp.select();
+          try { copied = document.execCommand("copy"); } catch (e) {}
+          temp.remove();
+        }
+
+        if (copied) {
+          button.classList.add("copied");
+          button.innerHTML = '<i class="fas fa-check"></i><span>Link Copied!</span>';
+          if (status) status.textContent = "Link copied successfully!";
+          clearTimeout(button._copyTimer);
+          button._copyTimer = setTimeout(function() {
+            button.classList.remove("copied");
+            button.innerHTML = '<i class="fas fa-copy"></i><span>Copy Link</span>';
+            if (status) status.textContent = "";
+          }, 2200);
+        } else if (status) {
+          status.textContent = "Unable to copy automatically. Please copy the page URL.";
+        }
+      });
+    }
+
+    document.addEventListener("fullscreenchange", updateFullscreenButton);
+    document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+    document.addEventListener("mozfullscreenchange", updateFullscreenButton);
+    document.addEventListener("MSFullscreenChange", updateFullscreenButton);
+
+    document.addEventListener("DOMContentLoaded", function() {
+      loadTheme();
+
+      const cards = document.querySelectorAll("#player-section-1, #share-section, #disclaimer-section");
+      cards.forEach(card => observer.observe(card));
+
+      document.getElementById("fullscreenBtn-1").addEventListener("click", e => {
+        e.preventDefault();
+        e.stopPropagation();
+        togglePlayerFullscreen();
+      });
+      document.getElementById("reloadBtn-1").addEventListener("click", loadStreamFromSrc);
+      document.getElementById("darkModeBtn-1").addEventListener("click", e => {
+        e.preventDefault();
+        toggleTheme();
+      });
+
+      setupSharing();
+      updateFullscreenButton();
+      loadStreamFromSrc(); // Loads the new link!
+    });
+  </script>
 
 </body>
 </html>
