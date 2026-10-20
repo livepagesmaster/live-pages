@@ -34,18 +34,34 @@
     },
                                                                        {
       "team1": {
-        "name": "Oman",
+        "name": "Newzealand",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/oman.png"
+        "img": "https://img.singhs.com.np/cricket/newzealand.png"
       },
       "team2": {
-        "name": "Nepal",
+        "name": "India",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
+        "img": "https://img.singhs.com.np/cricket/india.png"
       },
-      "status": "Ended",
-      "type": "🏆 CWC League2",
-      "time": "26/10/19 11:15:00",
+      "status": "Upcoming",
+      "type": "🏆 1st T20I",
+      "time": "26/10/22 12:45:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
+    },
+                                                                           {
+      "team1": {
+        "name": "Lumbini",
+        "code": "CDI",
+        "img": "https://img.singhs.com.np/cricket/lumbinilions.png"
+      },
+      "team2": {
+        "name": "Supa",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/sudurpaschimroyals.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 NPL",
+      "time": "26/10/26 16:30:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     }
   ]
