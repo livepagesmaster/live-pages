@@ -18,18 +18,18 @@
     },
                                                            {
       "team1": {
-        "name": "Pakistan",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/pakistan.png"
-      },
-      "team2": {
         "name": "England",
-        "code": "ecd",
+        "code": "CDI",
         "img": "https://img.singhs.com.np/cricket/england.png"
       },
-      "status": "Ended",
+      "team2": {
+        "name": "Srilanka",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/srilanka.png"
+      },
+      "status": "Upcoming",
       "type": "🏆 ODI",
-      "time": "26/10/20 13:45:00",
+      "time": "26/10/22 13:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m16.html"
     },
                                                                        {
