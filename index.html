@@ -24,7 +24,6 @@
       --border-color: #e5e7eb;
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-      --transition-theme: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
     }
     [data-theme="dark"] {
       --text-primary: #f3f4f6;
@@ -40,7 +39,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      transition: var(--transition-theme);
+      transition: background-color 0.15s ease, color 0.15s ease;
       line-height: 1.6;
       font-size: 16px;
     }
@@ -61,7 +60,7 @@
       border: 1px solid var(--border-color);
       margin: 0 auto;
       width: 100%;
-      transition: var(--transition-theme);
+      transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -140,7 +139,7 @@
       border-radius: 8px;
       cursor: pointer;
       user-select: none;
-      transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
+      transition: background-color .2s ease, transform .15s ease, box-shadow .2s ease;
       box-shadow: 0 4px 6px rgba(0,0,0,.1);
       flex: 1;
       min-width: 140px;
@@ -165,7 +164,7 @@
       border: none;
     }
     .refresh-btn i {
-      transition: transform 0.5s ease;
+      transition: transform 0.4s ease;
     }
     .refresh-btn:hover {
       background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
@@ -196,7 +195,7 @@
       font-weight: 500;
       line-height: 1;
       text-align: center;
-      transition: var(--transition-theme);
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
     .stream-help-notice i { font-size: 14px; opacity: .8; }
     .share-section,
@@ -233,7 +232,7 @@
       background: rgba(37,99,235,.1);
       color: var(--primary-color);
       font-size: 16px;
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: transform 0.25s ease, background 0.25s ease;
     }
     .share-section:hover .share-heading-icon {
       transform: scale(1.08) rotate(-6deg);
@@ -246,14 +245,14 @@
       font-size: 1.05rem;
       font-weight: 800;
       color: var(--text-primary);
-      transition: var(--transition-theme);
+      transition: color 0.15s ease;
     }
     .share-heading p,
     .disclaimer-header p {
       margin: 1px 0 0;
       color: var(--text-secondary);
       font-size: .82rem;
-      transition: var(--transition-theme);
+      transition: color 0.15s ease;
     }
     .copy-link-row { width: 100%; }
     .copy-link-btn {
@@ -270,7 +269,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform .2s ease, box-shadow .25s ease, background .25s ease;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
     .copy-link-btn:hover {
@@ -291,7 +290,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       text-align: center;
-      transition: var(--transition-theme);
+      transition: color 0.15s ease;
     }
     .disclaimer-section {
       border-left: none;
@@ -314,7 +313,7 @@
       text-align: justify;
       font-size: .9rem;
       padding-left: 4px;
-      transition: var(--transition-theme);
+      transition: color 0.15s ease;
     }
     .disclaimer-body p:last-child { margin-bottom: 0; }
     .disclaimer-footer {
@@ -327,7 +326,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       font-weight: 600;
-      transition: var(--transition-theme);
+      transition: color 0.15s ease, border-color 0.15s ease;
     }
     .disclaimer-footer i { color: var(--accent-color); }
     .main-logo {
@@ -378,7 +377,7 @@
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: var(--transition-theme);">
+  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: background-color 0.15s ease;">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
