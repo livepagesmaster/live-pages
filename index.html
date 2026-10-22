@@ -7,6 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
+  <!-- Plyr CSS & JS (for the new HLS player) -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
+  <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     *::-webkit-scrollbar { display: none; }
@@ -317,6 +320,7 @@
 }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <!-- Plyr CSS is already included above for the new player -->
 </head>
 <body>
   <main style="padding-bottom: 30px; background-color: var(--bg-primary);">
@@ -344,10 +348,13 @@
           <div id="no-stream-message-1" class="no-stream-message" style="display: none;">No stream available yet.</div>
 
           <div id="html5-video-container-1" class="player-container" style="display: none;">
+            <!-- Replaced the old <video> with a Plyr-powered video -->
             <video id="videoPlayer-1" controls autoplay muted playsinline
                    oncontextmenu="return false;"
                    controlsList="nodownload noremoteplayback"
-                   disablePictureInPicture>
+                   disablePictureInPicture
+                   class="plyr">
+              <source id="videoSource-1" type="application/x-mpegURL">
               <p>Your browser does not support the video tag or HLS video playback directly.</p>
             </video>
           </div>
@@ -496,13 +503,14 @@
       }
     }
 
-    // --- NEW STREAM LOADING LOGIC ---
+    // --- NEW STREAM LOADING LOGIC (with Plyr HLS player) ---
     function loadStreamFromSrc() {
       const params = new URLSearchParams(window.location.search);
       const matchId = params.get("match");
       const linkId = params.get("id");
 
       const video = document.getElementById("videoPlayer-1");
+      const source = document.getElementById("videoSource-1");
       const videoBox = document.getElementById("html5-video-container-1");
       const iframe = document.getElementById("embedded-player-1");
       const iframeBox = document.getElementById("iframe-player-container-1");
@@ -513,8 +521,14 @@
         try { video.hlsInstance.destroy(); } catch (e) {}
         video.hlsInstance = null;
       }
+      // Destroy existing Plyr instance if any
+      if (video._plyrInstance) {
+        try { video._plyrInstance.destroy(); } catch (e) {}
+        video._plyrInstance = null;
+      }
       video.pause();
       video.removeAttribute("src");
+      source.removeAttribute("src");
       video.load();
       iframe.src = "about:blank";
 
@@ -528,7 +542,7 @@
         return;
       }
 
-      // Fetch the new links.json file
+      // Fetch the links.json file
       fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
         .then(res => res.json())
         .then(data => {
@@ -549,13 +563,47 @@
                 iframeBox.style.display = "block";
             } else if (type === 'hls') {
                 videoBox.style.display = "block";
+
+                // --- NEW PLYR HLS PLAYER INTEGRATION ---
+                // Set up Plyr with HLS.js (same logic as the second file)
                 if (window.Hls && Hls.isSupported()) {
                   const hls = new Hls({
-                    enableWorker: true,
-                    lowLatencyMode: true,
-                    backBufferLength: 30
+                    maxMaxBufferLength: 100
                   });
-                  video.hlsInstance = hls;
+                  hls.loadSource(url);
+                  hls.attachMedia(video);
+
+                  video.hlsInstance = hls; // store for cleanup
+
+                  hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    // Build quality options from HLS levels
+                    const qualities = hls.levels
+                      .map(level => level.height)
+                      .filter(Boolean)
+                      .filter((value, index, array) => array.indexOf(value) === index)
+                      .sort((a, b) => b - a);
+
+                    const options = {};
+
+                    if (qualities.length) {
+                      options.quality = {
+                        default: qualities[0],
+                        options: qualities,
+                        forced: true,
+                        onChange: function (quality) {
+                          hls.levels.forEach(function (level, index) {
+                            if (level.height === quality) {
+                              hls.currentLevel = index;
+                            }
+                          });
+                        }
+                      };
+                    }
+
+                    // Initialize Plyr and store instance
+                    video._plyrInstance = new Plyr(video, options);
+                  });
+
                   hls.on(Hls.Events.ERROR, function(event, data) {
                     if (!data.fatal) return;
                     if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
@@ -565,12 +613,21 @@
                       video.hlsInstance = null;
                     }
                   });
-                  hls.loadSource(url);
-                  hls.attachMedia(video);
-                } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                  video.src = url;
+
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                  // Native HLS support (Safari)
+                  source.setAttribute('src', url);
+                  video.load();
+                  video._plyrInstance = new Plyr(video);
+                  video.play().catch(function() {});
+                } else {
+                  // Fallback: just try to play without HLS
+                  source.setAttribute('src', url);
+                  video.load();
+                  video._plyrInstance = new Plyr(video);
                   video.play().catch(function() {});
                 }
+                // --- END NEW PLYR HLS PLAYER ---
             }
         })
         .catch(err => {
