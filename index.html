@@ -39,7 +39,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      transition: background-color 0.15s ease, color 0.15s ease;
+      transition: background-color 0.08s linear, color 0.08s linear;
       line-height: 1.6;
       font-size: 16px;
     }
@@ -60,7 +60,7 @@
       border: 1px solid var(--border-color);
       margin: 0 auto;
       width: 100%;
-      transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: background-color 0.08s linear, border-color 0.08s linear, box-shadow 0.08s linear;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -195,7 +195,7 @@
       font-weight: 500;
       line-height: 1;
       text-align: center;
-      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      transition: background-color 0.08s linear, border-color 0.08s linear, color 0.08s linear;
     }
     .stream-help-notice i { font-size: 14px; opacity: .8; }
     .share-section,
@@ -245,14 +245,14 @@
       font-size: 1.05rem;
       font-weight: 800;
       color: var(--text-primary);
-      transition: color 0.15s ease;
+      transition: color 0.08s linear;
     }
     .share-heading p,
     .disclaimer-header p {
       margin: 1px 0 0;
       color: var(--text-secondary);
       font-size: .82rem;
-      transition: color 0.15s ease;
+      transition: color 0.08s linear;
     }
     .copy-link-row { width: 100%; }
     .copy-link-btn {
@@ -290,7 +290,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       text-align: center;
-      transition: color 0.15s ease;
+      transition: color 0.08s linear;
     }
     .disclaimer-section {
       border-left: none;
@@ -313,7 +313,7 @@
       text-align: justify;
       font-size: .9rem;
       padding-left: 4px;
-      transition: color 0.15s ease;
+      transition: color 0.08s linear;
     }
     .disclaimer-body p:last-child { margin-bottom: 0; }
     .disclaimer-footer {
@@ -326,7 +326,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       font-weight: 600;
-      transition: color 0.15s ease, border-color 0.15s ease;
+      transition: color 0.08s linear, border-color 0.08s linear;
     }
     .disclaimer-footer i { color: var(--accent-color); }
     .main-logo {
@@ -377,7 +377,7 @@
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: background-color 0.15s ease;">
+  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
@@ -399,7 +399,7 @@
             <span>Please wait for loading. If lag occurs, refresh or try another link.</span>
           </div>
 
-          <div id="no-stream-message-1" class="no-stream-message" style="display: none;">No stream available yet.</div>
+          <div id="no-stream-message-1" class="no-stream-message" style="display: none;"></div>
 
           <div id="html5-video-container-1" class="player-container" style="display: none;">
             <video id="videoPlayer-1" controls autoplay muted playsinline
@@ -588,7 +588,6 @@
 
       if (!matchId || !linkId) {
         noStream.style.display = "flex";
-        noStream.innerHTML = "Invalid request. Missing match or link ID.";
         return;
       }
 
@@ -596,11 +595,11 @@
         .then(res => res.json())
         .then(data => {
             const matchData = data[matchId];
-            if (!matchData) throw new Error("Match not found in database.");
+            if (!matchData) throw new Error("");
 
             let linkObj = matchData[`link${linkId}`];
             if (!linkObj || !linkObj.url) linkObj = matchData.common;
-            if (!linkObj || !linkObj.url) throw new Error("Stream link not added yet.");
+            if (!linkObj || !linkObj.url) throw new Error("");
 
             const url = linkObj.url;
             const type = linkObj.type || 'redirect';
@@ -672,9 +671,8 @@
                 }
             }
         })
-        .catch(err => {
+        .catch(() => {
             noStream.style.display = "flex";
-            noStream.innerHTML = `<div style="text-align:center; padding:20px; color:#fff;">${err.message}</div>`;
         });
     }
 
