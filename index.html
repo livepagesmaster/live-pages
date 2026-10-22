@@ -7,8 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
-  <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     *::-webkit-scrollbar { display: none; }
@@ -26,20 +24,18 @@
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
     [data-theme="dark"] {
-      --text-primary: #f3f4f6;
-      --text-secondary: #a1a1aa;
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #18181b;
-      --bg-card: #1c1c1f;
-      --border-color: #2e2e33;
-      --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --bg-card: #374151;
+      --border-color: #4b5563;
     }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      transition: background-color 0.08s linear, color 0.08s linear;
+      transition: background-color 0.3s ease, color 0.3s ease;
       line-height: 1.6;
       font-size: 16px;
     }
@@ -60,7 +56,6 @@
       border: 1px solid var(--border-color);
       margin: 0 auto;
       width: 100%;
-      transition: background-color 0.08s linear, border-color 0.08s linear, box-shadow 0.08s linear;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -77,6 +72,30 @@
       text-align: center;
     }
     #player-section-1 { padding: 30px 20px; }
+    
+    /* --- LOADING SPINNER ADDED --- */
+    .player-loading-overlay {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        color: #fff;
+        border-radius: 10px;
+    }
+    .spinner {
+        width: 40px; height: 40px;
+        border: 4px solid rgba(255,255,255,0.2);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 10px;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
     .iframe-container,
     .player-container,
     .no-stream-message {
@@ -139,7 +158,7 @@
       border-radius: 8px;
       cursor: pointer;
       user-select: none;
-      transition: background-color .2s ease, transform .15s ease, box-shadow .2s ease;
+      transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
       box-shadow: 0 4px 6px rgba(0,0,0,.1);
       flex: 1;
       min-width: 140px;
@@ -154,30 +173,11 @@
     .action-btn.dark-mode-btn:hover { background-color: #172554; }
     .action-btn i { font-size: 18px; }
     .refresh-btn {
-      margin: 18px auto 0;
-      background: linear-gradient(135deg, var(--accent-color) 0%, #d97706 100%);
-      max-width: 220px;
-      padding: 11px 22px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
-      letter-spacing: 0.3px;
-      border: none;
+      margin: 14px auto 0;
+      background-color: var(--accent-color);
+      max-width: 200px;
     }
-    .refresh-btn i {
-      transition: transform 0.4s ease;
-    }
-    .refresh-btn:hover {
-      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
-      transform: translateY(-2px);
-    }
-    .refresh-btn:hover i {
-      transform: rotate(180deg);
-    }
-    .refresh-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
-    }
+    .refresh-btn:hover { background-color: #d97706; }
     .stream-help-notice {
       width: 100%;
       height: 46px;
@@ -195,140 +195,108 @@
       font-weight: 500;
       line-height: 1;
       text-align: center;
-      transition: background-color 0.08s linear, border-color 0.08s linear, color 0.08s linear;
     }
     .stream-help-notice i { font-size: 14px; opacity: .8; }
     .share-section,
     .disclaimer-section {
       width: 100%;
       text-align: left;
-      position: relative;
-      overflow: hidden;
-      padding: 18px 20px;
-    }
-    .share-section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
     }
     .share-heading,
     .disclaimer-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 18px;
     }
     .share-heading-icon,
     .disclaimer-icon {
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
+      border-radius: 12px;
       background: rgba(37,99,235,.1);
       color: var(--primary-color);
-      font-size: 16px;
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-    .share-section:hover .share-heading-icon {
-      transform: scale(1.08) rotate(-6deg);
-      background: rgba(37,99,235,.18);
+      font-size: 19px;
     }
     .share-heading h2,
     .disclaimer-header h2 {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--text-primary);
-      transition: color 0.08s linear;
     }
     .share-heading p,
     .disclaimer-header p {
-      margin: 1px 0 0;
+      margin: 2px 0 0;
       color: var(--text-secondary);
-      font-size: .82rem;
-      transition: color 0.08s linear;
+      font-size: .9rem;
     }
     .copy-link-row { width: 100%; }
     .copy-link-btn {
       width: 100%;
-      height: 44px;
-      padding: 0 18px;
+      height: 52px;
+      padding: 0 22px;
       border: 0;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      border-radius: 10px;
+      background: var(--primary-color);
       color: #fff;
-      font: 700 14px 'Inter', sans-serif;
+      font: 700 15px 'Inter', sans-serif;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      gap: 9px;
+      transition: transform .2s ease, background-color .25s ease;
     }
     .copy-link-btn:hover {
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
-      transform: translateY(-2px);
+      background: var(--secondary-color);
+      transform: translateY(-1px);
     }
-    .copy-link-btn:active {
-      transform: translateY(0);
-    }
-    .copy-link-btn.copied {
-      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
-    }
+    .copy-link-btn.copied { background: #16a34a; }
     .copy-status {
       display: block;
-      min-height: 16px;
-      margin-top: 4px;
+      min-height: 20px;
+      margin-top: 7px;
       color: var(--text-secondary);
-      font-size: .8rem;
+      font-size: .85rem;
       text-align: center;
-      transition: color 0.08s linear;
     }
     .disclaimer-section {
-      border-left: none;
+      position: relative;
+      overflow: hidden;
     }
     .disclaimer-section::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 4px; height: 100%;
-      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
-    }
-    .disclaimer-icon {
-      background: rgba(245, 158, 11, 0.12);
-      color: var(--accent-color);
+      background: var(--primary-color);
     }
     .disclaimer-body p {
-      margin: 0 0 8px;
+      margin: 0 0 13px;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.75;
       text-align: justify;
-      font-size: .9rem;
-      padding-left: 4px;
-      transition: color 0.08s linear;
+      font-size: .96rem;
     }
     .disclaimer-body p:last-child { margin-bottom: 0; }
     .disclaimer-footer {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 12px;
-      padding-top: 10px;
+      margin-top: 18px;
+      padding-top: 13px;
       border-top: 1px solid var(--border-color);
       color: var(--text-secondary);
-      font-size: .8rem;
+      font-size: .85rem;
       font-weight: 600;
-      transition: color 0.08s linear, border-color 0.08s linear;
     }
-    .disclaimer-footer i { color: var(--accent-color); }
+    .disclaimer-footer i { color: var(--primary-color); }
     .main-logo {
       width: 100%;
       height: 90px;
@@ -346,9 +314,9 @@
       .copy-link-btn { min-width: 165px; padding: 0 16px; }
       .copy-link-btn.copied { min-width: 185px; }
       .share-heading h2,
-      .disclaimer-header h2 { font-size: 1rem; }
+      .disclaimer-header h2 { font-size: 1.1rem; }
       .share-heading p,
-      .disclaimer-header p { font-size: .78rem; }
+      .disclaimer-header p { font-size: .82rem; }
       .controls-container { gap: 8px; margin-bottom: 12px; }
       .action-btn { padding: 9px 12px; min-width: 130px; font-size: 14px; }
       .iframe-container,
@@ -362,11 +330,9 @@
       }
       .iframe-container iframe,
       .player-container video { border-radius: 8px; }
-      .refresh-btn { margin-top: 14px; padding: 10px 18px; }
+      .refresh-btn { margin-top: 12px; }
       .share-section,
-      .disclaimer-section { margin-top: 0; padding: 16px 14px; }
-      .share-heading-icon,
-      .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
+      .disclaimer-section { margin-top: 0; }
     }
     @media (max-width: 768px) {
     .container {
@@ -377,7 +343,7 @@
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
+  <main style="padding-bottom: 30px; background-color: var(--bg-primary);">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
@@ -399,20 +365,28 @@
             <span>Please wait for loading. If lag occurs, refresh or try another link.</span>
           </div>
 
-          <div id="no-stream-message-1" class="no-stream-message" style="display: none;"></div>
+          <div id="no-stream-message-1" class="no-stream-message" style="display: none;">No stream available yet.</div>
 
           <div id="html5-video-container-1" class="player-container" style="display: none;">
+            <!-- Loading Overlay Added Here -->
+            <div class="player-loading-overlay" id="loadingOverlay-1">
+                <div class="spinner"></div>
+                <div>Loading Stream...</div>
+            </div>
             <video id="videoPlayer-1" controls autoplay muted playsinline
                    oncontextmenu="return false;"
                    controlsList="nodownload noremoteplayback"
-                   disablePictureInPicture
-                   class="plyr">
-              <source id="videoSource-1" type="application/x-mpegURL">
+                   disablePictureInPicture>
               <p>Your browser does not support the video tag or HLS video playback directly.</p>
             </video>
           </div>
 
           <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
+            <!-- Loading Overlay Added Here -->
+            <div class="player-loading-overlay" id="loadingOverlayIframe-1">
+                <div class="spinner"></div>
+                <div>Loading Stream...</div>
+            </div>
             <iframe id="embedded-player-1"
                     title="Live stream player"
                     frameborder="0"
@@ -429,7 +403,7 @@
 
       <section id="share-section" class="info-card share-section">
         <div class="share-heading">
-          <span class="share-heading-icon"><i class="fas fa-share-nodes"></i></span>
+          <span class="share-heading-icon"><i class="fas fa-link"></i></span>
           <div>
             <h2>Share with family &amp; friends ❤️</h2>
             <p>Copy the link and share it with your family and friends.</p>
@@ -562,23 +536,23 @@
       const linkId = params.get("id");
 
       const video = document.getElementById("videoPlayer-1");
-      const source = document.getElementById("videoSource-1");
       const videoBox = document.getElementById("html5-video-container-1");
       const iframe = document.getElementById("embedded-player-1");
       const iframeBox = document.getElementById("iframe-player-container-1");
       const noStream = document.getElementById("no-stream-message-1");
+      
+      // Hide overlays initially
+      const overlayVideo = document.getElementById("loadingOverlay-1");
+      const overlayIframe = document.getElementById("loadingOverlayIframe-1");
+      if(overlayVideo) overlayVideo.style.display = 'flex';
+      if(overlayIframe) overlayIframe.style.display = 'flex';
 
       if (video.hlsInstance) {
         try { video.hlsInstance.destroy(); } catch (e) {}
         video.hlsInstance = null;
       }
-      if (video._plyrInstance) {
-        try { video._plyrInstance.destroy(); } catch (e) {}
-        video._plyrInstance = null;
-      }
       video.pause();
       video.removeAttribute("src");
-      source.removeAttribute("src");
       video.load();
       iframe.src = "about:blank";
 
@@ -588,6 +562,7 @@
 
       if (!matchId || !linkId) {
         noStream.style.display = "flex";
+        noStream.innerHTML = "Invalid request. Missing match or link ID.";
         return;
       }
 
@@ -595,11 +570,11 @@
         .then(res => res.json())
         .then(data => {
             const matchData = data[matchId];
-            if (!matchData) throw new Error("");
+            if (!matchData) throw new Error("Match not found in database.");
 
             let linkObj = matchData[`link${linkId}`];
             if (!linkObj || !linkObj.url) linkObj = matchData.common;
-            if (!linkObj || !linkObj.url) throw new Error("");
+            if (!linkObj || !linkObj.url) throw new Error("Stream link not added yet.");
 
             const url = linkObj.url;
             const type = linkObj.type || 'redirect';
@@ -609,45 +584,20 @@
             } else if (type === 'iframe') {
                 iframe.src = url;
                 iframeBox.style.display = "block";
+                
+                // Wait for iframe to load, then hide overlay
+                iframe.onload = function() {
+                    if(overlayIframe) overlayIframe.style.display = 'none';
+                };
             } else if (type === 'hls') {
                 videoBox.style.display = "block";
-
                 if (window.Hls && Hls.isSupported()) {
                   const hls = new Hls({
-                    maxMaxBufferLength: 100
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    backBufferLength: 30
                   });
-                  hls.loadSource(url);
-                  hls.attachMedia(video);
-
                   video.hlsInstance = hls;
-
-                  hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    const qualities = hls.levels
-                      .map(level => level.height)
-                      .filter(Boolean)
-                      .filter((value, index, array) => array.indexOf(value) === index)
-                      .sort((a, b) => b - a);
-
-                    const options = {};
-
-                    if (qualities.length) {
-                      options.quality = {
-                        default: qualities[0],
-                        options: qualities,
-                        forced: true,
-                        onChange: function (quality) {
-                          hls.levels.forEach(function (level, index) {
-                            if (level.height === quality) {
-                              hls.currentLevel = index;
-                            }
-                          });
-                        }
-                      };
-                    }
-
-                    video._plyrInstance = new Plyr(video, options);
-                  });
-
                   hls.on(Hls.Events.ERROR, function(event, data) {
                     if (!data.fatal) return;
                     if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
@@ -657,22 +607,22 @@
                       video.hlsInstance = null;
                     }
                   });
-
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                  source.setAttribute('src', url);
-                  video.load();
-                  video._plyrInstance = new Plyr(video);
-                  video.play().catch(function() {});
-                } else {
-                  source.setAttribute('src', url);
-                  video.load();
-                  video._plyrInstance = new Plyr(video);
+                  hls.loadSource(url);
+                  hls.attachMedia(video);
+                } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                  video.src = url;
                   video.play().catch(function() {});
                 }
+                
+                // Hide overlay when video starts playing
+                video.oncanplay = function() {
+                    if(overlayVideo) overlayVideo.style.display = 'none';
+                };
             }
         })
-        .catch(() => {
+        .catch(err => {
             noStream.style.display = "flex";
+            noStream.innerHTML = `<div style="text-align:center; padding:20px; color:#fff;">${err.message}</div>`;
         });
     }
 
@@ -736,11 +686,7 @@
         e.stopPropagation();
         togglePlayerFullscreen();
       });
-
-      document.getElementById("reloadBtn-1").addEventListener("click", function() {
-        window.location.reload();
-      });
-
+      document.getElementById("reloadBtn-1").addEventListener("click", loadStreamFromSrc);
       document.getElementById("darkModeBtn-1").addEventListener("click", e => {
         e.preventDefault();
         toggleTheme();
