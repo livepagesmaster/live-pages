@@ -15,7 +15,7 @@
     :root {
       --primary-color: #2563eb;
       --secondary-color: #1e40af;
-      --accent-color: #1e40af;
+      --accent-color: #f59e0b;
       --text-primary: #1f2937;
       --text-secondary: #6b7280;
       --bg-primary: #ffffff;
@@ -24,20 +24,23 @@
       --border-color: #e5e7eb;
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --transition-theme: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
     }
     [data-theme="dark"] {
-      --text-primary: #f9fafb;
-      --text-secondary: #d1d5db;
-      --bg-primary: #111827;
-      --bg-secondary: #1f2937;
-      --bg-card: #374151;
-      --border-color: #4b5563;
+      --text-primary: #f3f4f6;
+      --text-secondary: #a1a1aa;
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #18181b;
+      --bg-card: #1c1c1f;
+      --border-color: #2e2e33;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
     }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: var(--transition-theme);
       line-height: 1.6;
       font-size: 16px;
     }
@@ -58,6 +61,7 @@
       border: 1px solid var(--border-color);
       margin: 0 auto;
       width: 100%;
+      transition: var(--transition-theme);
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -192,6 +196,7 @@
       font-weight: 500;
       line-height: 1;
       text-align: center;
+      transition: var(--transition-theme);
     }
     .stream-help-notice i { font-size: 14px; opacity: .8; }
     .share-section,
@@ -241,12 +246,14 @@
       font-size: 1.05rem;
       font-weight: 800;
       color: var(--text-primary);
+      transition: var(--transition-theme);
     }
     .share-heading p,
     .disclaimer-header p {
       margin: 1px 0 0;
       color: var(--text-secondary);
       font-size: .82rem;
+      transition: var(--transition-theme);
     }
     .copy-link-row { width: 100%; }
     .copy-link-btn {
@@ -284,6 +291,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       text-align: center;
+      transition: var(--transition-theme);
     }
     .disclaimer-section {
       border-left: none;
@@ -306,6 +314,7 @@
       text-align: justify;
       font-size: .9rem;
       padding-left: 4px;
+      transition: var(--transition-theme);
     }
     .disclaimer-body p:last-child { margin-bottom: 0; }
     .disclaimer-footer {
@@ -318,6 +327,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       font-weight: 600;
+      transition: var(--transition-theme);
     }
     .disclaimer-footer i { color: var(--accent-color); }
     .main-logo {
@@ -368,7 +378,7 @@
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 30px; background-color: var(--bg-primary);">
+  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: var(--transition-theme);">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
