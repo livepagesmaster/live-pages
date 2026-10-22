@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
-  <!-- Plyr CSS & JS (for the new HLS player) -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
   <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
   <style>
@@ -151,8 +150,6 @@
     .action-btn.dark-mode-btn { background-color: var(--secondary-color); }
     .action-btn.dark-mode-btn:hover { background-color: #172554; }
     .action-btn i { font-size: 18px; }
-
-    /* --- Improved Refresh Button --- */
     .refresh-btn {
       margin: 18px auto 0;
       background: linear-gradient(135deg, var(--accent-color) 0%, #d97706 100%);
@@ -178,7 +175,6 @@
       transform: translateY(0);
       box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
     }
-
     .stream-help-notice {
       width: 100%;
       height: 46px;
@@ -198,15 +194,13 @@
       text-align: center;
     }
     .stream-help-notice i { font-size: 14px; opacity: .8; }
-
-    /* --- Compact Share & Disclaimer Sections --- */
     .share-section,
     .disclaimer-section {
       width: 100%;
       text-align: left;
       position: relative;
       overflow: hidden;
-      padding: 18px 20px; /* reduced from 30px 20px */
+      padding: 18px 20px;
     }
     .share-section::before {
       content: "";
@@ -219,12 +213,12 @@
     .disclaimer-header {
       display: flex;
       align-items: center;
-      gap: 12px; /* slightly tighter */
-      margin-bottom: 12px; /* reduced from 18px */
+      gap: 12px;
+      margin-bottom: 12px;
     }
     .share-heading-icon,
     .disclaimer-icon {
-      width: 38px; /* reduced from 46px */
+      width: 38px;
       height: 38px;
       flex: 0 0 38px;
       display: inline-flex;
@@ -233,7 +227,7 @@
       border-radius: 10px;
       background: rgba(37,99,235,.1);
       color: var(--primary-color);
-      font-size: 16px; /* reduced from 19px */
+      font-size: 16px;
       transition: transform 0.3s ease, background 0.3s ease;
     }
     .share-section:hover .share-heading-icon {
@@ -244,7 +238,7 @@
     .disclaimer-header h2 {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.05rem; /* reduced from 1.25rem */
+      font-size: 1.05rem;
       font-weight: 800;
       color: var(--text-primary);
     }
@@ -252,18 +246,18 @@
     .disclaimer-header p {
       margin: 1px 0 0;
       color: var(--text-secondary);
-      font-size: .82rem; /* reduced from .9rem */
+      font-size: .82rem;
     }
     .copy-link-row { width: 100%; }
     .copy-link-btn {
       width: 100%;
-      height: 44px; /* reduced from 52px */
+      height: 44px;
       padding: 0 18px;
       border: 0;
       border-radius: 9px;
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       color: #fff;
-      font: 700 14px 'Inter', sans-serif; /* reduced from 15px */
+      font: 700 14px 'Inter', sans-serif;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -285,14 +279,12 @@
     }
     .copy-status {
       display: block;
-      min-height: 16px; /* reduced */
-      margin-top: 4px; /* reduced */
+      min-height: 16px;
+      margin-top: 4px;
       color: var(--text-secondary);
       font-size: .8rem;
       text-align: center;
     }
-
-    /* --- Compact Disclaimer Section --- */
     .disclaimer-section {
       border-left: none;
     }
@@ -308,11 +300,11 @@
       color: var(--accent-color);
     }
     .disclaimer-body p {
-      margin: 0 0 8px; /* reduced from 13px */
+      margin: 0 0 8px;
       color: var(--text-secondary);
       line-height: 1.6;
       text-align: justify;
-      font-size: .9rem; /* reduced from .96rem */
+      font-size: .9rem;
       padding-left: 4px;
     }
     .disclaimer-body p:last-child { margin-bottom: 0; }
@@ -320,15 +312,14 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 12px; /* reduced from 18px */
-      padding-top: 10px; /* reduced from 13px */
+      margin-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid var(--border-color);
       color: var(--text-secondary);
-      font-size: .8rem; /* reduced from .85rem */
+      font-size: .8rem;
       font-weight: 600;
     }
     .disclaimer-footer i { color: var(--accent-color); }
-
     .main-logo {
       width: 100%;
       height: 90px;
@@ -375,7 +366,6 @@
 }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <!-- Plyr CSS is already included above for the new player -->
 </head>
 <body>
   <main style="padding-bottom: 30px; background-color: var(--bg-primary);">
@@ -403,7 +393,6 @@
           <div id="no-stream-message-1" class="no-stream-message" style="display: none;">No stream available yet.</div>
 
           <div id="html5-video-container-1" class="player-container" style="display: none;">
-            <!-- Replaced the old <video> with a Plyr-powered video -->
             <video id="videoPlayer-1" controls autoplay muted playsinline
                    oncontextmenu="return false;"
                    controlsList="nodownload noremoteplayback"
@@ -558,7 +547,6 @@
       }
     }
 
-    // --- NEW STREAM LOADING LOGIC (with Plyr HLS player) ---
     function loadStreamFromSrc() {
       const params = new URLSearchParams(window.location.search);
       const matchId = params.get("match");
@@ -571,12 +559,10 @@
       const iframeBox = document.getElementById("iframe-player-container-1");
       const noStream = document.getElementById("no-stream-message-1");
 
-      // Reset players
       if (video.hlsInstance) {
         try { video.hlsInstance.destroy(); } catch (e) {}
         video.hlsInstance = null;
       }
-      // Destroy existing Plyr instance if any
       if (video._plyrInstance) {
         try { video._plyrInstance.destroy(); } catch (e) {}
         video._plyrInstance = null;
@@ -597,7 +583,6 @@
         return;
       }
 
-      // Fetch the links.json file
       fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
         .then(res => res.json())
         .then(data => {
@@ -619,8 +604,6 @@
             } else if (type === 'hls') {
                 videoBox.style.display = "block";
 
-                // --- NEW PLYR HLS PLAYER INTEGRATION ---
-                // Set up Plyr with HLS.js (same logic as the second file)
                 if (window.Hls && Hls.isSupported()) {
                   const hls = new Hls({
                     maxMaxBufferLength: 100
@@ -628,10 +611,9 @@
                   hls.loadSource(url);
                   hls.attachMedia(video);
 
-                  video.hlsInstance = hls; // store for cleanup
+                  video.hlsInstance = hls;
 
                   hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    // Build quality options from HLS levels
                     const qualities = hls.levels
                       .map(level => level.height)
                       .filter(Boolean)
@@ -655,7 +637,6 @@
                       };
                     }
 
-                    // Initialize Plyr and store instance
                     video._plyrInstance = new Plyr(video, options);
                   });
 
@@ -670,19 +651,16 @@
                   });
 
                 } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                  // Native HLS support (Safari)
                   source.setAttribute('src', url);
                   video.load();
                   video._plyrInstance = new Plyr(video);
                   video.play().catch(function() {});
                 } else {
-                  // Fallback: just try to play without HLS
                   source.setAttribute('src', url);
                   video.load();
                   video._plyrInstance = new Plyr(video);
                   video.play().catch(function() {});
                 }
-                // --- END NEW PLYR HLS PLAYER ---
             }
         })
         .catch(err => {
@@ -752,7 +730,6 @@
         togglePlayerFullscreen();
       });
 
-      // --- Refresh button now reloads the whole page ---
       document.getElementById("reloadBtn-1").addEventListener("click", function() {
         window.location.reload();
       });
@@ -764,7 +741,7 @@
 
       setupSharing();
       updateFullscreenButton();
-      loadStreamFromSrc(); // Loads the new link!
+      loadStreamFromSrc();
     });
   </script>
 
