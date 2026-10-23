@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,12 @@
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
     }
+    html, body {
+      overflow-x: hidden;
+      touch-action: pan-x pan-y;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
@@ -46,7 +52,7 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px;
+      padding: 0 15px 15px;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -371,14 +377,14 @@
     }
     @media (max-width: 768px) {
     .container {
-        padding: 0;
+        padding: 0 0 10px;
     }
 }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 30px; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
+  <main style="padding-bottom: 0; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
@@ -466,6 +472,25 @@
   </main>
 
   <script>
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (e) {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
     function toggleTheme() {
       const body = document.body;
       const darkButtons = document.querySelectorAll('.dark-mode-btn i');
