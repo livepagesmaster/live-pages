@@ -2,54 +2,37 @@
   "matches": [  
 {
   "team1": {
-    "name": "Juventus",
+    "name": "Al-Faisaly",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/9885.png"
+    "img": "https://static.wikia.nocookie.net/fifa/images/0/0f/Al-Faisaly.png/revision/latest?cb=20161203173012"
   },
   "team2": {
-    "name": "Rennes",
+    "name": "Al-Nassr",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/9851.png"
+    "img": "https://img.singhs.com.np/team/101918.png"
   },
   "status": "Upcoming",
-  "type": "🏆 Europa",
-  "time": "26/10/22 22:30:00",
+  "type": "🏆 Saudi",
+  "time": "26/10/23 19:15:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
 },
 {
   "team1": {
-    "name": "Omonoia",
+    "name": "Ipswich",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/8044.png"
+    "img": "https://img.singhs.com.np/team/9902.png"
   },
   "team2": {
-    "name": "Benfica",
+    "name": "N.Forest",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/9772.png"
+    "img": "https://img.singhs.com.np/team/10203.png"
   },
   "status": "Upcoming",
-  "type": "🏆 Europa",
-  "time": "26/10/23 00:45:00",
+  "type": "🏆 EPL",
+  "time": "26/10/24 00:45:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
-},
-{
-  "team1": {
-    "name": "Bourne.",
-    "code": "CDI",
-    "img": "https://img.singhs.com.np/team/8678.png"
-  },
-  "team2": {
-    "name": "AC Milan",
-    "code": "ecd",
-    "img": "https://img.singhs.com.np/team/8564.png"
-  },
-  "status": "Upcoming",
-  "type": "🏆 Europa",
-  "time": "26/10/23 00:45:00",
-  "endTime": 2,
-  "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
 }
   ]
 }
