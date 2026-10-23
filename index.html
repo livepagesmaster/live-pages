@@ -35,11 +35,11 @@
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
     }
-    html, body {
+    html {
       overflow-x: hidden;
-      touch-action: pan-x pan-y;
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
+      scroll-behavior: auto;
     }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -48,15 +48,19 @@
       transition: background-color 0.08s linear, color 0.08s linear;
       line-height: 1.6;
       font-size: 16px;
+      overflow-x: hidden;
+      touch-action: pan-x pan-y;
+      min-height: 100vh;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px 15px;
+      padding: 0 15px;
       display: flex;
       flex-direction: column;
       gap: 15px;
       margin-top: 30px;
+      padding-bottom: 0;
     }
     .info-card {
       background: var(--bg-card);
@@ -67,6 +71,9 @@
       margin: 0 auto;
       width: 100%;
       transition: background-color 0.08s linear, border-color 0.08s linear, box-shadow 0.08s linear;
+    }
+    .info-card:last-child {
+      margin-bottom: 15px;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -374,17 +381,13 @@
       .disclaimer-section { margin-top: 0; padding: 16px 14px; }
       .share-heading-icon,
       .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
+      .container { padding: 0; }
     }
-    @media (max-width: 768px) {
-    .container {
-        padding: 0 0 10px;
-    }
-}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 0; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
+  <main style="padding: 0; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
@@ -817,6 +820,11 @@
     document.addEventListener("mozfullscreenchange", updateFullscreenButton);
     document.addEventListener("MSFullscreenChange", updateFullscreenButton);
 
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     document.addEventListener("DOMContentLoaded", function() {
       loadTheme();
 
@@ -830,6 +838,9 @@
       });
 
       document.getElementById("reloadBtn-1").addEventListener("click", function() {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
         window.location.reload();
       });
 
@@ -841,6 +852,13 @@
       setupSharing();
       updateFullscreenButton();
       loadStreamFromSrc();
+    });
+
+    window.addEventListener('load', function() {
+      if (window.scrollY > 0 && sessionStorage.getItem('reloading') === 'true') {
+        window.scrollTo(0, 0);
+      }
+      sessionStorage.removeItem('reloading');
     });
   </script>
 
