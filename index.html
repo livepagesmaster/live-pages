@@ -39,7 +39,6 @@
       overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
-      scroll-behavior: auto;
       height: 100%;
     }
     body {
@@ -58,16 +57,16 @@
     main {
       padding: 0 !important;
       margin: 0 !important;
+      padding-bottom: 0 !important;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px;
+      padding: 0 15px 20px;
       display: flex;
       flex-direction: column;
       gap: 15px;
       margin-top: 30px;
-      padding-bottom: 15px;
     }
     .info-card {
       background: var(--bg-card);
@@ -78,6 +77,9 @@
       margin: 0 auto;
       width: 100%;
       transition: background-color 0.08s linear, border-color 0.08s linear, box-shadow 0.08s linear;
+    }
+    .info-card:last-child {
+      margin-bottom: 0;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -385,7 +387,7 @@
       .disclaimer-section { margin-top: 0; padding: 16px 14px; }
       .share-heading-icon,
       .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
-      .container { padding: 0 0 10px; }
+      .container { padding: 0 0 12px; }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -497,6 +499,22 @@
       }
       lastTouchEnd = now;
     }, false);
+
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('beforeunload', function () {
+      sessionStorage.setItem('scrollY', window.scrollY);
+    });
+
+    window.addEventListener('load', function () {
+      var savedScroll = sessionStorage.getItem('scrollY');
+      if (savedScroll !== null) {
+        window.scrollTo(0, parseInt(savedScroll, 10));
+        sessionStorage.removeItem('scrollY');
+      }
+    });
 
     function toggleTheme() {
       const body = document.body;
@@ -824,10 +842,6 @@
     document.addEventListener("mozfullscreenchange", updateFullscreenButton);
     document.addEventListener("MSFullscreenChange", updateFullscreenButton);
 
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-
     document.addEventListener("DOMContentLoaded", function() {
       loadTheme();
 
@@ -841,10 +855,7 @@
       });
 
       document.getElementById("reloadBtn-1").addEventListener("click", function() {
-        if ('scrollRestoration' in history) {
-          history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
+        sessionStorage.setItem('scrollY', window.scrollY);
         window.location.reload();
       });
 
