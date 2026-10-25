@@ -2,105 +2,139 @@
   "matches": [  
 {
   "team1": {
-    "name": "A.Villa",
+    "name": "Inter",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/10252.png"
+    "img": "https://img.singhs.com.np/team/8636.png"
   },
   "team2": {
-    "name": "ManCity",
+    "name": "Fiorentina",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/8456.png"
+    "img": "https://img.singhs.com.np/team/8535.png"
   },
   "status": "Upcoming",
-  "type": "🏆 EPL",
-  "time": "26/10/24 17:15:00",
+  "type": "🏆 Serie A",
+  "time": "26/10/25 17:15:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m1.html"
 },
 {
   "team1": {
-    "name": "Arsenal",
+    "name": "ManUtd",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/9825.png"
+    "img": "https://img.singhs.com.np/team/10260.png"
   },
   "team2": {
-    "name": "Everton",
+    "name": "Bourne.",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/8668.png"
+    "img": "https://img.singhs.com.np/team/8678.png"
   },
   "status": "Upcoming",
   "type": "🏆 EPL",
-  "time": "26/10/24 19:45:00",
+  "time": "26/10/25 19:45:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m2.html"
 },
 {
   "team1": {
-    "name": "Napoli",
+    "name": "Liverpool",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/9875.png"
+    "img": "https://img.singhs.com.np/team/8650.png"
   },
   "team2": {
-    "name": "Roma",
+    "name": "Brighton",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/8686.png"
+    "img": "https://img.singhs.com.np/team/10204.png"
   },
   "status": "Upcoming",
-  "type": "🏆 Serie A",
-  "time": "26/10/24 21:45:00",
+  "type": "🏆 EPL",
+  "time": "26/10/25 19:45:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m4.html"
 },
 {
   "team1": {
-    "name": "Chelsea",
+    "name": "C.Palace",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/8455.png"
+    "img": "https://img.singhs.com.np/team/9826.png"
   },
   "team2": {
-    "name": "Spurs",
+    "name": "Newcastle",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/8586.png"
+    "img": "https://img.singhs.com.np/team/10261.png"
   },
   "status": "Upcoming",
   "type": "🏆 EPL",
-  "time": "26/10/24 22:15:00",
+  "time": "26/10/25 19:45:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m5.html"
 },
 {
   "team1": {
-    "name": "RBNY",
+    "name": "Freiburg",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/6514.png"
+    "img": "https://img.singhs.com.np/team/8358.png"
   },
   "team2": {
-    "name": "Miami",
+    "name": "Bayern",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/960720.png"
+    "img": "https://img.singhs.com.np/team/9823.png"
   },
   "status": "Upcoming",
-  "type": "🏆 MLS",
-  "time": "26/10/25 03:15:00",
+  "type": "🏆 Bundesliga",
+  "time": "26/10/25 22:15:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m6.html"
 },
 {
   "team1": {
-    "name": "Santos",
+    "name": "Lecce",
     "code": "CDI",
-    "img": "https://img.singhs.com.np/team/8514.png"
+    "img": "https://img.singhs.com.np/team/9888.png"
   },
   "team2": {
-    "name": "Bahia",
+    "name": "Juventus",
     "code": "ecd",
-    "img": "https://img.singhs.com.np/team/7877.png"
+    "img": "https://img.singhs.com.np/team/9885.png"
   },
   "status": "Upcoming",
-  "type": "🏆 Brazil",
-  "time": "26/10/25 05:45:00",
+  "type": "🏆 Serie A",
+  "time": "26/10/25 22:45:00",
   "endTime": 2,
   "redirectUrl": "https://www.yashintv.xyz/p/m7.html"
+},
+{
+  "team1": {
+    "name": "Udinese",
+    "code": "CDI",
+    "img": "https://img.singhs.com.np/team/8600.png"
+  },
+  "team2": {
+    "name": "Milan",
+    "code": "ecd",
+    "img": "https://img.singhs.com.np/team/8564.png"
+  },
+  "status": "Upcoming",
+  "type": "🏆 Serie A",
+  "time": "26/10/26 01:30:00",
+  "endTime": 2,
+  "redirectUrl": "https://www.yashintv.xyz/p/m8.html"
+},
+{
+  "team1": {
+    "name": "Barcelona",
+    "code": "CDI",
+    "img": "https://img.singhs.com.np/team/8634.png"
+  },
+  "team2": {
+    "name": "R.Madrid",
+    "code": "ecd",
+    "img": "https://img.singhs.com.np/team/8633.png"
+  },
+  "status": "Upcoming",
+  "type": "🏆 Laliga",
+  "time": "26/10/26 01:45:00",
+  "endTime": 2,
+  "redirectUrl": "https://www.yashintv.xyz/p/m9.html"
 }
   ]
 }
