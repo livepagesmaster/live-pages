@@ -35,14 +35,12 @@
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
     }
-    html, body {
-      margin: 0 !important;
-      padding: 0 !important;
-      width: 100%;
-      min-height: 100%;
+    html {
       overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
     }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -51,18 +49,20 @@
       transition: background-color 0.08s linear, color 0.08s linear;
       line-height: 1.6;
       font-size: 16px;
+      overflow-x: hidden;
       touch-action: pan-x pan-y;
-      display: block;
+      margin: 0;
+      padding: 0;
     }
     main {
-      margin: 0 !important;
-      padding: 0 !important;
+      margin: 0;
+      padding: 0;
       display: block;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 30px 15px 20px;
+      padding: 30px 15px;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -310,7 +310,6 @@
     }
     .disclaimer-section {
       border-left: none;
-      margin-bottom: 0 !important;
     }
     .disclaimer-section::before {
       content: "";
@@ -358,7 +357,7 @@
     @media (max-width: 900px) { #main-logo-img { width: 60%; } }
     @media (max-width: 500px) { #main-logo-img { width: 90%; } }
     @media (max-width: 768px) {
-      .container { padding: 20px 0 15px; }
+      .container { padding: 20px 0; }
       .container .info-card { padding: 30px 7px; }
       #player-section-1 { padding: 30px 7px; }
       .copy-link-btn { min-width: 165px; padding: 0 16px; }
