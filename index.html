@@ -35,13 +35,6 @@
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
     }
-    html {
-      overflow-x: hidden;
-      -webkit-text-size-adjust: 100%;
-      -webkit-tap-highlight-color: transparent;
-      margin: 0;
-      padding: 0;
-    }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
@@ -49,23 +42,16 @@
       transition: background-color 0.08s linear, color 0.08s linear;
       line-height: 1.6;
       font-size: 16px;
-      overflow-x: hidden;
-      touch-action: pan-x pan-y;
-      margin: 0;
-      padding: 0;
-    }
-    main {
-      margin: 0;
-      padding: 0;
-      display: block;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 30px 15px;
+      padding: 0 15px;
       display: flex;
       flex-direction: column;
       gap: 15px;
+      margin-top: 30px;
+      padding-bottom: 15px;
     }
     .info-card {
       background: var(--bg-card);
@@ -107,7 +93,6 @@
       box-shadow: none;
       border: 0;
       isolation: isolate;
-      display: block;
     }
     .iframe-container iframe,
     .player-container video {
@@ -357,7 +342,6 @@
     @media (max-width: 900px) { #main-logo-img { width: 60%; } }
     @media (max-width: 500px) { #main-logo-img { width: 90%; } }
     @media (max-width: 768px) {
-      .container { padding: 20px 0; }
       .container .info-card { padding: 30px 7px; }
       #player-section-1 { padding: 30px 7px; }
       .copy-link-btn { min-width: 165px; padding: 0 16px; }
@@ -385,11 +369,16 @@
       .share-heading-icon,
       .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
     }
+    @media (max-width: 768px) {
+    .container {
+        padding: 0 0 10px;
+    }
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="background-color: var(--bg-primary); transition: background-color 0.08s linear;">
+  <main style="padding-bottom: 0; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
     <div class="container">
       <section class="main-logo">
         <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
@@ -413,7 +402,7 @@
 
           <div id="no-stream-message-1" class="no-stream-message" style="display: none;"></div>
 
-          <div id="html5-video-container-1" class="player-container" style="display: block; visibility: hidden; position: absolute; pointer-events: none;">
+          <div id="html5-video-container-1" class="player-container" style="display: none;">
             <video id="videoPlayer-1" controls autoplay muted playsinline
                    oncontextmenu="return false;"
                    controlsList="nodownload noremoteplayback"
@@ -424,7 +413,7 @@
             </video>
           </div>
 
-          <div id="iframe-player-container-1" class="iframe-container" style="display: block; visibility: hidden; position: absolute; pointer-events: none;">
+          <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
             <iframe id="embedded-player-1"
                     title="Live stream player"
                     frameborder="0"
@@ -432,8 +421,6 @@
                     allowfullscreen
                     scrolling="no"></iframe>
           </div>
-
-          <div id="player-placeholder-1" class="player-container" style="background: #000; border-radius: 10px;"></div>
 
           <button id="reloadBtn-1" class="action-btn refresh-btn" type="button">
             <i class="fas fa-sync-alt"></i> Refresh
@@ -573,7 +560,7 @@
     async function togglePlayerFullscreen() {
       const videoBox = document.getElementById("html5-video-container-1");
       const iframeBox = document.getElementById("iframe-player-container-1");
-      const placeholder = document.getElementById("player-placeholder-1");
+      const noStreamBox = document.getElementById("no-stream-message-1");
 
       if (getFullscreenElement()) {
         await exitFullscreen();
@@ -582,9 +569,9 @@
       }
 
       let target = null;
-      if (videoBox && videoBox.style.visibility === "visible") target = videoBox;
-      else if (iframeBox && iframeBox.style.visibility === "visible") target = iframeBox;
-      else if (placeholder) target = placeholder;
+      if (videoBox && getComputedStyle(videoBox).display !== "none") target = videoBox;
+      else if (iframeBox && getComputedStyle(iframeBox).display !== "none") target = iframeBox;
+      else if (noStreamBox && getComputedStyle(noStreamBox).display !== "none") target = noStreamBox;
 
       if (!target) return;
       await enterFullscreen(target);
@@ -605,75 +592,6 @@
       }
     }
 
-    function showPlayer(type) {
-      const videoBox = document.getElementById("html5-video-container-1");
-      const iframeBox = document.getElementById("iframe-player-container-1");
-      const placeholder = document.getElementById("player-placeholder-1");
-      const noStream = document.getElementById("no-stream-message-1");
-
-      videoBox.style.display = "block";
-      videoBox.style.visibility = "hidden";
-      videoBox.style.position = "absolute";
-      videoBox.style.pointerEvents = "none";
-
-      iframeBox.style.display = "block";
-      iframeBox.style.visibility = "hidden";
-      iframeBox.style.position = "absolute";
-      iframeBox.style.pointerEvents = "none";
-
-      placeholder.style.display = "block";
-
-      noStream.style.display = "none";
-
-      if (type === "hls") {
-        videoBox.style.visibility = "visible";
-        videoBox.style.position = "relative";
-        videoBox.style.pointerEvents = "auto";
-        placeholder.style.display = "none";
-      } else if (type === "iframe") {
-        iframeBox.style.visibility = "visible";
-        iframeBox.style.position = "relative";
-        iframeBox.style.pointerEvents = "auto";
-        placeholder.style.display = "none";
-      }
-    }
-
-    function hidePlayer() {
-      const videoBox = document.getElementById("html5-video-container-1");
-      const iframeBox = document.getElementById("iframe-player-container-1");
-      const placeholder = document.getElementById("player-placeholder-1");
-      const noStream = document.getElementById("no-stream-message-1");
-
-      videoBox.style.visibility = "hidden";
-      videoBox.style.position = "absolute";
-      videoBox.style.pointerEvents = "none";
-
-      iframeBox.style.visibility = "hidden";
-      iframeBox.style.position = "absolute";
-      iframeBox.style.pointerEvents = "none";
-
-      placeholder.style.display = "block";
-      noStream.style.display = "none";
-    }
-
-    function showNoStream() {
-      const videoBox = document.getElementById("html5-video-container-1");
-      const iframeBox = document.getElementById("iframe-player-container-1");
-      const placeholder = document.getElementById("player-placeholder-1");
-      const noStream = document.getElementById("no-stream-message-1");
-
-      videoBox.style.visibility = "hidden";
-      videoBox.style.position = "absolute";
-      videoBox.style.pointerEvents = "none";
-
-      iframeBox.style.visibility = "hidden";
-      iframeBox.style.position = "absolute";
-      iframeBox.style.pointerEvents = "none";
-
-      placeholder.style.display = "none";
-      noStream.style.display = "flex";
-    }
-
     function loadStreamFromSrc() {
       const params = new URLSearchParams(window.location.search);
       const matchId = params.get("match");
@@ -681,7 +599,10 @@
 
       const video = document.getElementById("videoPlayer-1");
       const source = document.getElementById("videoSource-1");
+      const videoBox = document.getElementById("html5-video-container-1");
       const iframe = document.getElementById("embedded-player-1");
+      const iframeBox = document.getElementById("iframe-player-container-1");
+      const noStream = document.getElementById("no-stream-message-1");
 
       if (video.hlsInstance) {
         try { video.hlsInstance.destroy(); } catch (e) {}
@@ -697,10 +618,12 @@
       video.load();
       iframe.src = "about:blank";
 
-      hidePlayer();
+      videoBox.style.display = "none";
+      iframeBox.style.display = "none";
+      noStream.style.display = "none";
 
       if (!matchId || !linkId) {
-        showNoStream();
+        noStream.style.display = "flex";
         return;
       }
 
@@ -720,10 +643,10 @@
             if (type === 'redirect') {
                 window.location.href = url;
             } else if (type === 'iframe') {
-                showPlayer("iframe");
                 iframe.src = url;
+                iframeBox.style.display = "block";
             } else if (type === 'hls') {
-                showPlayer("hls");
+                videoBox.style.display = "block";
 
                 if (window.Hls && Hls.isSupported()) {
                   const hls = new Hls({
@@ -785,7 +708,7 @@
             }
         })
         .catch(() => {
-            showNoStream();
+            noStream.style.display = "flex";
         });
     }
 
