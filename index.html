@@ -402,7 +402,7 @@
 
           <div id="no-stream-message-1" class="no-stream-message" style="display: none;"></div>
 
-          <div id="html5-video-container-1" class="player-container" style="display: none;">
+          <div id="html5-video-container-1" class="player-container" style="display: block;">
             <video id="videoPlayer-1" controls autoplay muted playsinline
                    oncontextmenu="return false;"
                    controlsList="nodownload noremoteplayback"
@@ -618,11 +618,12 @@
       video.load();
       iframe.src = "about:blank";
 
-      videoBox.style.display = "none";
+      videoBox.style.display = "block";
       iframeBox.style.display = "none";
       noStream.style.display = "none";
 
       if (!matchId || !linkId) {
+        videoBox.style.display = "none";
         noStream.style.display = "flex";
         return;
       }
@@ -643,10 +644,12 @@
             if (type === 'redirect') {
                 window.location.href = url;
             } else if (type === 'iframe') {
+                videoBox.style.display = "none";
                 iframe.src = url;
                 iframeBox.style.display = "block";
             } else if (type === 'hls') {
                 videoBox.style.display = "block";
+                iframeBox.style.display = "none";
 
                 if (window.Hls && Hls.isSupported()) {
                   const hls = new Hls({
@@ -708,6 +711,7 @@
             }
         })
         .catch(() => {
+            videoBox.style.display = "none";
             noStream.style.display = "flex";
         });
     }
