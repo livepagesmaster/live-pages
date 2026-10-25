@@ -35,11 +35,14 @@
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
     }
-    html {
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100%;
+      min-height: 100%;
       overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
-      height: 100%;
     }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -48,25 +51,21 @@
       transition: background-color 0.08s linear, color 0.08s linear;
       line-height: 1.6;
       font-size: 16px;
-      overflow-x: hidden;
       touch-action: pan-x pan-y;
-      min-height: 100%;
-      margin: 0;
-      padding: 0;
+      display: block;
     }
     main {
-      padding: 0 !important;
       margin: 0 !important;
-      padding-bottom: 0 !important;
+      padding: 0 !important;
+      display: block;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px 20px;
+      padding: 30px 15px 20px;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-top: 30px;
     }
     .info-card {
       background: var(--bg-card);
@@ -77,9 +76,6 @@
       margin: 0 auto;
       width: 100%;
       transition: background-color 0.08s linear, border-color 0.08s linear, box-shadow 0.08s linear;
-    }
-    .info-card:last-child {
-      margin-bottom: 0;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -314,6 +310,7 @@
     }
     .disclaimer-section {
       border-left: none;
+      margin-bottom: 0 !important;
     }
     .disclaimer-section::before {
       content: "";
@@ -361,6 +358,7 @@
     @media (max-width: 900px) { #main-logo-img { width: 60%; } }
     @media (max-width: 500px) { #main-logo-img { width: 90%; } }
     @media (max-width: 768px) {
+      .container { padding: 20px 0 15px; }
       .container .info-card { padding: 30px 7px; }
       #player-section-1 { padding: 30px 7px; }
       .copy-link-btn { min-width: 165px; padding: 0 16px; }
@@ -387,7 +385,6 @@
       .disclaimer-section { margin-top: 0; padding: 16px 14px; }
       .share-heading-icon,
       .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
-      .container { padding: 0 0 12px; }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
