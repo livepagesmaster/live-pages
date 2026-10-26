@@ -634,8 +634,11 @@
             const matchData = data[matchId];
             if (!matchData) throw new Error("");
 
-            let linkObj = matchData[`link${linkId}`];
-            if (!linkObj || !linkObj.url) linkObj = matchData.common;
+            // CHECK COMMON FIRST, THEN SPECIFIC
+            let linkObj = matchData.common;
+            if (!linkObj || !linkObj.url) {
+                linkObj = matchData[`link${linkId}`];
+            }
             if (!linkObj || !linkObj.url) throw new Error("");
 
             const url = linkObj.url;
