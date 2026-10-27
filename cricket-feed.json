@@ -50,18 +50,18 @@
     },
                                                                            {
       "team1": {
-        "name": "Lumbini Lions",
+        "name": "Janakpur Bolts",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/lumbinilions.png"
+        "img": "https://img.singhs.com.np/cricket/janakpurbolts.png"
       },
       "team2": {
-        "name": "Sudurpaschim Royals",
+        "name": "Kathmandu Gorkhas",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/sudurpaschimroyals.png"
+        "img": "https://img.singhs.com.np/cricket/kathmandugurkhas.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "🏆 NPL 2026",
-      "time": "26/10/26 17:00:00",
+      "time": "26/10/29 12:30:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     },
                                                                                {
@@ -110,6 +110,22 @@
       "status": "Upcoming",
       "type": "🏆 NPL 2026",
       "time": "26/10/28 17:00:00",
+      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
+    },
+                                                                                   {
+      "team1": {
+        "name": "Karnali Yaks",
+        "code": "CDI",
+        "img": "https://img.singhs.com.np/cricket/karnaliyaks.png"
+      },
+      "team2": {
+        "name": "Biratnagar Kings",
+        "code": "ecd",
+        "img": "https://img.singhs.com.np/cricket/biratnagarkings.png"
+      },
+      "status": "Upcoming",
+      "type": "🏆 NPL 2026",
+      "time": "26/10/29 17:00:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     }
   ]
