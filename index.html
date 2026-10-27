@@ -16,7 +16,7 @@
     :root {
       --primary-color: #2563eb;
       --secondary-color: #1e40af;
-      --accent-color: #1e40af;
+      --accent-color: #f59e0b;
       --text-primary: #1f2937;
       --text-secondary: #6b7280;
       --bg-primary: #ffffff;
@@ -415,9 +415,11 @@
           </div>
 
           <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
+            <!-- SANDBOX ADDED TO PREVENT REDIRECTS -->
             <iframe id="embedded-player-1"
                     title="Live stream player"
                     frameborder="0"
+                    sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowfullscreen
                     scrolling="no"></iframe>
