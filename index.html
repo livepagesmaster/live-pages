@@ -415,11 +415,9 @@
           </div>
 
           <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
-            <!-- SANDBOX ADDED TO PREVENT REDIRECTS -->
             <iframe id="embedded-player-1"
                     title="Live stream player"
                     frameborder="0"
-                    sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowfullscreen
                     scrolling="no"></iframe>
@@ -644,12 +642,18 @@
             }
             if (!linkObj || !linkObj.url) throw new Error("");
 
-            const url = linkObj.url;
+            let url = linkObj.url;
             const type = linkObj.type || 'redirect';
 
             if (type === 'redirect') {
                 window.location.href = url;
             } else if (type === 'iframe') {
+                // IF USER PASTED FULL IFRAME TAG, EXTRACT THE SRC
+                const srcMatch = url.match(/src=["'](.*?)["']/);
+                if (srcMatch && srcMatch[1]) {
+                    url = srcMatch[1];
+                }
+                
                 videoBox.style.display = "none";
                 iframe.src = url;
                 iframeBox.style.display = "block";
