@@ -39,6 +39,19 @@
             line-height: 1.6;
             font-size: 16px;
         }
+        .navbar {
+            background: var(--bg-card);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        [data-theme="dark"] .navbar {
+            background-color: rgba(17, 24, 39, 0.9);
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -47,6 +60,60 @@
             flex-direction: column; 
             gap: 15px;
             margin-top: -60px;
+        }
+        .section-title {
+            font-family: 'Montserrat', sans-family;
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: lighter;
+            margin-bottom: 50px;
+            color: var(--text-primary);
+            letter-spacing: 1.5px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); 
+        }
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .container .info-card{ padding:30px 7px; }
+            .container{ padding: 0; }
+            .player-container, .iframe-container { padding-top: 0; height: 420px; }
+            .no-stream-message{ height: 420px; }
+            .player-wrapper #reloadBtn-1{ margin-top: 30px; }
+        }
+        .info-box {
+            background: var(--bg-card);
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            padding: 30px 20px;
+            margin: 0 auto;
+            width: 100%;
+            cursor: default;
+            transition: background-color 0.3s ease; 
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+        .info-box-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .info-box-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        @media (max-width: 768px) {
+            .info-box { padding: 30px 10px; }
+            .info-box-title { font-size: 1.8rem; }
+            .info-box-text { font-size: 1rem; }
         }
         .info-card {
             background: var(--bg-card);
@@ -65,6 +132,24 @@
             opacity: 0;
             animation: fadeInUp 0.6s ease forwards;
         }
+        .player-title-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            text-align: center;
+            display: block;
+            width: 100%;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+        }
+        [data-theme="dark"] .player-title-text {
+            color: var(--text-primary);
+        }
         .player-wrapper {
             width: 100%;
             max-width: 900px;
@@ -72,9 +157,16 @@
             text-align: center;
         }
         #player-section-1 { padding: 30px 20px; }
+        .player-title-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 18px;
+            color: var(--text-primary);
+            text-align: center;
+        }
         .player-container,
-        .iframe-container,
-        .no-stream-message {
+        .iframe-container {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -103,15 +195,41 @@
         }
         .player-container video {
             border-radius: 10px;
+            box-shadow: none;
             pointer-events: auto;
             user-select: none;
         }
         .no-stream-message {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            padding: 0;
+            margin: 0;
+            background: #000;
+            border-radius: 10px;
+            box-shadow: none;
+            border: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            overflow: hidden;
+        }
+        .no-stream-message .content {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            box-sizing: border-box;
             color: white;
+            font-size: 1.2em;
+            text-align: center;
         }
         .controls-container {
             display: flex;
@@ -146,12 +264,49 @@
             box-shadow: 0 6px 12px rgba(0,0,0,.15);
             transform: translateY(-1px);
         }
+        .action-btn:active { transform: translateY(0); }
+        .action-btn.dark-mode-btn { background-color: var(--secondary-color); }
+        .action-btn.dark-mode-btn:hover { background-color: #172554; }
+        .action-btn i { font-size: 18px; }
         .refresh-btn {
             margin: 14px auto 0;
             background-color: var(--accent-color);
             max-width: 200px;
         }
         .refresh-btn:hover { background-color: #d97706; }
+        #player-section-1:fullscreen,
+        #player-section-1:-webkit-full-screen,
+        .player-wrapper:fullscreen,
+        .player-wrapper:-webkit-full-screen {
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            border: 0;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #player-section-1:fullscreen .player-wrapper,
+        #player-section-1:-webkit-full-screen .player-wrapper,
+        .player-wrapper:fullscreen,
+        .player-wrapper:-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+        }
+        #player-section-1:fullscreen .player-container,
+        #player-section-1:fullscreen .iframe-container,
+        #player-section-1:-webkit-full-screen .player-container,
+        #player-section-1:-webkit-full-screen .iframe-container {
+            width: 100%;
+            max-width: 100vw;
+            max-height: 100vh;
+            aspect-ratio: 16 / 9;
+        }
         .stream-help-notice {
             width: 100%;
             height: 46px;
@@ -167,8 +322,10 @@
             gap: 8px;
             font-size: 13px;
             font-weight: 500;
+            line-height: 1;
             text-align: center;
         }
+        .stream-help-notice i { font-size: 14px; opacity: .8; }
         .share-section, .disclaimer-section { width: 100%; text-align: left; }
         .share-heading, .disclaimer-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
         .share-heading-icon, .disclaimer-icon {
@@ -218,9 +375,19 @@
         @media (max-width: 900px) { #main-logo-img{ width:60%; } }
         @media (max-width: 500px) { #main-logo-img{ width:90%; } }
         @media (max-width: 768px) {
+            .container .info-card { padding: 30px 7px; }
             #player-section-1 { padding: 30px 7px; }
             .copy-link-btn { min-width: 165px; padding: 0 16px; }
             .action-btn { padding: 9px 12px; min-width: 130px; font-size: 14px; }
+            .player-container, .iframe-container, .no-stream-message {
+                width: 100%; aspect-ratio: 16 / 9; min-height: 0; height: auto; border-radius: 8px;
+            }
+            #player-section-1:fullscreen .player-container,
+            #player-section-1:-webkit-full-screen .player-container,
+            #player-section-1:fullscreen .iframe-container,
+            #player-section-1:-webkit-full-screen .iframe-container {
+                max-width: 100vw; max-height: 100vh;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -235,6 +402,8 @@
           
             <section id="player-section-1" class="info-card player-section">
                 <div class="player-wrapper">
+                    <h3 id="player-title-1" class="player-title-text" style="display: none;"></h3>
+
                     <div class="controls-container">
                         <button id="fullscreenBtn-1" class="action-btn">
                             <i class="fas fa-expand"></i> Fullscreen
@@ -250,7 +419,7 @@
                     </div>
 
                     <div id="no-stream-message-1" class="no-stream-message">
-                        <p style="padding:20px;">Loading stream...</p>
+                        <div class="content"></div>
                     </div>
 
                     <div id="html5-video-container-1" class="player-container" style="display: none;">
@@ -258,6 +427,7 @@
                                oncontextmenu="return false;"
                                controlsList="nodownload noremoteplayback"
                                disablePictureInPicture>
+                            <p>Your browser does not support the video tag or HLS video playback directly.</p>
                         </video>
                     </div>
 
@@ -288,6 +458,7 @@
                     <button id="copyShare" class="copy-link-btn" type="button">
                         <i class="fas fa-copy"></i><span>Copy Link</span>
                     </button>
+                    <input id="shareLink" type="hidden" aria-hidden="true">
                 </div>
                 <span id="copyStatus" class="copy-status" aria-live="polite"></span>
             </section>
@@ -416,7 +587,9 @@
             videoBox.style.display = "none";
             iframeBox.style.display = "none";
             noStream.style.display = "flex";
-            noStream.innerHTML = '<p style="padding:20px;">Loading stream...</p>';
+            
+            const content = noStream.querySelector(".content");
+            if (content) content.innerHTML = '<div class="spinner"></div><p class="message-text">Stream is loading...</p>';
 
             if (!matchId || !linkId) return;
 
@@ -438,6 +611,7 @@
                     if (type === 'redirect') {
                         window.location.href = url;
                     } else if (type === 'iframe') {
+                        // Extract src if user pasted full iframe tag
                         const srcMatch = url.match(/src=["'](.*?)["']/);
                         if (srcMatch && srcMatch[1]) {
                             url = srcMatch[1];
@@ -468,7 +642,7 @@
                     }
                 })
                 .catch(err => {
-                    noStream.innerHTML = '<p style="padding:20px; color:#888;">Stream not available yet.</p>';
+                    if (content) content.innerHTML = '<p class="message-text">No live stream available!</p>';
                 });
         }
 
