@@ -1,807 +1,537 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Yashintv Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
-  <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    *::-webkit-scrollbar { display: none; }
-    :root {
-      --primary-color: #2563eb;
-      --secondary-color: #1e40af;
-      --accent-color: #f59e0b;
-      --text-primary: #1f2937;
-      --text-secondary: #6b7280;
-      --bg-primary: #ffffff;
-      --bg-secondary: #f9fafb;
-      --bg-card: #ffffff;
-      --border-color: #e5e7eb;
-      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-    }
-    [data-theme="dark"] {
-      --text-primary: #f3f4f6;
-      --text-secondary: #a1a1aa;
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #18181b;
-      --bg-card: #1c1c1f;
-      --border-color: #2e2e33;
-      --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6);
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      transition: background-color 0.08s linear, color 0.08s linear;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
-      padding-bottom: 15px;
-    }
-    .info-card {
-      background: var(--bg-card);
-      border-radius: 15px;
-      padding: 30px 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      margin: 0 auto;
-      width: 100%;
-      transition: background-color 0.08s linear, border-color 0.08s linear, box-shadow 0.08s linear;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .info-card {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    .player-wrapper {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    #player-section-1 { padding: 30px 20px; }
-    .iframe-container,
-    .player-container,
-    .no-stream-message {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      height: auto;
-      padding: 0;
-      margin: 0;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: none;
-      border: 0;
-      isolation: isolate;
-    }
-    .iframe-container iframe,
-    .player-container video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      display: block;
-      border: 0;
-      background: #000;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-    .player-container video {
-      pointer-events: auto;
-      user-select: none;
-    }
-    .no-stream-message {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .controls-container {
-      display: flex;
-      gap: 10px;
-      max-width: 900px;
-      margin: 0 auto 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .action-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color .2s ease, transform .15s ease, box-shadow .2s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,.1);
-      flex: 1;
-      min-width: 140px;
-    }
-    .action-btn:hover {
-      background-color: var(--secondary-color);
-      box-shadow: 0 6px 12px rgba(0,0,0,.15);
-      transform: translateY(-1px);
-    }
-    .action-btn:active { transform: translateY(0); }
-    .action-btn.dark-mode-btn { background-color: var(--secondary-color); }
-    .action-btn.dark-mode-btn:hover { background-color: #172554; }
-    .action-btn i { font-size: 18px; }
-    .refresh-btn {
-      margin: 18px auto 0;
-      background: linear-gradient(135deg, var(--accent-color) 0%, #d97706 100%);
-      max-width: 220px;
-      padding: 11px 22px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
-      letter-spacing: 0.3px;
-      border: none;
-    }
-    .refresh-btn i {
-      transition: transform 0.4s ease;
-    }
-    .refresh-btn:hover {
-      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
-      transform: translateY(-2px);
-    }
-    .refresh-btn:hover i {
-      transform: rotate(180deg);
-    }
-    .refresh-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
-    }
-    .stream-help-notice {
-      width: 100%;
-      height: 46px;
-      margin: 0 0 14px;
-      padding: 0 14px;
-      border-radius: 8px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1;
-      text-align: center;
-      transition: background-color 0.08s linear, border-color 0.08s linear, color 0.08s linear;
-    }
-    .stream-help-notice i { font-size: 14px; opacity: .8; }
-    .share-section,
-    .disclaimer-section {
-      width: 100%;
-      text-align: left;
-      position: relative;
-      overflow: hidden;
-      padding: 18px 20px;
-    }
-    .share-section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
-    }
-    .share-heading,
-    .disclaimer-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .share-heading-icon,
-    .disclaimer-icon {
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: rgba(37,99,235,.1);
-      color: var(--primary-color);
-      font-size: 16px;
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-    .share-section:hover .share-heading-icon {
-      transform: scale(1.08) rotate(-6deg);
-      background: rgba(37,99,235,.18);
-    }
-    .share-heading h2,
-    .disclaimer-header h2 {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      transition: color 0.08s linear;
-    }
-    .share-heading p,
-    .disclaimer-header p {
-      margin: 1px 0 0;
-      color: var(--text-secondary);
-      font-size: .82rem;
-      transition: color 0.08s linear;
-    }
-    .copy-link-row { width: 100%; }
-    .copy-link-btn {
-      width: 100%;
-      height: 44px;
-      padding: 0 18px;
-      border: 0;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      color: #fff;
-      font: 700 14px 'Inter', sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-    }
-    .copy-link-btn:hover {
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
-      transform: translateY(-2px);
-    }
-    .copy-link-btn:active {
-      transform: translateY(0);
-    }
-    .copy-link-btn.copied {
-      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
-    }
-    .copy-status {
-      display: block;
-      min-height: 16px;
-      margin-top: 4px;
-      color: var(--text-secondary);
-      font-size: .8rem;
-      text-align: center;
-      transition: color 0.08s linear;
-    }
-    .disclaimer-section {
-      border-left: none;
-    }
-    .disclaimer-section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
-    }
-    .disclaimer-icon {
-      background: rgba(245, 158, 11, 0.12);
-      color: var(--accent-color);
-    }
-    .disclaimer-body p {
-      margin: 0 0 8px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      text-align: justify;
-      font-size: .9rem;
-      padding-left: 4px;
-      transition: color 0.08s linear;
-    }
-    .disclaimer-body p:last-child { margin-bottom: 0; }
-    .disclaimer-footer {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-size: .8rem;
-      font-weight: 600;
-      transition: color 0.08s linear, border-color 0.08s linear;
-    }
-    .disclaimer-footer i { color: var(--accent-color); }
-    .main-logo {
-      width: 100%;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    #main-logo-img { width: 40%; padding: 10px; }
-    @media (max-width: 900px) { #main-logo-img { width: 60%; } }
-    @media (max-width: 500px) { #main-logo-img { width: 90%; } }
-    @media (max-width: 768px) {
-      .container .info-card { padding: 30px 7px; }
-      #player-section-1 { padding: 30px 7px; }
-      .copy-link-btn { min-width: 165px; padding: 0 16px; }
-      .copy-link-btn.copied { min-width: 185px; }
-      .share-heading h2,
-      .disclaimer-header h2 { font-size: 1rem; }
-      .share-heading p,
-      .disclaimer-header p { font-size: .78rem; }
-      .controls-container { gap: 8px; margin-bottom: 12px; }
-      .action-btn { padding: 9px 12px; min-width: 130px; font-size: 14px; }
-      .iframe-container,
-      .player-container,
-      .no-stream-message {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-        height: auto;
-        border-radius: 8px;
-      }
-      .iframe-container iframe,
-      .player-container video { border-radius: 8px; }
-      .refresh-btn { margin-top: 14px; padding: 10px 18px; }
-      .share-section,
-      .disclaimer-section { margin-top: 0; padding: 16px 14px; }
-      .share-heading-icon,
-      .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
-    }
-    @media (max-width: 768px) {
-    .container {
-        padding: 0 0 10px;
-    }
-}
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+   <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *::-webkit-scrollbar{ display: none; }
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        [data-theme="dark"] {
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-card: #374151;
+            --border-color: #4b5563;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px;
+            margin-top: -60px;
+        }
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin: 0 auto;
+            width: 100%;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .info-card, .info-box {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .player-wrapper {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #player-section-1 { padding: 30px 20px; }
+        .player-container,
+        .iframe-container,
+        .no-stream-message {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            padding: 0;
+            margin: 0;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: none;
+            border: 0;
+            isolation: isolate;
+        }
+        .player-container video,
+        .iframe-container iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: block;
+            border: 0;
+            background: #000;
+            object-fit: contain;
+        }
+        .player-container video {
+            border-radius: 10px;
+            pointer-events: auto;
+            user-select: none;
+        }
+        .no-stream-message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        .controls-container {
+            display: flex;
+            gap: 10px;
+            max-width: 900px;
+            margin: 0 auto 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            flex: 1;
+            min-width: 140px;
+        }
+        .action-btn:hover {
+            background-color: var(--secondary-color);
+            box-shadow: 0 6px 12px rgba(0,0,0,.15);
+            transform: translateY(-1px);
+        }
+        .refresh-btn {
+            margin: 14px auto 0;
+            background-color: var(--accent-color);
+            max-width: 200px;
+        }
+        .refresh-btn:hover { background-color: #d97706; }
+        .stream-help-notice {
+            width: 100%;
+            height: 46px;
+            margin: 0 0 14px;
+            padding: 0 14px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+        }
+        .share-section, .disclaimer-section { width: 100%; text-align: left; }
+        .share-heading, .disclaimer-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .share-heading-icon, .disclaimer-icon {
+            width: 46px; height: 46px; flex: 0 0 46px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 12px; background: rgba(37, 99, 235, .1);
+            color: var(--primary-color); font-size: 19px;
+        }
+        .share-heading h2, .disclaimer-header h2 {
+            margin: 0; font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem; font-weight: 800; color: var(--text-primary);
+        }
+        .share-heading p, .disclaimer-header p {
+            margin: 2px 0 0; color: var(--text-secondary); font-size: .9rem;
+        }
+        .copy-link-btn {
+            width: 100%; height: 52px; padding: 0 22px;
+            border: 0; border-radius: 10px;
+            background: var(--primary-color); color: #fff;
+            font: 700 15px 'Inter', sans-serif; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+            transition: transform .2s ease, background-color .25s ease;
+        }
+        .copy-link-btn:hover { background: var(--secondary-color); transform: translateY(-1px); }
+        .copy-link-btn.copied { background: #16a34a; }
+        .copy-status {
+            display: block; min-height: 20px; margin-top: 7px;
+            color: var(--text-secondary); font-size: .85rem; text-align: center;
+        }
+        .disclaimer-section { position: relative; overflow: hidden; }
+        .disclaimer-section::before {
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 4px; height: 100%; background: var(--primary-color);
+        }
+        .disclaimer-body p {
+            margin: 0 0 13px; color: var(--text-secondary);
+            line-height: 1.75; text-align: justify; font-size: .96rem;
+        }
+        .disclaimer-footer {
+            display: flex; align-items: center; gap: 8px;
+            margin-top: 18px; padding-top: 13px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary); font-size: .85rem; font-weight: 600;
+        }
+        .main-logo{ width:100%; height: 90px; display:flex; align-items:center; justify-content:center; overflow: hidden; }
+        #main-logo-img{ width:40%; padding: 10px; }
+        @media (max-width: 900px) { #main-logo-img{ width:60%; } }
+        @media (max-width: 500px) { #main-logo-img{ width:90%; } }
+        @media (max-width: 768px) {
+            #player-section-1 { padding: 30px 7px; }
+            .copy-link-btn { min-width: 165px; padding: 0 16px; }
+            .action-btn { padding: 9px 12px; min-width: 130px; font-size: 14px; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
-  <main style="padding-bottom: 0; background-color: var(--bg-primary); transition: background-color 0.08s linear;">
-    <div class="container">
-      <section class="main-logo">
-        <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
-      </section>
 
-      <section id="player-section-1" class="info-card player-section">
-        <div class="player-wrapper">
-          <div class="controls-container">
-            <button id="fullscreenBtn-1" class="action-btn">
-              <i class="fas fa-expand"></i> Fullscreen
-            </button>
-            <button id="darkModeBtn-1" class="action-btn dark-mode-btn" type="button">
-              <i class="fas fa-moon"></i> Dark Mode
-            </button>
-          </div>
+    <main style="padding-bottom: 30px; background-color: var(--bg-primary);">
+        <div class="container">
+         <section class="main-logo">
+             <img id="main-logo-img" src="https://res.cloudinary.com/dv8uywtbo/image/upload/yashintv_main_xtgfdr.png" alt="Logo">
+          </section>
+          
+            <section id="player-section-1" class="info-card player-section">
+                <div class="player-wrapper">
+                    <div class="controls-container">
+                        <button id="fullscreenBtn-1" class="action-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <button id="darkModeBtn-1" class="action-btn dark-mode-btn" type="button">
+                            <i class="fas fa-moon"></i> Dark Mode
+                        </button>
+                    </div>
 
-          <div class="stream-help-notice" role="status">
-            <i class="fas fa-circle-info"></i>
-            <span>Please wait for loading. If lag occurs, refresh or try another link.</span>
-          </div>
+                    <div class="stream-help-notice" role="status">
+                        <i class="fas fa-circle-info"></i>
+                        <span>Please wait for loading. If lag occurs, refresh or try another link.</span>
+                    </div>
 
-          <div id="no-stream-message-1" class="no-stream-message" style="display: none;"></div>
+                    <div id="no-stream-message-1" class="no-stream-message">
+                        <p style="padding:20px;">Loading stream...</p>
+                    </div>
 
-          <div id="html5-video-container-1" class="player-container" style="display: block;">
-            <video id="videoPlayer-1" controls autoplay muted playsinline
-                   oncontextmenu="return false;"
-                   controlsList="nodownload noremoteplayback"
-                   disablePictureInPicture
-                   class="plyr">
-              <source id="videoSource-1" type="application/x-mpegURL">
-              <p>Your browser does not support the video tag or HLS video playback directly.</p>
-            </video>
-          </div>
+                    <div id="html5-video-container-1" class="player-container" style="display: none;">
+                        <video id="videoPlayer-1" controls autoplay muted playsinline
+                               oncontextmenu="return false;"
+                               controlsList="nodownload noremoteplayback"
+                               disablePictureInPicture>
+                        </video>
+                    </div>
 
-          <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
-            <iframe id="embedded-player-1"
-                    title="Live stream player"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                    scrolling="no"></iframe>
-          </div>
+                    <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
+                        <iframe id="embedded-player-1"
+                                title="Live stream player"
+                                frameborder="0"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen
+                                scrolling="no"></iframe>
+                    </div>
 
-          <button id="reloadBtn-1" class="action-btn refresh-btn" type="button">
-            <i class="fas fa-sync-alt"></i> Refresh
-          </button>
+                    <button id="reloadBtn-1" class="action-btn refresh-btn" type="button">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </section>
+
+            <section id="share-section" class="info-card share-section">
+                <div class="share-heading">
+                    <span class="share-heading-icon"><i class="fas fa-link"></i></span>
+                    <div>
+                        <h2>Share with family &amp; friends ❤️</h2>
+                        <p>Copy the link and share it with your family and friends.</p>
+                    </div>
+                </div>
+                <div class="copy-link-row">
+                    <button id="copyShare" class="copy-link-btn" type="button">
+                        <i class="fas fa-copy"></i><span>Copy Link</span>
+                    </button>
+                </div>
+                <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+            </section>
+
+            <section id="disclaimer-section" class="info-card disclaimer-section">
+                <div class="disclaimer-header">
+                    <span class="disclaimer-icon"><i class="fas fa-circle-info"></i></span>
+                    <div>
+                        <h2>Disclaimer</h2>
+                        <p>Important information about the content on Yashintv.</p>
+                    </div>
+                </div>
+                <div class="disclaimer-body">
+                    <p>Yashintv does not host or store any media on its servers. Content may be displayed through third-party services or embedded from external platforms such as Dailymotion, Streamable, Bet365, and others.</p>
+                </div>
+                <div class="disclaimer-footer">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>© Yashintv</span>
+                </div>
+            </section>
         </div>
-      </section>
-
-      <section id="share-section" class="info-card share-section">
-        <div class="share-heading">
-          <span class="share-heading-icon"><i class="fas fa-share-nodes"></i></span>
-          <div>
-            <h2>Share with family &amp; friends ❤️</h2>
-            <p>Copy the link and share it with your family and friends.</p>
-          </div>
-        </div>
-        <div class="copy-link-row">
-          <button id="copyShare" class="copy-link-btn" type="button">
-            <i class="fas fa-copy"></i><span>Copy Link</span>
-          </button>
-        </div>
-        <span id="copyStatus" class="copy-status" aria-live="polite"></span>
-      </section>
-
-      <section id="disclaimer-section" class="info-card disclaimer-section">
-        <div class="disclaimer-header">
-          <span class="disclaimer-icon"><i class="fas fa-circle-info"></i></span>
-          <div>
-            <h2>Disclaimer</h2>
-            <p>Important information about the content on Yashintv.</p>
-          </div>
-        </div>
-        <div class="disclaimer-body">
-          <p>Yashintv does not host or store any media on its servers. Content may be displayed through third-party services or embedded from external platforms such as Dailymotion, Streamable, Bet365, and others.</p>
-        </div>
-        <div class="disclaimer-footer">
-          <i class="fas fa-shield-halved"></i>
-          <span>© Yashintv</span>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <script>
-    document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-    });
-
-    document.addEventListener('touchmove', function (e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function (e) {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-      }
-      lastTouchEnd = now;
-    }, false);
-
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-
-    window.addEventListener('beforeunload', function () {
-      sessionStorage.setItem('scrollY', window.scrollY);
-    });
-
-    window.addEventListener('load', function () {
-      var savedScroll = sessionStorage.getItem('scrollY');
-      if (savedScroll !== null) {
-        window.scrollTo(0, parseInt(savedScroll, 10));
-        sessionStorage.removeItem('scrollY');
-      }
-    });
-
-    function toggleTheme() {
-      const body = document.body;
-      const darkButtons = document.querySelectorAll('.dark-mode-btn i');
-      if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        darkButtons.forEach(btn => btn.className = 'fas fa-moon');
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.setAttribute('data-theme', 'dark');
-        darkButtons.forEach(btn => btn.className = 'fas fa-sun');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-
-    function loadTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const darkButtons = document.querySelectorAll('.dark-mode-btn i');
-      if (savedTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        darkButtons.forEach(btn => btn.className = 'fas fa-sun');
-      } else {
-        darkButtons.forEach(btn => btn.className = 'fas fa-moon');
-      }
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+    </main>
+    
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const darkButtons = document.querySelectorAll('.dark-mode-btn i');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                darkButtons.forEach(btn => btn.className = 'fas fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                darkButtons.forEach(btn => btn.className = 'fas fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
         }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    function getFullscreenElement() {
-      return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
-    }
-
-    async function exitFullscreen() {
-      try {
-        if (document.exitFullscreen) { await document.exitFullscreen(); return true; }
-        if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); return true; }
-        if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); return true; }
-        if (document.msExitFullscreen) { document.msExitFullscreen(); return true; }
-      } catch (e) {}
-      return false;
-    }
-
-    async function enterFullscreen(element) {
-      if (!element) return false;
-      try {
-        if (element.requestFullscreen) { await element.requestFullscreen(); return true; }
-        if (element.webkitRequestFullscreen) { element.webkitRequestFullscreen(); return true; }
-        if (element.mozRequestFullScreen) { element.mozRequestFullScreen(); return true; }
-        if (element.msRequestFullscreen) { element.msRequestFullscreen(); return true; }
-      } catch (e) {}
-      return false;
-    }
-
-    async function togglePlayerFullscreen() {
-      const videoBox = document.getElementById("html5-video-container-1");
-      const iframeBox = document.getElementById("iframe-player-container-1");
-      const noStreamBox = document.getElementById("no-stream-message-1");
-
-      if (getFullscreenElement()) {
-        await exitFullscreen();
-        updateFullscreenButton();
-        return;
-      }
-
-      let target = null;
-      if (videoBox && getComputedStyle(videoBox).display !== "none") target = videoBox;
-      else if (iframeBox && getComputedStyle(iframeBox).display !== "none") target = iframeBox;
-      else if (noStreamBox && getComputedStyle(noStreamBox).display !== "none") target = noStreamBox;
-
-      if (!target) return;
-      await enterFullscreen(target);
-      updateFullscreenButton();
-    }
-
-    function updateFullscreenButton() {
-      const btn = document.getElementById("fullscreenBtn-1");
-      if (!btn) return;
-      if (getFullscreenElement()) {
-        btn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
-        btn.title = "Exit fullscreen";
-        btn.setAttribute("aria-label", "Exit fullscreen");
-      } else {
-        btn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
-        btn.title = "Fullscreen";
-        btn.setAttribute("aria-label", "Fullscreen");
-      }
-    }
-
-    function loadStreamFromSrc() {
-      const params = new URLSearchParams(window.location.search);
-      const matchId = params.get("match");
-      const linkId = params.get("id");
-
-      const video = document.getElementById("videoPlayer-1");
-      const source = document.getElementById("videoSource-1");
-      const videoBox = document.getElementById("html5-video-container-1");
-      const iframe = document.getElementById("embedded-player-1");
-      const iframeBox = document.getElementById("iframe-player-container-1");
-      const noStream = document.getElementById("no-stream-message-1");
-
-      if (video.hlsInstance) {
-        try { video.hlsInstance.destroy(); } catch (e) {}
-        video.hlsInstance = null;
-      }
-      if (video._plyrInstance) {
-        try { video._plyrInstance.destroy(); } catch (e) {}
-        video._plyrInstance = null;
-      }
-      video.pause();
-      video.removeAttribute("src");
-      source.removeAttribute("src");
-      video.load();
-      iframe.src = "about:blank";
-
-      videoBox.style.display = "block";
-      iframeBox.style.display = "none";
-      noStream.style.display = "none";
-
-      if (!matchId || !linkId) {
-        videoBox.style.display = "none";
-        noStream.style.display = "flex";
-        return;
-      }
-
-      fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
-        .then(res => res.json())
-        .then(data => {
-            const matchData = data[matchId];
-            if (!matchData) throw new Error("");
-
-            // CHECK COMMON FIRST, THEN SPECIFIC
-            let linkObj = matchData.common;
-            if (!linkObj || !linkObj.url) {
-                linkObj = matchData[`link${linkId}`];
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const darkButtons = document.querySelectorAll('.dark-mode-btn i');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                darkButtons.forEach(btn => btn.className = 'fas fa-sun');
+            } else {
+                darkButtons.forEach(btn => btn.className = 'fas fa-moon');
             }
-            if (!linkObj || !linkObj.url) throw new Error("");
+        }
 
-            let url = linkObj.url;
-            const type = linkObj.type || 'redirect';
+        function getFullscreenElement() {
+            return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+        }
 
-            if (type === 'redirect') {
-                window.location.href = url;
-            } else if (type === 'iframe') {
-                // IF USER PASTED FULL IFRAME TAG, EXTRACT THE SRC
-                const srcMatch = url.match(/src=["'](.*?)["']/);
-                if (srcMatch && srcMatch[1]) {
-                    url = srcMatch[1];
-                }
-                
-                videoBox.style.display = "none";
-                iframe.src = url;
-                iframeBox.style.display = "block";
-            } else if (type === 'hls') {
-                videoBox.style.display = "block";
-                iframeBox.style.display = "none";
+        async function exitFullscreen() {
+            try {
+                if (document.exitFullscreen) { await document.exitFullscreen(); return true; }
+                if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); return true; }
+                if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); return true; }
+                if (document.msExitFullscreen) { document.msExitFullscreen(); return true; }
+            } catch (e) {}
+            return false;
+        }
 
-                if (window.Hls && Hls.isSupported()) {
-                  const hls = new Hls({
-                    maxMaxBufferLength: 100
-                  });
-                  hls.loadSource(url);
-                  hls.attachMedia(video);
+        async function enterFullscreen(element) {
+            if (!element) return false;
+            try {
+                if (element.requestFullscreen) { await element.requestFullscreen(); return true; }
+                if (element.webkitRequestFullscreen) { element.webkitRequestFullscreen(); return true; }
+                if (element.mozRequestFullScreen) { element.mozRequestFullScreen(); return true; }
+                if (element.msRequestFullscreen) { element.msRequestFullscreen(); return true; }
+            } catch (e) {}
+            return false;
+        }
 
-                  video.hlsInstance = hls;
+        async function togglePlayerFullscreen() {
+            const video = document.getElementById("videoPlayer-1");
+            const iframe = document.getElementById("embedded-player-1");
+            const videoBox = document.getElementById("html5-video-container-1");
+            const iframeBox = document.getElementById("iframe-player-container-1");
 
-                  hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    const qualities = hls.levels
-                      .map(level => level.height)
-                      .filter(Boolean)
-                      .filter((value, index, array) => array.indexOf(value) === index)
-                      .sort((a, b) => b - a);
-
-                    const options = {};
-
-                    if (qualities.length) {
-                      options.quality = {
-                        default: qualities[0],
-                        options: qualities,
-                        forced: true,
-                        onChange: function (quality) {
-                          hls.levels.forEach(function (level, index) {
-                            if (level.height === quality) {
-                              hls.currentLevel = index;
-                            }
-                          });
-                        }
-                      };
-                    }
-
-                    video._plyrInstance = new Plyr(video, options);
-                  });
-
-                  hls.on(Hls.Events.ERROR, function(event, data) {
-                    if (!data.fatal) return;
-                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
-                    else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
-                    else {
-                      try { hls.destroy(); } catch (e) {}
-                      video.hlsInstance = null;
-                    }
-                  });
-
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                  source.setAttribute('src', url);
-                  video.load();
-                  video._plyrInstance = new Plyr(video);
-                  video.play().catch(function() {});
-                } else {
-                  source.setAttribute('src', url);
-                  video.load();
-                  video._plyrInstance = new Plyr(video);
-                  video.play().catch(function() {});
-                }
+            if (getFullscreenElement()) {
+                await exitFullscreen();
+                updateFullscreenButton();
+                return;
             }
-        })
-        .catch(() => {
+
+            let target = null;
+            if (videoBox && getComputedStyle(videoBox).display !== "none") target = video;
+            else if (iframeBox && getComputedStyle(iframeBox).display !== "none") target = iframe;
+
+            if (!target) return;
+            await enterFullscreen(target);
+            updateFullscreenButton();
+        }
+
+        function updateFullscreenButton() {
+            const btn = document.getElementById("fullscreenBtn-1");
+            if (!btn) return;
+            if (getFullscreenElement()) {
+                btn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+            } else {
+                btn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+            }
+        }
+
+        function startMediaSetup() {
+            const params = new URLSearchParams(window.location.search);
+            const matchId = params.get("match");
+            const linkId = params.get("id");
+
+            const video = document.getElementById("videoPlayer-1");
+            const videoBox = document.getElementById("html5-video-container-1");
+            const iframe = document.getElementById("embedded-player-1");
+            const iframeBox = document.getElementById("iframe-player-container-1");
+            const noStream = document.getElementById("no-stream-message-1");
+
+            if (video.hlsInstance) {
+                try { video.hlsInstance.destroy(); } catch (e) {}
+                video.hlsInstance = null;
+            }
+            video.pause();
+            video.removeAttribute("src");
+            video.load();
+            iframe.src = "about:blank";
+
             videoBox.style.display = "none";
+            iframeBox.style.display = "none";
             noStream.style.display = "flex";
+            noStream.innerHTML = '<p style="padding:20px;">Loading stream...</p>';
+
+            if (!matchId || !linkId) return;
+
+            fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
+                .then(res => res.json())
+                .then(data => {
+                    const matchData = data[matchId];
+                    if (!matchData) throw new Error("No match data");
+
+                    let linkObj = matchData.common;
+                    if (!linkObj || !linkObj.url) {
+                        linkObj = matchData[`link${linkId}`];
+                    }
+                    if (!linkObj || !linkObj.url) throw new Error("No link");
+
+                    let url = linkObj.url;
+                    const type = linkObj.type || 'redirect';
+
+                    if (type === 'redirect') {
+                        window.location.href = url;
+                    } else if (type === 'iframe') {
+                        const srcMatch = url.match(/src=["'](.*?)["']/);
+                        if (srcMatch && srcMatch[1]) {
+                            url = srcMatch[1];
+                        }
+                        
+                        videoBox.style.display = "none";
+                        iframe.src = url;
+                        iframeBox.style.display = "block";
+                        noStream.style.display = "none";
+                    } else if (type === 'hls') {
+                        if (window.Hls && Hls.isSupported()) {
+                            const hls = new Hls();
+                            hls.loadSource(url);
+                            hls.attachMedia(video);
+                            video.hlsInstance = hls;
+                            
+                            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                                videoBox.style.display = "block";
+                                noStream.style.display = "none";
+                                video.play().catch(function() {});
+                            });
+                        } else {
+                            video.src = url;
+                            videoBox.style.display = "block";
+                            noStream.style.display = "none";
+                            video.play().catch(function() {});
+                        }
+                    }
+                })
+                .catch(err => {
+                    noStream.innerHTML = '<p style="padding:20px; color:#888;">Stream not available yet.</p>';
+                });
+        }
+
+        function setupSharing() {
+            const button = document.getElementById("copyShare");
+            const status = document.getElementById("copyStatus");
+            if (!button) return;
+
+            button.addEventListener("click", async function() {
+                const url = "https://www.yashintv.xyz/";
+                let copied = false;
+
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(url);
+                        copied = true;
+                    }
+                } catch (e) {}
+
+                if (!copied) {
+                    const temp = document.createElement("textarea");
+                    temp.value = url;
+                    temp.style.position = "fixed";
+                    temp.style.left = "-9999px";
+                    document.body.appendChild(temp);
+                    temp.focus();
+                    temp.select();
+                    try { copied = document.execCommand("copy"); } catch (e) {}
+                    temp.remove();
+                }
+
+                if (copied) {
+                    button.classList.add("copied");
+                    button.innerHTML = '<i class="fas fa-check"></i><span>Link Copied!</span>';
+                    if (status) status.textContent = "Link copied successfully!";
+                    clearTimeout(button._copyTimer);
+                    button._copyTimer = setTimeout(function() {
+                        button.classList.remove("copied");
+                        button.innerHTML = '<i class="fas fa-copy"></i><span>Copy Link</span>';
+                        if (status) status.textContent = "";
+                    }, 2200);
+                } else if (status) {
+                    status.textContent = "Unable to copy automatically. Please copy the page URL.";
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadTheme();
+            document.getElementById("fullscreenBtn-1").addEventListener("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                togglePlayerFullscreen();
+            });
+            document.getElementById("reloadBtn-1").addEventListener("click", startMediaSetup);
+            document.getElementById("darkModeBtn-1").addEventListener("click", function(e) {
+                e.preventDefault();
+                toggleTheme();
+            });
+            setupSharing();
+            updateFullscreenButton();
+            startMediaSetup();
         });
-    }
-
-    function setupSharing() {
-      const button = document.getElementById("copyShare");
-      const status = document.getElementById("copyStatus");
-      if (!button) return;
-
-      button.addEventListener("click", async function() {
-        const url = "https://www.yashintv.xyz/";
-        let copied = false;
-
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(url);
-            copied = true;
-          }
-        } catch (e) {}
-
-        if (!copied) {
-          const temp = document.createElement("textarea");
-          temp.value = url;
-          temp.style.position = "fixed";
-          temp.style.left = "-9999px";
-          document.body.appendChild(temp);
-          temp.focus();
-          temp.select();
-          try { copied = document.execCommand("copy"); } catch (e) {}
-          temp.remove();
-        }
-
-        if (copied) {
-          button.classList.add("copied");
-          button.innerHTML = '<i class="fas fa-check"></i><span>Link Copied!</span>';
-          if (status) status.textContent = "Link copied successfully!";
-          clearTimeout(button._copyTimer);
-          button._copyTimer = setTimeout(function() {
-            button.classList.remove("copied");
-            button.innerHTML = '<i class="fas fa-copy"></i><span>Copy Link</span>';
-            if (status) status.textContent = "";
-          }, 2200);
-        } else if (status) {
-          status.textContent = "Unable to copy automatically. Please copy the page URL.";
-        }
-      });
-    }
-
-    document.addEventListener("fullscreenchange", updateFullscreenButton);
-    document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
-    document.addEventListener("mozfullscreenchange", updateFullscreenButton);
-    document.addEventListener("MSFullscreenChange", updateFullscreenButton);
-
-    document.addEventListener("DOMContentLoaded", function() {
-      loadTheme();
-
-      const cards = document.querySelectorAll("#player-section-1, #share-section, #disclaimer-section");
-      cards.forEach(card => observer.observe(card));
-
-      document.getElementById("fullscreenBtn-1").addEventListener("click", e => {
-        e.preventDefault();
-        e.stopPropagation();
-        togglePlayerFullscreen();
-      });
-
-      document.getElementById("reloadBtn-1").addEventListener("click", function() {
-        sessionStorage.setItem('scrollY', window.scrollY);
-        window.location.reload();
-      });
-
-      document.getElementById("darkModeBtn-1").addEventListener("click", e => {
-        e.preventDefault();
-        toggleTheme();
-      });
-
-      setupSharing();
-      updateFullscreenButton();
-      loadStreamFromSrc();
-    });
-  </script>
-
+    </script>
 </body>
 </html>
