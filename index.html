@@ -596,26 +596,43 @@
       const matchId = params.get("match");
       const linkId = params.get("id");
 
-      const video = document.getElementById("videoPlayer-1");
-      const source = document.getElementById("videoSource-1");
       const videoBox = document.getElementById("html5-video-container-1");
-      const iframe = document.getElementById("embedded-player-1");
       const iframeBox = document.getElementById("iframe-player-container-1");
+      const iframe = document.getElementById("embedded-player-1");
       const noStream = document.getElementById("no-stream-message-1");
 
-      if (video.hlsInstance) {
-        try { video.hlsInstance.destroy(); } catch (e) {}
-        video.hlsInstance = null;
+      /* --- Tear down any previous stream SAFELY ---
+         Plyr's destroy() can replace the <video> node in the DOM, so we
+         always rebuild a fresh <video> element before attaching HLS. */
+      const oldVideo = document.getElementById("videoPlayer-1");
+      if (oldVideo) {
+        if (oldVideo.hlsInstance) {
+          try { oldVideo.hlsInstance.destroy(); } catch (e) {}
+          oldVideo.hlsInstance = null;
+        }
+        if (oldVideo._plyrInstance) {
+          try { oldVideo._plyrInstance.destroy(); } catch (e) {}
+          oldVideo._plyrInstance = null;
+        }
+        try { oldVideo.pause(); } catch (e) {}
       }
-      if (video._plyrInstance) {
-        try { video._plyrInstance.destroy(); } catch (e) {}
-        video._plyrInstance = null;
+
+      if (videoBox) {
+        videoBox.innerHTML =
+          '<video id="videoPlayer-1" controls autoplay muted playsinline ' +
+          'oncontextmenu="return false" ' +
+          'controlsList="nodownload noremoteplayback" ' +
+          'disablePictureInPicture class="plyr">' +
+          '<source id="videoSource-1" type="application/x-mpegURL">' +
+          '<p>Your browser does not support the video tag or HLS video playback directly.</p>' +
+          '</video>';
       }
-      video.pause();
-      video.removeAttribute("src");
-      source.removeAttribute("src");
-      video.load();
+
       iframe.src = "about:blank";
+
+      /* Re-query because we just replaced the nodes */
+      const video = document.getElementById("videoPlayer-1");
+      const source = document.getElementById("videoSource-1");
 
       videoBox.style.display = "block";
       iframeBox.style.display = "none";
@@ -651,7 +668,7 @@
             }
 
             if (type === 'hls') {
-                /* ---- HLS: unchanged ---- */
+                /* ---- HLS: same logic as before, now safe on every reload ---- */
                 videoBox.style.display = "block";
                 iframeBox.style.display = "none";
 
@@ -714,12 +731,8 @@
                 }
             } else {
                 /* ---- iframe: matches reference player behavior ----
-                   1. hide the video container
-                   2. set src FIRST (element is still display:none but dimensions
-                      are computed by CSS aspect-ratio, so embed sees 16:9)
-                   3. then reveal iframe container
-                   4. hide the "no stream" placeholder
-                   No referrerpolicy / sandbox / onerror — same as reference. */
+                   src is set BEFORE the container is revealed so the embed
+                   initializes with proper 16:9 dimensions. */
                 videoBox.style.display = "none";
                 iframe.src = url;
                 iframeBox.style.display = "block";
