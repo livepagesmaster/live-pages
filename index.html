@@ -16,7 +16,7 @@
     :root {
       --primary-color: #2563eb;
       --secondary-color: #1e40af;
-      --accent-color: #1e40af;
+      --accent-color: #f59e0b;
       --text-primary: #1f2937;
       --text-secondary: #6b7280;
       --bg-primary: #ffffff;
@@ -115,7 +115,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
     }
     .controls-container {
       display: flex;
@@ -164,13 +163,17 @@
       letter-spacing: 0.3px;
       border: none;
     }
-    .refresh-btn i { transition: transform 0.4s ease; }
+    .refresh-btn i {
+      transition: transform 0.4s ease;
+    }
     .refresh-btn:hover {
       background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
       box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
       transform: translateY(-2px);
     }
-    .refresh-btn:hover i { transform: rotate(180deg); }
+    .refresh-btn:hover i {
+      transform: rotate(180deg);
+    }
     .refresh-btn:active {
       transform: translateY(0);
       box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
@@ -203,8 +206,7 @@
       overflow: hidden;
       padding: 18px 20px;
     }
-    .share-section::before,
-    .disclaimer-section::before {
+    .share-section::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
@@ -243,12 +245,14 @@
       font-size: 1.05rem;
       font-weight: 800;
       color: var(--text-primary);
+      transition: color 0.08s linear;
     }
     .share-heading p,
     .disclaimer-header p {
       margin: 1px 0 0;
       color: var(--text-secondary);
       font-size: .82rem;
+      transition: color 0.08s linear;
     }
     .copy-link-row { width: 100%; }
     .copy-link-btn {
@@ -272,7 +276,9 @@
       box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
       transform: translateY(-2px);
     }
-    .copy-link-btn:active { transform: translateY(0); }
+    .copy-link-btn:active {
+      transform: translateY(0);
+    }
     .copy-link-btn.copied {
       background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
       box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
@@ -284,6 +290,17 @@
       color: var(--text-secondary);
       font-size: .8rem;
       text-align: center;
+      transition: color 0.08s linear;
+    }
+    .disclaimer-section {
+      border-left: none;
+    }
+    .disclaimer-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
     }
     .disclaimer-icon {
       background: rgba(245, 158, 11, 0.12);
@@ -296,6 +313,7 @@
       text-align: justify;
       font-size: .9rem;
       padding-left: 4px;
+      transition: color 0.08s linear;
     }
     .disclaimer-body p:last-child { margin-bottom: 0; }
     .disclaimer-footer {
@@ -308,6 +326,7 @@
       color: var(--text-secondary);
       font-size: .8rem;
       font-weight: 600;
+      transition: color 0.08s linear, border-color 0.08s linear;
     }
     .disclaimer-footer i { color: var(--accent-color); }
     .main-logo {
@@ -350,8 +369,10 @@
       .disclaimer-icon { width: 34px; height: 34px; flex: 0 0 34px; font-size: 14px; }
     }
     @media (max-width: 768px) {
-      .container { padding: 0 0 10px; }
+    .container {
+        padding: 0 0 10px;
     }
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
@@ -382,7 +403,7 @@
 
           <div id="html5-video-container-1" class="player-container" style="display: block;">
             <video id="videoPlayer-1" controls autoplay muted playsinline
-                   oncontextmenu="return false;"
+                   oncontextmenu="return false"
                    controlsList="nodownload noremoteplayback"
                    disablePictureInPicture
                    class="plyr">
@@ -394,9 +415,10 @@
           <div id="iframe-player-container-1" class="iframe-container" style="display: none;">
             <iframe id="embedded-player-1"
                     title="Live stream player"
-                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
                     allowfullscreen
-                    referrerpolicy="no-referrer"></iframe>
+                    scrolling="no"></iframe>
           </div>
 
           <button id="reloadBtn-1" class="action-btn refresh-btn" type="button">
@@ -441,22 +463,33 @@
   </main>
 
   <script>
-    /* ---------- Touch / gesture guards (unchanged) ---------- */
-    document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
     document.addEventListener('touchmove', function (e) {
-      if (e.touches.length > 1) e.preventDefault();
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
     }, { passive: false });
+
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function (e) {
       const now = Date.now();
-      if (now - lastTouchEnd <= 300) e.preventDefault();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
       lastTouchEnd = now;
     }, false);
 
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     window.addEventListener('beforeunload', function () {
       sessionStorage.setItem('scrollY', window.scrollY);
     });
+
     window.addEventListener('load', function () {
       var savedScroll = sessionStorage.getItem('scrollY');
       if (savedScroll !== null) {
@@ -465,7 +498,6 @@
       }
     });
 
-    /* ---------- Theme ---------- */
     function toggleTheme() {
       const body = document.body;
       const darkButtons = document.querySelectorAll('.dark-mode-btn i');
@@ -479,6 +511,7 @@
         localStorage.setItem('theme', 'dark');
       }
     }
+
     function loadTheme() {
       const savedTheme = localStorage.getItem('theme');
       const darkButtons = document.querySelectorAll('.dark-mode-btn i');
@@ -490,18 +523,18 @@
       }
     }
 
-    /* ---------- Fade-in observer ---------- */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    /* ---------- Fullscreen helpers ---------- */
     function getFullscreenElement() {
-      return document.fullscreenElement || document.webkitFullscreenElement ||
-             document.mozFullScreenElement || document.msFullscreenElement || null;
+      return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
     }
+
     async function exitFullscreen() {
       try {
         if (document.exitFullscreen) { await document.exitFullscreen(); return true; }
@@ -511,6 +544,7 @@
       } catch (e) {}
       return false;
     }
+
     async function enterFullscreen(element) {
       if (!element) return false;
       try {
@@ -521,12 +555,17 @@
       } catch (e) {}
       return false;
     }
+
     async function togglePlayerFullscreen() {
       const videoBox = document.getElementById("html5-video-container-1");
       const iframeBox = document.getElementById("iframe-player-container-1");
       const noStreamBox = document.getElementById("no-stream-message-1");
 
-      if (getFullscreenElement()) { await exitFullscreen(); updateFullscreenButton(); return; }
+      if (getFullscreenElement()) {
+        await exitFullscreen();
+        updateFullscreenButton();
+        return;
+      }
 
       let target = null;
       if (videoBox && getComputedStyle(videoBox).display !== "none") target = videoBox;
@@ -537,6 +576,7 @@
       await enterFullscreen(target);
       updateFullscreenButton();
     }
+
     function updateFullscreenButton() {
       const btn = document.getElementById("fullscreenBtn-1");
       if (!btn) return;
@@ -551,7 +591,6 @@
       }
     }
 
-    /* ---------- MAIN PLAYER LOGIC ---------- */
     function loadStreamFromSrc() {
       const params = new URLSearchParams(window.location.search);
       const matchId = params.get("match");
@@ -564,9 +603,14 @@
       const iframeBox = document.getElementById("iframe-player-container-1");
       const noStream = document.getElementById("no-stream-message-1");
 
-      /* tear down any previous stream */
-      if (video.hlsInstance) { try { video.hlsInstance.destroy(); } catch (e) {} video.hlsInstance = null; }
-      if (video._plyrInstance) { try { video._plyrInstance.destroy(); } catch (e) {} video._plyrInstance = null; }
+      if (video.hlsInstance) {
+        try { video.hlsInstance.destroy(); } catch (e) {}
+        video.hlsInstance = null;
+      }
+      if (video._plyrInstance) {
+        try { video._plyrInstance.destroy(); } catch (e) {}
+        video._plyrInstance = null;
+      }
       video.pause();
       video.removeAttribute("src");
       source.removeAttribute("src");
@@ -586,96 +630,109 @@
       fetch('https://football-feed.pages.dev/links.json?t=' + Date.now())
         .then(res => res.json())
         .then(data => {
-          const matchData = data[matchId];
-          if (!matchData) throw new Error("match not found");
+            const matchData = data[matchId];
+            if (!matchData) throw new Error("match not found");
 
-          /* prefer common, then specific linkN */
-          let linkObj = matchData.common;
-          if (!linkObj || !linkObj.url) {
-            linkObj = matchData[`link${linkId}`];
-          }
-          if (!linkObj || !linkObj.url) throw new Error("link not found");
-
-          const url = linkObj.url;
-
-          /* auto-detect type: .m3u8 -> hls, otherwise -> iframe.
-             An explicit `type` field is honored ONLY if it's 'hls' or 'iframe'.
-             'redirect' is intentionally ignored so embeds can never leave the page. */
-          let type;
-          if (linkObj.type === 'hls' || linkObj.type === 'iframe') {
-            type = linkObj.type;
-          } else {
-            type = /\.m3u8(\?|#|$)/i.test(url) ? 'hls' : 'iframe';
-          }
-
-          if (type === 'hls') {
-            videoBox.style.display = "block";
-            iframeBox.style.display = "none";
-
-            if (window.Hls && Hls.isSupported()) {
-              const hls = new Hls({ maxMaxBufferLength: 100 });
-              hls.loadSource(url);
-              hls.attachMedia(video);
-              video.hlsInstance = hls;
-
-              hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                const qualities = hls.levels
-                  .map(level => level.height)
-                  .filter(Boolean)
-                  .filter((value, index, array) => array.indexOf(value) === index)
-                  .sort((a, b) => b - a);
-
-                const options = {};
-                if (qualities.length) {
-                  options.quality = {
-                    default: qualities[0],
-                    options: qualities,
-                    forced: true,
-                    onChange: function (quality) {
-                      hls.levels.forEach(function (level, index) {
-                        if (level.height === quality) hls.currentLevel = index;
-                      });
-                    }
-                  };
-                }
-                video._plyrInstance = new Plyr(video, options);
-              });
-
-              hls.on(Hls.Events.ERROR, function(event, data) {
-                if (!data.fatal) return;
-                if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
-                else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
-                else { try { hls.destroy(); } catch (e) {} video.hlsInstance = null; }
-              });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-              source.setAttribute('src', url);
-              video.load();
-              video._plyrInstance = new Plyr(video);
-              video.play().catch(function(){});
-            } else {
-              source.setAttribute('src', url);
-              video.load();
-              video._plyrInstance = new Plyr(video);
-              video.play().catch(function(){});
+            let linkObj = matchData.common;
+            if (!linkObj || !linkObj.url) {
+                linkObj = matchData[`link${linkId}`];
             }
-          } else {
-            /* iframe — always embeds inside the player, never navigates */
-            videoBox.style.display = "none";
-            iframeBox.style.display = "block";
-            iframe.onerror = function () {
-              console.warn('Embed failed to load — host may block framing (X-Frame-Options).');
-            };
-            iframe.src = url;
-          }
+            if (!linkObj || !linkObj.url) throw new Error("link not found");
+
+            const url = linkObj.url;
+
+            /* explicit hls/iframe honored; otherwise auto-detect by extension.
+               'redirect' is intentionally ignored so embeds can never leave the page. */
+            let type;
+            if (linkObj.type === 'hls' || linkObj.type === 'iframe') {
+                type = linkObj.type;
+            } else {
+                type = /\.m3u8(\?|#|$)/i.test(url) ? 'hls' : 'iframe';
+            }
+
+            if (type === 'hls') {
+                /* ---- HLS: unchanged ---- */
+                videoBox.style.display = "block";
+                iframeBox.style.display = "none";
+
+                if (window.Hls && Hls.isSupported()) {
+                  const hls = new Hls({
+                    maxMaxBufferLength: 100
+                  });
+                  hls.loadSource(url);
+                  hls.attachMedia(video);
+
+                  video.hlsInstance = hls;
+
+                  hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    const qualities = hls.levels
+                      .map(level => level.height)
+                      .filter(Boolean)
+                      .filter((value, index, array) => array.indexOf(value) === index)
+                      .sort((a, b) => b - a);
+
+                    const options = {};
+
+                    if (qualities.length) {
+                      options.quality = {
+                        default: qualities[0],
+                        options: qualities,
+                        forced: true,
+                        onChange: function (quality) {
+                          hls.levels.forEach(function (level, index) {
+                            if (level.height === quality) {
+                              hls.currentLevel = index;
+                            }
+                          });
+                        }
+                      };
+                    }
+
+                    video._plyrInstance = new Plyr(video, options);
+                  });
+
+                  hls.on(Hls.Events.ERROR, function(event, data) {
+                    if (!data.fatal) return;
+                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
+                    else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
+                    else {
+                      try { hls.destroy(); } catch (e) {}
+                      video.hlsInstance = null;
+                    }
+                  });
+
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                  source.setAttribute('src', url);
+                  video.load();
+                  video._plyrInstance = new Plyr(video);
+                  video.play().catch(function() {});
+                } else {
+                  source.setAttribute('src', url);
+                  video.load();
+                  video._plyrInstance = new Plyr(video);
+                  video.play().catch(function() {});
+                }
+            } else {
+                /* ---- iframe: matches reference player behavior ----
+                   1. hide the video container
+                   2. set src FIRST (element is still display:none but dimensions
+                      are computed by CSS aspect-ratio, so embed sees 16:9)
+                   3. then reveal iframe container
+                   4. hide the "no stream" placeholder
+                   No referrerpolicy / sandbox / onerror — same as reference. */
+                videoBox.style.display = "none";
+                iframe.src = url;
+                iframeBox.style.display = "block";
+                noStream.style.display = "none";
+            }
         })
         .catch(() => {
-          videoBox.style.display = "none";
-          iframeBox.style.display = "none";
-          noStream.style.display = "flex";
+            videoBox.style.display = "none";
+            iframeBox.style.display = "none";
+            noStream.style.display = "flex";
         });
     }
 
-    /* ---------- Share ---------- */
     function setupSharing() {
       const button = document.getElementById("copyShare");
       const status = document.getElementById("copyStatus");
@@ -684,12 +741,14 @@
       button.addEventListener("click", async function() {
         const url = "https://www.yashintv.xyz/";
         let copied = false;
+
         try {
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(url);
             copied = true;
           }
         } catch (e) {}
+
         if (!copied) {
           const temp = document.createElement("textarea");
           temp.value = url;
@@ -701,6 +760,7 @@
           try { copied = document.execCommand("copy"); } catch (e) {}
           temp.remove();
         }
+
         if (copied) {
           button.classList.add("copied");
           button.innerHTML = '<i class="fas fa-check"></i><span>Link Copied!</span>';
@@ -749,6 +809,6 @@
       loadStreamFromSrc();
     });
   </script>
+
 </body>
-  <script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
 </html>
