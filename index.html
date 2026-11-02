@@ -16,7 +16,7 @@
     :root {
       --primary-color: #2563eb;
       --secondary-color: #1e40af;
-      --accent-color: #1e40af;
+      --accent-color: #f59e0b;
       --text-primary: #1f2937;
       --text-secondary: #6b7280;
       --bg-primary: #ffffff;
@@ -416,9 +416,10 @@
             <iframe id="embedded-player-1"
                     title="Live stream player"
                     frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; clipboard-write; web-share"
                     allowfullscreen
-                    scrolling="no"></iframe>
+                    scrolling="no"
+                    referrerpolicy="origin"></iframe>
           </div>
 
           <button id="reloadBtn-1" class="action-btn refresh-btn" type="button">
@@ -615,7 +616,9 @@
       video.removeAttribute("src");
       source.removeAttribute("src");
       video.load();
-      iframe.src = "about:blank";
+      /* Reset the iframe without leaving about:blank as the referrer.
+         Removing src keeps the referrer as the current page origin. */
+      try { iframe.removeAttribute('src'); } catch (e) {}
 
       videoBox.style.display = "block";
       iframeBox.style.display = "none";
@@ -713,13 +716,7 @@
                   video.play().catch(function() {});
                 }
             } else {
-                /* ---- iframe: matches reference player behavior ----
-                   1. hide the video container
-                   2. set src FIRST (element is still display:none but dimensions
-                      are computed by CSS aspect-ratio, so embed sees 16:9)
-                   3. then reveal iframe container
-                   4. hide the "no stream" placeholder
-                   No referrerpolicy / sandbox / onerror — same as reference. */
+                /* ---- iframe: embed loads inside the player ---- */
                 videoBox.style.display = "none";
                 iframe.src = url;
                 iframeBox.style.display = "block";
@@ -811,5 +808,4 @@
   </script>
 
 </body>
-
 </html>
