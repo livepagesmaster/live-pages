@@ -464,6 +464,13 @@
   </main>
 
   <script>
+    /* ============================================================
+       CONFIG: Put your CORS proxy base URL here.
+       Example (Cloudflare Worker): "https://your-worker.workers.dev/?url="
+       Leave "" to disable the proxy fallback.
+       ============================================================ */
+    const PROXY_BASE = ""; // <-- replace with your proxy URL
+
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
     });
@@ -592,6 +599,9 @@
       }
     }
 
+    /* ============================================================
+       CORE: Load stream with HLS.js + proxy fallback + iframe fallback
+       ============================================================ */
     function loadStreamFromSrc() {
       const params = new URLSearchParams(window.location.search);
       const matchId = params.get("match");
@@ -604,6 +614,7 @@
       const iframeBox = document.getElementById("iframe-player-container-1");
       const noStream = document.getElementById("no-stream-message-1");
 
+      // clean up previous hls/plyr
       if (video.hlsInstance) {
         try { video.hlsInstance.destroy(); } catch (e) {}
         video.hlsInstance = null;
@@ -616,8 +627,6 @@
       video.removeAttribute("src");
       source.removeAttribute("src");
       video.load();
-      /* Reset the iframe without leaving about:blank as the referrer.
-         Removing src keeps the referrer as the current page origin. */
       try { iframe.removeAttribute('src'); } catch (e) {}
 
       videoBox.style.display = "block";
@@ -644,8 +653,6 @@
 
             const url = linkObj.url;
 
-            /* explicit hls/iframe honored; otherwise auto-detect by extension.
-               'redirect' is intentionally ignored so embeds can never leave the page. */
             let type;
             if (linkObj.type === 'hls' || linkObj.type === 'iframe') {
                 type = linkObj.type;
@@ -654,73 +661,9 @@
             }
 
             if (type === 'hls') {
-                /* ---- HLS: unchanged ---- */
-                videoBox.style.display = "block";
-                iframeBox.style.display = "none";
-
-                if (window.Hls && Hls.isSupported()) {
-                  const hls = new Hls({
-                    maxMaxBufferLength: 100
-                  });
-                  hls.loadSource(url);
-                  hls.attachMedia(video);
-
-                  video.hlsInstance = hls;
-
-                  hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    const qualities = hls.levels
-                      .map(level => level.height)
-                      .filter(Boolean)
-                      .filter((value, index, array) => array.indexOf(value) === index)
-                      .sort((a, b) => b - a);
-
-                    const options = {};
-
-                    if (qualities.length) {
-                      options.quality = {
-                        default: qualities[0],
-                        options: qualities,
-                        forced: true,
-                        onChange: function (quality) {
-                          hls.levels.forEach(function (level, index) {
-                            if (level.height === quality) {
-                              hls.currentLevel = index;
-                            }
-                          });
-                        }
-                      };
-                    }
-
-                    video._plyrInstance = new Plyr(video, options);
-                  });
-
-                  hls.on(Hls.Events.ERROR, function(event, data) {
-                    if (!data.fatal) return;
-                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
-                    else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
-                    else {
-                      try { hls.destroy(); } catch (e) {}
-                      video.hlsInstance = null;
-                    }
-                  });
-
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                  source.setAttribute('src', url);
-                  video.load();
-                  video._plyrInstance = new Plyr(video);
-                  video.play().catch(function() {});
-                } else {
-                  source.setAttribute('src', url);
-                  video.load();
-                  video._plyrInstance = new Plyr(video);
-                  video.play().catch(function() {});
-                }
+                playHls(url, video, source, videoBox, iframe, iframeBox, noStream);
             } else {
-                /* ---- iframe: embed loads inside the player ---- */
-                videoBox.style.display = "none";
-                iframe.src = url;
-                iframeBox.style.display = "block";
-                noStream.style.display = "none";
+                showIframe(url, video, videoBox, iframe, iframeBox, noStream);
             }
         })
         .catch(() => {
@@ -728,6 +671,125 @@
             iframeBox.style.display = "none";
             noStream.style.display = "flex";
         });
+    }
+
+    function buildProxyUrl(url) {
+      if (!PROXY_BASE) return null;
+      return PROXY_BASE + encodeURIComponent(url);
+    }
+
+    function showIframe(url, video, videoBox, iframe, iframeBox, noStream) {
+      video.pause();
+      videoBox.style.display = "none";
+      iframe.src = url;
+      iframeBox.style.display = "block";
+      noStream.style.display = "none";
+    }
+
+    function showNoStream(videoBox, iframeBox, noStream) {
+      videoBox.style.display = "none";
+      iframeBox.style.display = "none";
+      noStream.style.display = "flex";
+    }
+
+    /* Attempt hls.js playback. On fatal CORS/network failure:
+       1) retry via PROXY_BASE (if configured)
+       2) if still failing, fall back to iframe (like your second page)
+    */
+    function playHls(url, video, source, videoBox, iframe, iframeBox, noStream) {
+      videoBox.style.display = "block";
+      iframeBox.style.display = "none";
+      noStream.style.display = "none";
+
+      // path 1: native HLS (Safari / iOS) – no XHR, no CORS issue
+      if (!window.Hls || !Hls.isSupported()) {
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          source.setAttribute('src', url);
+          video.load();
+          video._plyrInstance = new Plyr(video);
+          video.play().catch(function() {});
+          return;
+        }
+        // nothing else we can do
+        showIframe(url, video, videoBox, iframe, iframeBox, noStream);
+        return;
+      }
+
+      // path 2: hls.js (direct)
+      tryDirectHls(url);
+
+      function tryDirectHls(targetUrl, isProxyAttempt) {
+        const hls = new Hls({ maxMaxBufferLength: 100 });
+        video.hlsInstance = hls;
+
+        let manifestParsed = false;
+
+        hls.loadSource(targetUrl);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          manifestParsed = true;
+
+          const qualities = hls.levels
+            .map(level => level.height)
+            .filter(Boolean)
+            .filter((value, index, array) => array.indexOf(value) === index)
+            .sort((a, b) => b - a);
+
+          const options = {};
+
+          if (qualities.length) {
+            options.quality = {
+              default: qualities[0],
+              options: qualities,
+              forced: true,
+              onChange: function (quality) {
+                hls.levels.forEach(function (level, index) {
+                  if (level.height === quality) {
+                    hls.currentLevel = index;
+                  }
+                });
+              }
+            };
+          }
+
+          if (video._plyrInstance) {
+            try { video._plyrInstance.destroy(); } catch (e) {}
+          }
+          video._plyrInstance = new Plyr(video, options);
+        });
+
+        hls.on(Hls.Events.ERROR, function(event, data) {
+          if (!data.fatal) return;
+
+          if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+            // direct load failed (likely CORS). Try proxy once, then iframe.
+            if (!isProxyAttempt && PROXY_BASE) {
+              try { hls.destroy(); } catch (e) {}
+              video.hlsInstance = null;
+              const proxied = buildProxyUrl(url);
+              if (proxied) {
+                tryDirectHls(proxied, true);
+                return;
+              }
+            }
+            try { hls.destroy(); } catch (e) {}
+            video.hlsInstance = null;
+            showIframe(url, video, videoBox, iframe, iframeBox, noStream);
+            return;
+          }
+
+          if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+            hls.recoverMediaError();
+            return;
+          }
+
+          // other fatal error
+          try { hls.destroy(); } catch (e) {}
+          video.hlsInstance = null;
+          showIframe(url, video, videoBox, iframe, iframeBox, noStream);
+        });
+      }
     }
 
     function setupSharing() {
