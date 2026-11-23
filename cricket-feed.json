@@ -17,56 +17,6 @@
       "redirectUrl": "https://www.yashintv.xyz/p/m15.html"
     },      
                                                                            
-                                                                                           {
-      "team1": {
-        "name": "India A",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/india.png"
-      },
-      "team2": {
-        "name": "Nepal",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Asia Cup Rising Stars",
-      "time": "26/11/20 15:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
-    },
-
-{
-      "team1": {
-        "name": "UAE",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/uae.png"
-      },
-      "team2": {
-        "name": "Nepal",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Asia Cup Rising Stars",
-      "time": "26/11/22 11:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
-    },
-
-{
-      "team1": {
-        "name": "India-A",
-        "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/india.png"
-      },
-      "team2": {
-        "name": "Pakistan-A",
-        "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/pakistan.png"
-      },
-      "status": "Ended",
-      "type": "🏆 Asia Cup Rising Stars",
-      "time": "26/11/22 15:45:00",
-      "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
-    },
 {
       "team1": {
         "name": "India A",
@@ -99,23 +49,22 @@
       "time": "26/11/24 15:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     },
-
- {
+           {
       "team1": {
-        "name": "Lumbini Lions",
+        "name": "Australia",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/lumbinilions.png"
+        "img": "https://img.singhs.com.np/cricket/australia.png"
       },
       "team2": {
-        "name": "Sudurpaschim Royals",
+        "name": "England",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/sudurpaschimroyals.png"
+        "img": "https://img.singhs.com.np/cricket/england.png"
       },
-      "status": "Ended",
-      "type": "🏆 NPL 2026",
-      "time": "26/11/21 17:00:00",
+      "status": "Upcoming",
+      "type": "🏆 Asia Cup Rising Stars",
+      "time": "26/11/24 14:00:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
-    }                                                                                                                                                                                                                                                                                                       
+    }                                                                                                                                                                                                                                                                                            
   ]
 }
     
