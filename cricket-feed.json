@@ -24,29 +24,29 @@
         "img": "https://img.singhs.com.np/cricket/india.png"
       },
       "team2": {
-        "name": "UAE",
+        "name": "Srilanka A",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/uae.png"
+        "img": "https://img.singhs.com.np/cricket/srilanka.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "🏆 Asia Cup Rising Stars",
-      "time": "26/11/24 11:45:00",
+      "time": "26/11/26 15:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     },
 {
       "team1": {
-        "name": "Pakistan A",
+        "name": "Bangladesh A",
         "code": "CDI",
-        "img": "https://img.singhs.com.np/cricket/pakistan.png"
+        "img": "https://img.singhs.com.np/cricket/bangladesh.png"
       },
       "team2": {
-        "name": "Nepal",
+        "name": "Pakistan A",
         "code": "ecd",
-        "img": "https://img.singhs.com.np/cricket/nepal.png"
+        "img": "https://img.singhs.com.np/cricket/pakistan.png"
       },
-      "status": "Ended",
+      "status": "Upcoming",
       "type": "🏆 Asia Cup Rising Stars",
-      "time": "26/11/24 15:45:00",
+      "time": "26/11/27 15:45:00",
       "redirectUrl": "https://www.yashintv.xyz/p/m20.html"
     },
            {
